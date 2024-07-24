@@ -44,5 +44,6 @@ namespace Core.DatabaseContext
         public DbSet<Roles> Roles { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<WorkingDays> WorkingDays { get; set; }
+        public DbSet<Shifts> Shifts { get; set; }
     }
 }

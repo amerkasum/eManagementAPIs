@@ -13,9 +13,15 @@ namespace Models.Entities
         public string Description { get; set; }
         public int StartDay { get; set; }
         public int EndDay { get; set; }
+
         [ForeignKey(nameof(UserId))]
         public Users User { get; set; }
         public int UserId { get; set; }
+
+        [ForeignKey(nameof(ShiftId))]
+        public Shifts Shift { get; set; }
+        public int ShiftId { get; set; }
+        
         public int RepeatState { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public DateTime? ModifiedDateTime { get; set; }

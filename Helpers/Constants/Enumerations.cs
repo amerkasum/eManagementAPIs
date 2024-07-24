@@ -12,6 +12,12 @@ namespace Helpers.Constants
             PRODUCTION = 2
         };
 
+        public enum ShiftType
+        {
+            FIRST = 1,
+            SECOND,
+            THIRD
+        }
 
     }
 }
