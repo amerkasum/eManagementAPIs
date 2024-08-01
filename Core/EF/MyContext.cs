@@ -15,6 +15,8 @@ namespace Core.DatabaseContext
         {
         }
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -45,5 +47,9 @@ namespace Core.DatabaseContext
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<WorkingDays> WorkingDays { get; set; }
         public DbSet<Shifts> Shifts { get; set; }
+        public DbSet<Events> Events { get; set; }
+        public DbSet<EventStatuses> EventStatuses { get; set; }
+        public DbSet<Tasks> Tasks { get; set; }
+        public DbSet<UserTasks> UserTasks { get; set; }
     }
 }
