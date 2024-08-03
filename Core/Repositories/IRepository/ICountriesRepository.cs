@@ -9,5 +9,6 @@ namespace Core.Repositories.IRepository
     public interface ICountriesRepository : IRepository<Countries>
     {
         CountriesDto GetCountryByName(string name);
+        CountriesDto GetCountryByIso(string iso);
     }
 }

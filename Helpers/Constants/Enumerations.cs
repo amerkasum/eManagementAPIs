@@ -12,7 +12,7 @@ namespace Helpers.Constants
             PRODUCTION = 2
         };
 
-        public enum Roles
+        public enum Role
         {
             ADMINISTRATOR = 1,
             EMPLOYEE
@@ -51,9 +51,33 @@ namespace Helpers.Constants
         public enum TaskStatus
         {
             PENDING = 1,
-            INPROGRESS,
+            IN_PROGRESS,
             FINISHED,
             CANCELLED,
+        }
+
+        public enum AbsenceType
+        {
+            SICK_LEAVE = 1,
+            VACATION_LEAVE,
+            PERSONAL_LEAVE,
+            PARENTAL_LEAVE,
+            BEREAVEMENT_LEAVE,
+            JURY_DUTY,
+            MILITARY_LEAVE,
+            UNPAID_LEAVE,
+            PUBLIC_HOLIDAY,
+            STUDY_LEAVE,
+            SABBATICAL,
+            COMPENSATORY_LEAVE,
+            VOLUNTEER_LEAVE,
+            FAMILY_AND_MEDICAL_LEAVE,
+            HALF_DAY_LEAVE,
+            EMERGENCY_LEAVE,
+            CASUAL_LEAVE,
+            ADMINISTRATIVE_LEAVE,
+            FLOATING_HOLIDAY,
+            RELIGIOUS_LEAVE
         }
 
     }

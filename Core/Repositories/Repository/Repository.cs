@@ -27,6 +27,10 @@ namespace Core.Repositories.Repository
             table = _context.Set<T>();
         }
 
+        public bool Any()
+        {
+            return table.Any();
+        }
         //Add
         public virtual void Add(T t) => table.Add(t);
 

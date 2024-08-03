@@ -7,6 +7,7 @@ namespace Core.Repositories.IRepository
 {
     public interface IRepository <T> where T : class
     {
+        bool Any();
         IEnumerable<T> GetAll();
         Task<IEnumerable<T>> GetAllAsync();
         void Add(T t);

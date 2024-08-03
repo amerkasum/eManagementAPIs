@@ -21,10 +21,12 @@ namespace RS2_Application.Controllers.Area.Mobile
     {
         private readonly IUnitOfWork DataUnitOfWork;
         private readonly IUserLoggerService UserLoggerService;
-        public UsersController(IUnitOfWork unitOfWork, IUserLoggerService userLoggerService)
+        private readonly IInitializerService Initializer;
+        public UsersController(IUnitOfWork unitOfWork, IUserLoggerService userLoggerService, IInitializerService initializer)
         {
             this.DataUnitOfWork = unitOfWork;
             this.UserLoggerService = userLoggerService;
+            this.Initializer = initializer;
         }
 
         [HttpGet("GetAllAsync")]
@@ -90,6 +92,8 @@ namespace RS2_Application.Controllers.Area.Mobile
         [HttpPost(nameof(SignIn))]
         public IActionResult SignIn(string email, string password)
         {
+            Initializer.Initialize();
+
             var user = DataUnitOfWork.UsersRepository.GetByEmail(email);
 
             if (user == null)

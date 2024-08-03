@@ -50,6 +50,9 @@ namespace Core.DatabaseContext
         public DbSet<Events> Events { get; set; }
         public DbSet<EventStatuses> EventStatuses { get; set; }
         public DbSet<Tasks> Tasks { get; set; }
+        public DbSet<TaskStatuses> TaskStatuses { get; set; }
         public DbSet<UserTasks> UserTasks { get; set; }
+        public DbSet<WorkingAbsences> WorkingBasences { get; set; }
+        public DbSet<AbsenceTypes> AbsenceTypes { get; set; }
     }
 }

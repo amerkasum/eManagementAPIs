@@ -15,6 +15,13 @@ namespace Core.UnitOfWork
         public CountriesRepository CountriesRepository => new CountriesRepository(_context);
         public CitiesRepository CitiesRepository => new CitiesRepository(_context);
         public UserLoggerRepository UserLoggerRepository => new UserLoggerRepository(_context);
+        public EventsRepository EventsRepository => new EventsRepository(_context);
+        public EventStatusesRepository EventStatusesRepository => new EventStatusesRepository(_context);
+        public TaskStatusesRepository TaskStatusesRepository => new TaskStatusesRepository(_context);
+        public RolesReporitory RolesRepository => new RolesReporitory(_context);
+        public UserRolesRepository UserRolesRepository => new UserRolesRepository(_context);
+        public ShiftsRepository ShiftsRepository => new ShiftsRepository(_context);
+        public AbsenceTypesRepository AbsenceTypesRepository => new AbsenceTypesRepository(_context);
 
         public UnitOfWork(MyContext context)
         {
@@ -22,7 +29,6 @@ namespace Core.UnitOfWork
         }
 
         //begin, commit, rollback ----> implementirati
-
 
         public void Dispose()
         {

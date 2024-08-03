@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -40,6 +41,7 @@ namespace RS2_Application
             services.AddTransient<IUserLoggerService,UserLoggerService>();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IInitializerService,InitializerService>();
             #endregion
 
             services.AddTransient<IUnitOfWork, UnitOfWork>(); //istraziti Transient, Scoped, Singleton
@@ -55,7 +57,6 @@ namespace RS2_Application
                                .AllowAnyHeader();
                     });
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

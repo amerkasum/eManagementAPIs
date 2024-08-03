@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Models.Entities
 {
-    public class UserWorkingAbsences : IEntity
+    public class WorkingAbsences : IEntity
     {
         public int Id { get; set; }
         [ForeignKey(nameof(UserId))]
