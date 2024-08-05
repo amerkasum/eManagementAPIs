@@ -16,8 +16,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", 
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{DFF296AB-00E2-4BF2-9BB0-49D2CD8741A8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CD63800B-58C6-4251-A5FC-8B083062654D} = {CD63800B-58C6-4251-A5FC-8B083062654D}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{CD63800B-58C6-4251-A5FC-8B083062654D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helpers", "Helpers\Helpers.csproj", "{CD63800B-58C6-4251-A5FC-8B083062654D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

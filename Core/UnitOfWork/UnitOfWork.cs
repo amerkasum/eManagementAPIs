@@ -22,6 +22,9 @@ namespace Core.UnitOfWork
         public UserRolesRepository UserRolesRepository => new UserRolesRepository(_context);
         public ShiftsRepository ShiftsRepository => new ShiftsRepository(_context);
         public AbsenceTypesRepository AbsenceTypesRepository => new AbsenceTypesRepository(_context);
+        public WorkingAbsencesRepository WorkingAbsencesRepository => new WorkingAbsencesRepository(_context);
+        public WorkingDaysRepository WorkingDaysRepository => new WorkingDaysRepository(_context);
+        public UserResidenceRepository UserResidenceRepository => new UserResidenceRepository(_context);
 
         public UnitOfWork(MyContext context)
         {

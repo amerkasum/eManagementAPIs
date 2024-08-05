@@ -80,5 +80,11 @@ namespace Helpers.Constants
             RELIGIOUS_LEAVE
         }
 
+        public enum RepeatState
+        {
+            ONCE = 1,
+            ALWAYS
+        }
+
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Core.Migrations
 {
-    public partial class init : Migration
+    public partial class init_fixes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace Core.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    Code = table.Column<int>(nullable: false),
+                    Code = table.Column<string>(nullable: true),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     DeletedDateTime = table.Column<DateTime>(nullable: true),
@@ -72,7 +72,7 @@ namespace Core.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    Code = table.Column<int>(nullable: false),
+                    Code = table.Column<string>(nullable: true),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     DeletedDateTime = table.Column<DateTime>(nullable: true),
@@ -90,7 +90,7 @@ namespace Core.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    Code = table.Column<int>(nullable: false),
+                    Code = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(nullable: true),
@@ -109,7 +109,7 @@ namespace Core.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    Code = table.Column<int>(nullable: false),
+                    Code = table.Column<string>(nullable: true),
                     TimeFrom = table.Column<DateTime>(nullable: false),
                     TimeTo = table.Column<DateTime>(nullable: false),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
@@ -150,7 +150,7 @@ namespace Core.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    Code = table.Column<int>(nullable: false),
+                    Code = table.Column<string>(nullable: true),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     DeletedDateTime = table.Column<DateTime>(nullable: true),
@@ -297,16 +297,16 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WorkingBasences",
+                name: "WorkingAbsences",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
-                    EndDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: true),
                     Note = table.Column<string>(nullable: true),
-                    Status = table.Column<int>(nullable: false),
+                    AbsenceTypeId = table.Column<int>(nullable: false),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     DeletedDateTime = table.Column<DateTime>(nullable: true),
@@ -314,9 +314,15 @@ namespace Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WorkingBasences", x => x.Id);
+                    table.PrimaryKey("PK_WorkingAbsences", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_WorkingBasences_Users_UserId",
+                        name: "FK_WorkingAbsences_AbsenceTypes_AbsenceTypeId",
+                        column: x => x.AbsenceTypeId,
+                        principalTable: "AbsenceTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WorkingAbsences_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -330,11 +336,12 @@ namespace Core.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(nullable: true),
-                    StartDay = table.Column<int>(nullable: false),
-                    EndDay = table.Column<int>(nullable: false),
+                    Day = table.Column<int>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: true),
                     UserId = table.Column<int>(nullable: false),
                     ShiftId = table.Column<int>(nullable: false),
                     RepeatState = table.Column<int>(nullable: false),
+                    IsWorking = table.Column<bool>(nullable: false),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     DeletedDateTime = table.Column<DateTime>(nullable: true),
@@ -388,8 +395,13 @@ namespace Core.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WorkingBasences_UserId",
-                table: "WorkingBasences",
+                name: "IX_WorkingAbsences_AbsenceTypeId",
+                table: "WorkingAbsences",
+                column: "AbsenceTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkingAbsences_UserId",
+                table: "WorkingAbsences",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -405,9 +417,6 @@ namespace Core.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AbsenceTypes");
-
             migrationBuilder.DropTable(
                 name: "Cities");
 
@@ -430,7 +439,7 @@ namespace Core.Migrations
                 name: "UserTasks");
 
             migrationBuilder.DropTable(
-                name: "WorkingBasences");
+                name: "WorkingAbsences");
 
             migrationBuilder.DropTable(
                 name: "WorkingDays");
@@ -443,6 +452,9 @@ namespace Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tasks");
+
+            migrationBuilder.DropTable(
+                name: "AbsenceTypes");
 
             migrationBuilder.DropTable(
                 name: "Shifts");

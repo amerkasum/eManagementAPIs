@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Extensions;
 
 namespace RS2_Application
 {
@@ -30,6 +31,7 @@ namespace RS2_Application
         }
 
         public IConfiguration Configuration { get; }
+        private IInitializerService InitializerService { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -37,12 +39,7 @@ namespace RS2_Application
             services.AddControllers();
             services.AddSwaggerGen();
 
-            #region Services
-            services.AddTransient<IUserLoggerService,UserLoggerService>();
-            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient<IEmailSender, EmailSender>();
-            services.AddTransient<IInitializerService,InitializerService>();
-            #endregion
+            services.AddCustomServices();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>(); //istraziti Transient, Scoped, Singleton
             services.AddDbContext<MyContext>(options => options.UseSqlServer("Server=.;Database=RS2_ApplicationDb;MultipleActiveResultSets=True;Trusted_Connection=True"));

@@ -11,7 +11,7 @@ namespace Models.Entities
         [Key]
         public int Id { get; set; }
         [ForeignKey(nameof(UserId))]
-        public UserLogger User { get; set; }
+        public Users User { get; set; }
         public int UserId { get; set; }
         [ForeignKey(nameof(CityId))]
         public Cities City { get; set; }

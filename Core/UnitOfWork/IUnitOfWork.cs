@@ -22,6 +22,9 @@ namespace Core.UnitOfWork
         UserRolesRepository UserRolesRepository { get; }
         ShiftsRepository ShiftsRepository { get; }
         AbsenceTypesRepository AbsenceTypesRepository { get; }
+        WorkingAbsencesRepository WorkingAbsencesRepository { get; }
+        WorkingDaysRepository WorkingDaysRepository { get; }
+        UserResidenceRepository UserResidenceRepository { get; }
         #endregion
 
         int Complete();

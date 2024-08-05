@@ -22,11 +22,13 @@ namespace RS2_Application.Controllers.Area.Mobile
         private readonly IUnitOfWork DataUnitOfWork;
         private readonly IUserLoggerService UserLoggerService;
         private readonly IInitializerService Initializer;
-        public UsersController(IUnitOfWork unitOfWork, IUserLoggerService userLoggerService, IInitializerService initializer)
+        private readonly IUserService UserService;
+        public UsersController(IUnitOfWork unitOfWork, IUserLoggerService userLoggerService, IInitializerService initializer, IUserService userService)
         {
             this.DataUnitOfWork = unitOfWork;
             this.UserLoggerService = userLoggerService;
             this.Initializer = initializer;
+            this.UserService = userService;
         }
 
         [HttpGet("GetAllAsync")]
@@ -78,12 +80,12 @@ namespace RS2_Application.Controllers.Area.Mobile
             {
                 try
                 {
-                    Add(model);
+                    UserService.HandleUserData(model);
                     return Ok();
                 }
-                catch
+                catch (Exception e)
                 {
-                    return BadRequest();
+                    throw e;
                 }
             }
             return BadRequest(ModelState);
@@ -92,8 +94,6 @@ namespace RS2_Application.Controllers.Area.Mobile
         [HttpPost(nameof(SignIn))]
         public IActionResult SignIn(string email, string password)
         {
-            Initializer.Initialize();
-
             var user = DataUnitOfWork.UsersRepository.GetByEmail(email);
 
             if (user == null)
@@ -118,6 +118,12 @@ namespace RS2_Application.Controllers.Area.Mobile
                 }
             }
             return BadRequest(ModelState);
+        }
+
+        [HttpPost(nameof(InitData))]
+        public void InitData()
+        {
+            Initializer.Initialize();
         }
     }
 }

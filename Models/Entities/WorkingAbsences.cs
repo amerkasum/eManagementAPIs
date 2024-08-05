@@ -12,9 +12,11 @@ namespace Models.Entities
         public Users User { get; set; }
         public int UserId { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public string Note { get; set; }
-        public int Status { get; set; }
+        [ForeignKey(nameof(AbsenceTypeId))]
+        public AbsenceTypes AbsenceType { get; set; }
+        public int AbsenceTypeId { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public DateTime? ModifiedDateTime { get; set; }
         public DateTime? DeletedDateTime { get; set; }

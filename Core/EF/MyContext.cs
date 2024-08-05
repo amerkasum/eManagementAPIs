@@ -52,7 +52,8 @@ namespace Core.DatabaseContext
         public DbSet<Tasks> Tasks { get; set; }
         public DbSet<TaskStatuses> TaskStatuses { get; set; }
         public DbSet<UserTasks> UserTasks { get; set; }
-        public DbSet<WorkingAbsences> WorkingBasences { get; set; }
+        public DbSet<WorkingAbsences> WorkingAbsences { get; set; }
         public DbSet<AbsenceTypes> AbsenceTypes { get; set; }
+        public DbSet<UserResidence> UserResidence { get; set; }
     }
 }
