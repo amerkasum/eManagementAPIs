@@ -11,7 +11,7 @@ namespace Core.Repositories.Repository
 {
     public class UserLoggerRepository : Repository<UserLogger>, IUserLoggerRepository
     {
-        public UserLoggerRepository(MyContext context) : base(context)
+        public UserLoggerRepository(ApplicationDbContext context) : base(context)
         {
         }
 

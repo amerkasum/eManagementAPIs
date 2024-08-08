@@ -66,7 +66,7 @@ namespace Core.Services.Services
             };
 
             DataUnitOfWork.UserLoggerRepository.Add(userLogger);
-            DataUnitOfWork.Complete();
+            DataUnitOfWork.SaveChanges();
 
             return userLogger;
         }

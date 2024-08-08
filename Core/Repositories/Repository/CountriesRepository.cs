@@ -11,7 +11,7 @@ namespace Core.Repositories.Repository
 {
     public class CountriesRepository : Repository<Countries>, ICountriesRepository
     {
-        public CountriesRepository(MyContext context) : base(context)
+        public CountriesRepository(ApplicationDbContext context) : base(context)
         {
         }
 

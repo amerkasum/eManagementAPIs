@@ -9,6 +9,6 @@ namespace Core.Repositories.Repository
 {
     public class AbsenceTypesRepository : Repository<AbsenceTypes>, IAbsenceTypesRepository
     {
-        public AbsenceTypesRepository(MyContext context) : base(context) { }
+        public AbsenceTypesRepository(ApplicationDbContext context) : base(context) { }
     }
 }

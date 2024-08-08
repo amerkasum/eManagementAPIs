@@ -9,7 +9,7 @@ namespace Core.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly MyContext _context;
+        private readonly ApplicationDbContext _context;
         //TODO
         public UsersRepository UsersRepository => new UsersRepository(_context);
         public CountriesRepository CountriesRepository => new CountriesRepository(_context);
@@ -25,8 +25,11 @@ namespace Core.UnitOfWork
         public WorkingAbsencesRepository WorkingAbsencesRepository => new WorkingAbsencesRepository(_context);
         public WorkingDaysRepository WorkingDaysRepository => new WorkingDaysRepository(_context);
         public UserResidenceRepository UserResidenceRepository => new UserResidenceRepository(_context);
+        public TasksRepository TasksRepository => new TasksRepository(_context);
+        public UserTasksRepository UserTasksRepository => new UserTasksRepository(_context);
+        public TaskReviewRepository TaskReviewRepository => new TaskReviewRepository(_context);
 
-        public UnitOfWork(MyContext context)
+        public UnitOfWork(ApplicationDbContext context)
         {
             this._context = context;
         }
@@ -44,7 +47,7 @@ namespace Core.UnitOfWork
             if (disposing) _context.Dispose();
         }
 
-        public int Complete()
+        public int SaveChanges()
         {
             return _context.SaveChanges();
         }

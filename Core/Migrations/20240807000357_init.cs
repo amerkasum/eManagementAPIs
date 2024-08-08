@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Core.Migrations
 {
-    public partial class init_fixes : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -364,6 +364,36 @@ namespace Core.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "UserResidence",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(nullable: false),
+                    CityId = table.Column<int>(nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
+                    DeletedDateTime = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserResidence", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserResidence_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserResidence_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Cities_CountryId",
                 table: "Cities",
@@ -372,6 +402,16 @@ namespace Core.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_UserLogger_UserId",
                 table: "UserLogger",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserResidence_CityId",
+                table: "UserResidence",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserResidence_UserId",
+                table: "UserResidence",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -418,9 +458,6 @@ namespace Core.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Cities");
-
-            migrationBuilder.DropTable(
                 name: "Events");
 
             migrationBuilder.DropTable(
@@ -431,6 +468,9 @@ namespace Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserLogger");
+
+            migrationBuilder.DropTable(
+                name: "UserResidence");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");
@@ -445,7 +485,7 @@ namespace Core.Migrations
                 name: "WorkingDays");
 
             migrationBuilder.DropTable(
-                name: "Countries");
+                name: "Cities");
 
             migrationBuilder.DropTable(
                 name: "Roles");
@@ -461,6 +501,9 @@ namespace Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Countries");
         }
     }
 }

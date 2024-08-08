@@ -9,6 +9,6 @@ namespace Core.Repositories.Repository
 {
     public class TaskStatusesRepository : Repository<TaskStatuses>, ITaskStatusesRepository
     {
-        public TaskStatusesRepository(MyContext context) : base(context) { }
+        public TaskStatusesRepository(ApplicationDbContext context) : base(context) { }
     }
 }

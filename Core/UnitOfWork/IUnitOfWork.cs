@@ -25,9 +25,12 @@ namespace Core.UnitOfWork
         WorkingAbsencesRepository WorkingAbsencesRepository { get; }
         WorkingDaysRepository WorkingDaysRepository { get; }
         UserResidenceRepository UserResidenceRepository { get; }
+        TasksRepository TasksRepository { get; }
+        UserTasksRepository UserTasksRepository { get; }
+        TaskReviewRepository TaskReviewRepository { get; }
         #endregion
 
-        int Complete();
+        int SaveChanges();
         Task CompleteAsync();
         void BeginTransaction();
         void Commit();

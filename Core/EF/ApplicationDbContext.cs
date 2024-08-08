@@ -8,9 +8,9 @@ using System.Text;
 
 namespace Core.DatabaseContext
 {
-    public class MyContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public MyContext(DbContextOptions<MyContext> options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
         {
         }
@@ -38,7 +38,7 @@ namespace Core.DatabaseContext
         //    options.UseSqlServer("Server=.;Database=RS2_ApplicationDb;MultipleActiveresultsets=True;Trusted_Connection=True");
         //}
 
-        public MyContext() { }
+        public ApplicationDbContext() { }
         public DbSet<Users> Users { get; set; }
         public DbSet<Cities> Cities { get; set; }
         public DbSet<Countries> Countries { get; set; }
@@ -55,5 +55,6 @@ namespace Core.DatabaseContext
         public DbSet<WorkingAbsences> WorkingAbsences { get; set; }
         public DbSet<AbsenceTypes> AbsenceTypes { get; set; }
         public DbSet<UserResidence> UserResidence { get; set; }
+        public DbSet<TaskReview> TaskReviews { get; set; }
     }
 }

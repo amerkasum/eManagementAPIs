@@ -7,10 +7,8 @@ using System.Text;
 
 namespace Core.Repositories.Repository
 {
-    public class RolesReporitory : Repository<Roles>, IRolesReporitory
+    public class TaskReviewRepository : Repository<TaskReview>, ITaskReviewRepository
     {
-        public RolesReporitory(ApplicationDbContext context) : base(context)
-        {
-        }
+        public TaskReviewRepository(ApplicationDbContext context) : base(context) { }
     }
 }

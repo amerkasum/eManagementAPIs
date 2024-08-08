@@ -9,6 +9,6 @@ namespace Core.Repositories.Repository
 {
     public class EventStatusesRepository : Repository<EventStatuses>, IEventStatusesRepository
     {
-        public EventStatusesRepository(MyContext context) : base(context) { }
+        public EventStatusesRepository(ApplicationDbContext context) : base(context) { }
     }
 }

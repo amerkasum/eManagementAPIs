@@ -12,7 +12,7 @@ namespace Core.Repositories.Repository
 {
     public class CitiesRepository : Repository<Cities>, ICitiesRepository
     {
-        public CitiesRepository(MyContext context) : base(context)
+        public CitiesRepository(ApplicationDbContext context) : base(context)
         {
         }
 

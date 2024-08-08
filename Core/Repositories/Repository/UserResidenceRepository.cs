@@ -9,7 +9,7 @@ namespace Core.Repositories.Repository
 {
     public class UserResidenceRepository : Repository<UserResidence>, IUserResidenceRepository
     {
-        public UserResidenceRepository(MyContext context) : base (context) { }
+        public UserResidenceRepository(ApplicationDbContext context) : base (context) { }
 
     }
 }

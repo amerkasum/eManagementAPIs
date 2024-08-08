@@ -9,6 +9,6 @@ namespace Core.Repositories.Repository
 {
     public class ShiftsRepository : Repository<Shifts>, IShiftsRepository
     {
-        public ShiftsRepository(MyContext context) : base(context) { }
+        public ShiftsRepository(ApplicationDbContext context) : base(context) { }
     }
 }

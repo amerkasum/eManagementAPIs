@@ -9,7 +9,7 @@ namespace Core.Repositories.Repository
 {
     public class EventsRepository : Repository<Events>, IEventsRepository
     {
-        public EventsRepository(MyContext context) : base(context)
+        public EventsRepository(ApplicationDbContext context) : base(context)
         {
         }
     }

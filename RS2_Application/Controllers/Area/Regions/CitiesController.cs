@@ -43,7 +43,7 @@ namespace RS2_Application.Controllers.Area.Regions
                             Name = model.CountryName
                         };
                         DataUnitOfWork.CountriesRepository.Add(country);
-                        DataUnitOfWork.Complete();
+                        DataUnitOfWork.SaveChanges();
                     }
                     else
                     {
@@ -54,7 +54,7 @@ namespace RS2_Application.Controllers.Area.Regions
                             CountryId = countryResult.Id
                         };
                         DataUnitOfWork.CitiesRepository.Add(city);
-                        DataUnitOfWork.Complete();
+                        DataUnitOfWork.SaveChanges();
                     }
                     DataUnitOfWork.Commit();
 

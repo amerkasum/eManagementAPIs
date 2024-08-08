@@ -8,6 +8,6 @@ namespace Core.Services.IServices
 {
     public interface IUserService
     {
-        void HandleUserData(UsersViewModel model);
+        void HandleUserData(int userId, UsersViewModel model);
     }
 }

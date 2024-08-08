@@ -9,7 +9,7 @@ namespace Core.Repositories.Repository
 {
     public class UserRolesRepository : Repository<UserRoles>, IUserRolesRepository
     {
-        public UserRolesRepository(MyContext context) : base(context)
+        public UserRolesRepository(ApplicationDbContext context) : base(context)
         {
         }
     }

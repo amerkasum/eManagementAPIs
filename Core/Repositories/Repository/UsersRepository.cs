@@ -12,7 +12,7 @@ namespace Core.Repositories.Repository
 {
     public class UsersRepository : Repository<Users>, IUsersRepository
     {
-        public UsersRepository(MyContext context) : base(context)
+        public UsersRepository(ApplicationDbContext context) : base(context)
         {
         }
 

@@ -58,7 +58,7 @@ namespace RS2_Application.Controllers.Area.Mobile
                 };
 
                 DataUnitOfWork.UsersRepository.Add(user);
-                DataUnitOfWork.Complete();
+                DataUnitOfWork.SaveChanges();
 
                 return Ok();
             }
@@ -80,7 +80,20 @@ namespace RS2_Application.Controllers.Area.Mobile
             {
                 try
                 {
-                    UserService.HandleUserData(model);
+                    Users user = new Users
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Email = model.Email,
+                        Password = UserLoggerService.EncodePasswordToBase64(model.Password),
+                        DateOfBirth = model.DateOfBirth,
+                        PhoneNumber = model.PhoneNumber,
+                        IsActive = true
+                    };
+
+                    DataUnitOfWork.UsersRepository.Add(user);
+                    DataUnitOfWork.SaveChanges();
+                    UserService.HandleUserData(user.Id, model);
                     return Ok();
                 }
                 catch (Exception e)

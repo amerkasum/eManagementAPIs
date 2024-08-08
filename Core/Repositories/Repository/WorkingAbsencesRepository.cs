@@ -12,7 +12,7 @@ namespace Core.Repositories.Repository
 {
     public class WorkingAbsencesRepository : Repository<WorkingAbsences>, IWorkingAbsencesRepository
     {
-        public WorkingAbsencesRepository(MyContext context) : base(context) { }
+        public WorkingAbsencesRepository(ApplicationDbContext context) : base(context) { }
 
         public IEnumerable<WorkingAbsenceDto> GetWorkingAbsencesByParameters(string absenceTypeCode, int? userId = null)
         {

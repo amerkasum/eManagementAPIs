@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Core.Migrations
 {
-    [DbContext(typeof(MyContext))]
-    [Migration("20240805150402_init_fixes")]
-    partial class init_fixes
+    [DbContext(typeof(ApplicationDbContext))]
+    [Migration("20240807000357_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -367,6 +367,40 @@ namespace Core.Migrations
                     b.ToTable("UserLogger");
                 });
 
+            modelBuilder.Entity("Models.Entities.UserResidence", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserResidence");
+                });
+
             modelBuilder.Entity("Models.Entities.UserRoles", b =>
                 {
                     b.Property<int>("Id")
@@ -583,6 +617,21 @@ namespace Core.Migrations
 
             modelBuilder.Entity("Models.Entities.UserLogger", b =>
                 {
+                    b.HasOne("Models.Entities.Users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Models.Entities.UserResidence", b =>
+                {
+                    b.HasOne("Models.Entities.Cities", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Models.Entities.Users", "User")
                         .WithMany()
                         .HasForeignKey("UserId")

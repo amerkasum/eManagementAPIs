@@ -13,7 +13,7 @@ namespace Core.Repositories.Repository
 {
     public class WorkingDaysRepository : Repository<WorkingDays>, IWorkingDaysRepository
     {
-        public WorkingDaysRepository(MyContext context) : base(context) { }
+        public WorkingDaysRepository(ApplicationDbContext context) : base(context) { }
 
         public IEnumerable<WorkingDaysDto> GetWorkingDaysByUserId(int userId)
         {

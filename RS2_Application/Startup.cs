@@ -42,7 +42,10 @@ namespace RS2_Application
             services.AddCustomServices();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>(); //istraziti Transient, Scoped, Singleton
-            services.AddDbContext<MyContext>(options => options.UseSqlServer("Server=.;Database=RS2_ApplicationDb;MultipleActiveResultSets=True;Trusted_Connection=True"));
+            //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Server=.;Database=RS2_ApplicationDb;MultipleActiveResultSets=True;Trusted_Connection=True"));
+
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
 
             services.AddCors(options =>
             {

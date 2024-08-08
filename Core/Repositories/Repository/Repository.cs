@@ -12,16 +12,16 @@ namespace Core.Repositories.Repository
 {
     public class Repository<T> : IRepository<T> where T : class, IEntity
     {
-        public MyContext _context;
+        public ApplicationDbContext _context;
         private DbSet<T> table;
 
         public Repository()
         {
-            this._context = new MyContext();
+            this._context = new ApplicationDbContext();
             table = _context.Set<T>();
         }
 
-        public Repository(MyContext context)
+        public Repository(ApplicationDbContext context)
         {
             this._context = context;
             table = _context.Set<T>();

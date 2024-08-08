@@ -34,12 +34,12 @@ namespace Core.Services.Services
             {
                 List<Shifts> shifts = new List<Shifts>
                 {
-                    new Shifts { Name = nameof(Enumerations.ShiftType.FIRST), TimeFrom = new DateTime(2000, 1,1, 8,0,0), TimeTo = new DateTime(2000,1,1,16,0,0), Code = Enumerations.ShiftType.FIRST.ToString()  },
-                    new Shifts { Name = nameof(Enumerations.ShiftType.SECOND), TimeFrom = new DateTime(2000,1,1,16,0,0), TimeTo = new DateTime(2000,1,1,0,0,0), Code = Enumerations.ShiftType.SECOND.ToString() },
-                    new Shifts { Name = nameof(Enumerations.ShiftType.THIRD), TimeFrom = new DateTime(2000,1,1, 0,0,0), TimeTo = new DateTime(2000, 1,1,8,0,0), Code = Enumerations.ShiftType.THIRD.ToString() }
+                    new Shifts { Name = nameof(Enumerations.ShiftType.FIRST), TimeFrom = new DateTime(2000, 1,1, 8,0,0), TimeTo = new DateTime(2000,1,1,16,0,0), Code = ((int) Enumerations.ShiftType.FIRST).ToString()  },
+                    new Shifts { Name = nameof(Enumerations.ShiftType.SECOND), TimeFrom = new DateTime(2000,1,1,16,0,0), TimeTo = new DateTime(2000,1,1,0,0,0), Code = ((int) Enumerations.ShiftType.SECOND).ToString() },
+                    new Shifts { Name = nameof(Enumerations.ShiftType.THIRD), TimeFrom = new DateTime(2000,1,1, 0,0,0), TimeTo = new DateTime(2000, 1,1,8,0,0), Code = ((int) Enumerations.ShiftType.THIRD).ToString() }
                 };
                 UnitOfWork.ShiftsRepository.AddRange(shifts);
-                UnitOfWork.Complete();
+                UnitOfWork.SaveChanges();
             }
 
 
@@ -47,40 +47,39 @@ namespace Core.Services.Services
             {
                 List<Roles> roles = new List<Roles>
                 {
-                    new Roles { Name = nameof(Enumerations.Role.ADMINISTRATOR), Code = Enumerations.Role.ADMINISTRATOR.ToString() },
-                    new Roles { Name = nameof(Enumerations.Role.EMPLOYEE), Code = Enumerations.Role.EMPLOYEE.ToString() },
+                    new Roles { Name = nameof(Enumerations.Role.ADMINISTRATOR), Code = ((int)Enumerations.Role.ADMINISTRATOR).ToString() },
+                    new Roles { Name = nameof(Enumerations.Role.EMPLOYEE), Code = ((int)Enumerations.Role.EMPLOYEE).ToString() },
                 };
                 UnitOfWork.RolesRepository.AddRange(roles);
-                UnitOfWork.Complete();
+                UnitOfWork.SaveChanges();
             }
 
             if (!hasEventStatuses)
             {
                 List<EventStatuses> eventStatuses = new List<EventStatuses>
                 {
-                    new EventStatuses { Name = nameof(Enumerations.EventStatus.UPCOMING), Code = Enumerations.EventStatus.UPCOMING.ToString() },
-                    new EventStatuses { Name = nameof(Enumerations.EventStatus.ONGOING), Code = Enumerations.EventStatus.ONGOING.ToString() },
-                    new EventStatuses { Name = nameof(Enumerations.EventStatus.FINISHED), Code = Enumerations.EventStatus.FINISHED.ToString() },
-                    new EventStatuses { Name = nameof(Enumerations.EventStatus.CANCELLED), Code = Enumerations.EventStatus.CANCELLED.ToString() },
-
-                    new EventStatuses { Name = nameof(Enumerations.EventStatus.CANCELLED) }
+                    new EventStatuses { Name = nameof(Enumerations.EventStatus.UPCOMING), Code = ((int)Enumerations.EventStatus.UPCOMING).ToString() },
+                    new EventStatuses { Name = nameof(Enumerations.EventStatus.ONGOING), Code = ((int)Enumerations.EventStatus.ONGOING).ToString() },
+                    new EventStatuses { Name = nameof(Enumerations.EventStatus.FINISHED), Code = ((int)Enumerations.EventStatus.FINISHED).ToString() },
+                    new EventStatuses { Name = nameof(Enumerations.EventStatus.CANCELLED), Code = ((int)Enumerations.EventStatus.CANCELLED).ToString() },
+                    new EventStatuses { Name = nameof(Enumerations.EventStatus.CANCELLED), Code = ((int)Enumerations.EventStatus.CANCELLED).ToString() },
                 };
                 UnitOfWork.EventStatusesRepository.AddRange(eventStatuses);
-                UnitOfWork.Complete();
+                UnitOfWork.SaveChanges();
             }
 
             if (!hasTaskStatuses)
             {
                 List<TaskStatuses> taskStatuses = new List<TaskStatuses>
                 {
-                    new TaskStatuses { Name = nameof(Enumerations.TaskStatus.PENDING), Code = Enumerations.TaskStatus.PENDING.ToString() },
-                    new TaskStatuses { Name = nameof(Enumerations.TaskStatus.IN_PROGRESS).Replace("_", " "), Code = Enumerations.TaskStatus.IN_PROGRESS.ToString() },
-                    new TaskStatuses { Name = nameof(Enumerations.TaskStatus.FINISHED), Code = Enumerations.TaskStatus.FINISHED.ToString() },
-                    new TaskStatuses { Name = nameof(Enumerations.TaskStatus.CANCELLED), Code = Enumerations.TaskStatus.CANCELLED.ToString() }
+                    new TaskStatuses { Name = nameof(Enumerations.TaskStatus.PENDING), Code = ((int)Enumerations.TaskStatus.PENDING).ToString() },
+                    new TaskStatuses { Name = nameof(Enumerations.TaskStatus.IN_PROGRESS).Replace("_", " "), Code = ((int)Enumerations.TaskStatus.IN_PROGRESS).ToString() },
+                    new TaskStatuses { Name = nameof(Enumerations.TaskStatus.FINISHED), Code = ((int) Enumerations.TaskStatus.FINISHED).ToString() },
+                    new TaskStatuses { Name = nameof(Enumerations.TaskStatus.CANCELLED), Code = ((int) Enumerations.TaskStatus.CANCELLED).ToString() }
                 };
 
                 UnitOfWork.TaskStatusesRepository.AddRange(taskStatuses);
-                UnitOfWork.Complete();
+                UnitOfWork.SaveChanges();
             }
 
             if (!hasCountries)
@@ -283,7 +282,7 @@ namespace Core.Services.Services
                 };
 
                 UnitOfWork.CountriesRepository.AddRange(countries);
-                UnitOfWork.Complete();
+                UnitOfWork.SaveChanges();
             }
 
             if (!hasCities)
@@ -326,37 +325,37 @@ namespace Core.Services.Services
 
 
                 UnitOfWork.CitiesRepository.AddRange(cities);
-                UnitOfWork.Complete();
+                UnitOfWork.SaveChanges();
             }
 
             if(!hasAbsenceTypes)
             {
                 List<AbsenceTypes> absenceTypes = new List<AbsenceTypes>
                 {
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.SICK_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.SICK_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.VACATION_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.VACATION_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.PERSONAL_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.PERSONAL_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.PARENTAL_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.PARENTAL_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.BEREAVEMENT_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.BEREAVEMENT_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.JURY_DUTY).Replace("_", " "), Code = Enumerations.AbsenceType.JURY_DUTY.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.MILITARY_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.MILITARY_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.UNPAID_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.UNPAID_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.PUBLIC_HOLIDAY).Replace("_", " "), Code = Enumerations.AbsenceType.PUBLIC_HOLIDAY.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.STUDY_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.STUDY_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.SABBATICAL).Replace("_", " "), Code = Enumerations.AbsenceType.SABBATICAL.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.COMPENSATORY_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.COMPENSATORY_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.VOLUNTEER_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.VOLUNTEER_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.FAMILY_AND_MEDICAL_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.FAMILY_AND_MEDICAL_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.HALF_DAY_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.HALF_DAY_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.EMERGENCY_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.EMERGENCY_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.CASUAL_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.CASUAL_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.ADMINISTRATIVE_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.ADMINISTRATIVE_LEAVE.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.FLOATING_HOLIDAY).Replace("_", " "), Code = Enumerations.AbsenceType.FLOATING_HOLIDAY.ToString() },
-                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.RELIGIOUS_LEAVE).Replace("_", " "), Code = Enumerations.AbsenceType.RELIGIOUS_LEAVE.ToString() }
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.SICK_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.SICK_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.VACATION_LEAVE).Replace("_", " "), Code = ((int)Enumerations.AbsenceType.VACATION_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.PERSONAL_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.PERSONAL_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.PARENTAL_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.PARENTAL_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.BEREAVEMENT_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.BEREAVEMENT_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.JURY_DUTY).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.JURY_DUTY).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.MILITARY_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.MILITARY_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.UNPAID_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.UNPAID_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.PUBLIC_HOLIDAY).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.PUBLIC_HOLIDAY).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.STUDY_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.STUDY_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.SABBATICAL).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.SABBATICAL).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.COMPENSATORY_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.COMPENSATORY_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.VOLUNTEER_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.VOLUNTEER_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.FAMILY_AND_MEDICAL_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.FAMILY_AND_MEDICAL_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.HALF_DAY_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.HALF_DAY_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.EMERGENCY_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.EMERGENCY_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.CASUAL_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.CASUAL_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.ADMINISTRATIVE_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.ADMINISTRATIVE_LEAVE).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.FLOATING_HOLIDAY).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.FLOATING_HOLIDAY).ToString() },
+                    new AbsenceTypes { Name = nameof(Enumerations.AbsenceType.RELIGIOUS_LEAVE).Replace("_", " "), Code = ((int) Enumerations.AbsenceType.RELIGIOUS_LEAVE).ToString() }
                 };
 
                 UnitOfWork.AbsenceTypesRepository.AddRange(absenceTypes);
-                UnitOfWork.Complete();
+                UnitOfWork.SaveChanges();
             }
         }
     }
