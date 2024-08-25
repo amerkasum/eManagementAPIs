@@ -121,6 +121,17 @@ namespace Core.Services.Services
             UnitOfWork.UserResidenceRepository.Add(userResidence);
             UnitOfWork.SaveChanges();
 
+
+            UserPositions userPosition = new UserPositions
+            {
+                UserId = userId,
+                PositionId = model.PositionId,
+                ContractTypeCode = UnitOfWork.ContractTypeRepository.GetById(model.ContractTypeId).Code,
+                ContractExpireDate = model.ContractExpireDate,
+            };
+
+            UnitOfWork.UserPositionsRepository.Add(userPosition);
+            UnitOfWork.SaveChanges();
         }
     }
 }

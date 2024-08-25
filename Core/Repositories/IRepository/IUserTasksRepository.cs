@@ -7,5 +7,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IUserTasksRepository : IRepository<UserTasks>
     {
+        UserTasks GetByUserIdAndTaskId(int userId, int taskId);
     }
 }

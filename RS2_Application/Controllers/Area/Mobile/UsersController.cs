@@ -3,6 +3,9 @@ using Core.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Models.Entities;
+using Models.Entities.Dtos;
+using Models.Entities.Dtos.Desktop;
+using Models.Entities.Helpers;
 using RS2_Application.ViewModels;
 using System;
 using System.Collections;
@@ -31,14 +34,23 @@ namespace RS2_Application.Controllers.Area.Mobile
             this.UserService = userService;
         }
 
-        [HttpGet("GetAllAsync")]
-        public async Task<ActionResult<List<Users>>> GetAllAsync()
+        [HttpGet(nameof(GetAll))]
+        public List<SelectListHelper> GetAll()
         {
-            var encodedPassword = UserLoggerService.EncodePasswordToBase64("Test1234.");
-            var decodedPassword = UserLoggerService.DecodeFrom64(encodedPassword);
+            return DataUnitOfWork.UsersRepository.GetSelectLists();
+        }
 
-            var response = (await DataUnitOfWork.UsersRepository.GetAllAsync()).ToList();
-            return Ok(response);
+        [HttpGet(nameof(GetUsers))]
+        public List<UsersDto> GetUsers()
+        {
+            var response = DataUnitOfWork.UsersRepository.GetUsers(null).ToList();
+            return response;
+        }
+
+        [HttpGet(nameof(GetUserProfile))]
+        public UserProfileDto GetUserProfile(int userId)
+        {
+            return DataUnitOfWork.UsersRepository.GetUserProfileDtoByUserId(userId);
         }
 
         [HttpPost("Add")]
@@ -70,7 +82,7 @@ namespace RS2_Application.Controllers.Area.Mobile
         }
 
         [HttpPost("Register")]
-        public IActionResult Register(UsersViewModel model)
+        public IActionResult Register([FromBody] UsersViewModel model)
         {
 
             if (DataUnitOfWork.UsersRepository.DoesEmailAlreadyExist(model.Email))
@@ -85,10 +97,12 @@ namespace RS2_Application.Controllers.Area.Mobile
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         Email = model.Email,
+                        Username = $"{model.FirstName.ToLower()}.{model.LastName.ToLower()}",
                         Password = UserLoggerService.EncodePasswordToBase64(model.Password),
                         DateOfBirth = model.DateOfBirth,
                         PhoneNumber = model.PhoneNumber,
-                        IsActive = true
+                        IsActive = true,
+                        ImageUrl = model.ImageUrl
                     };
 
                     DataUnitOfWork.UsersRepository.Add(user);
@@ -105,32 +119,57 @@ namespace RS2_Application.Controllers.Area.Mobile
         }
 
         [HttpPost(nameof(SignIn))]
-        public IActionResult SignIn(string email, string password)
+        public IActionResult SignIn(string username, string password)
         {
-            var user = DataUnitOfWork.UsersRepository.GetByEmail(email);
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                return BadRequest("Email and password are required.");
+            }
+
+            var user = DataUnitOfWork.UsersRepository.GetByUsername(username);
 
             if (user == null)
-                ModelState.AddModelError("User", $"User with {email} email does not exist.");
-
-            if(user!= null)
             {
-                if (!password.Equals(UserLoggerService.DecodeFrom64(user.Password)))
-                    ModelState.AddModelError("User", "Incorrect password.");
+                return BadRequest($"User with email '{username}' does not exist.");
             }
 
-            if (ModelState.IsValid)
+            var decodedPassword = UserLoggerService.DecodeFrom64(user.Password);
+
+            if (!password.Equals(decodedPassword))
             {
-                try
-                {
-                    UserLoggerService.CreateUserLog(user.Id);
-                    return Ok();
-                }
-                catch
-                {
-                    return BadRequest();
-                }
+                return BadRequest("Incorrect password.");
             }
-            return BadRequest(ModelState);
+
+            try
+            {
+                // Log the user in
+                UserLoggerService.CreateUserLog(user.Id);
+                return Ok(new { message = "Login successful", userId = user.Id });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An internal server error occurred.");
+            }
+        }
+
+        [HttpGet(nameof(GetUsersDesktop))]
+        public List<UsersDesktopDto> GetUsersDesktop()
+        {
+            return DataUnitOfWork.UsersRepository.GetUsersDesktop();
+        }
+
+        [HttpDelete(nameof(Delete))]
+        public IActionResult Delete(int id)
+        {
+            var user = DataUnitOfWork.UsersRepository.GetById(id);
+
+            if(user != null)
+            {
+                DataUnitOfWork.UsersRepository.Remove(user);
+                DataUnitOfWork.SaveChanges();
+                return Ok(new { message = "User deleted successfuly.", userId = user.Id });
+            }
+            return BadRequest("User not found.");
         }
 
         [HttpPost(nameof(InitData))]

@@ -9,15 +9,17 @@ namespace Models.Entities.Dtos
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime? DueDate { get; set; }
         public int Priority { get; set; }
-        public string PriorityName => Enum.GetName(typeof(Enumerations.TaskPriority), Priority);
+        public string Location { get; set; }
+        public string UsersAssigned { get; set; }
         public int StatusCode { get; set; }
+        public string PriorityName => Enum.GetName(typeof(Enumerations.TaskPriority), Priority);
+        
         public string StatusName => Enum.GetName(typeof(Enumerations.TaskStatus), StatusCode);
+        
 
         //List<UsersDto>
-        public List<int> UserIds { get; set; }
+        //public List<string> Users { get; set; }
 
 
     }

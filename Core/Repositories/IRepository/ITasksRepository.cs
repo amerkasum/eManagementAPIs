@@ -8,7 +8,6 @@ namespace Core.Repositories.IRepository
 {
     public interface ITasksRepository : IRepository<Tasks>
     {
-        List<TasksDto> GetTasksByUserId(int? userId);
-        List<TasksDto> GetTasksByStatusCode(int? statusCode);
+        List<TasksDto> GetAllTasks();
     }
 }

@@ -5,6 +5,7 @@ using Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using static Helpers.Constants.Enumerations;
 
@@ -28,6 +29,9 @@ namespace Core.Services.Services
             var hasCities = UnitOfWork.CitiesRepository.Any();
             var hasCountries = UnitOfWork.CountriesRepository.Any();
             var hasAbsenceTypes = UnitOfWork.AbsenceTypesRepository.Any();
+            var hasPositions = UnitOfWork.PositionsRepository.Any();
+            var hasContractTypes = UnitOfWork.ContractTypeRepository.Any();
+            var hasTaskPriorities = UnitOfWork.TaskPrioritiesRepository.Any();
 
 
             if (!hasShifts)
@@ -61,7 +65,6 @@ namespace Core.Services.Services
                     new EventStatuses { Name = nameof(Enumerations.EventStatus.UPCOMING), Code = ((int)Enumerations.EventStatus.UPCOMING).ToString() },
                     new EventStatuses { Name = nameof(Enumerations.EventStatus.ONGOING), Code = ((int)Enumerations.EventStatus.ONGOING).ToString() },
                     new EventStatuses { Name = nameof(Enumerations.EventStatus.FINISHED), Code = ((int)Enumerations.EventStatus.FINISHED).ToString() },
-                    new EventStatuses { Name = nameof(Enumerations.EventStatus.CANCELLED), Code = ((int)Enumerations.EventStatus.CANCELLED).ToString() },
                     new EventStatuses { Name = nameof(Enumerations.EventStatus.CANCELLED), Code = ((int)Enumerations.EventStatus.CANCELLED).ToString() },
                 };
                 UnitOfWork.EventStatusesRepository.AddRange(eventStatuses);
@@ -355,6 +358,71 @@ namespace Core.Services.Services
                 };
 
                 UnitOfWork.AbsenceTypesRepository.AddRange(absenceTypes);
+                UnitOfWork.SaveChanges();
+            }
+
+            if(!hasPositions)
+            {
+                List<Positions> positions = new List<Positions>
+                {
+                    new Positions { Name = nameof(JobPosition.SOFTWARE_DEVELOPER).Replace("_", " "), Code = ((int)JobPosition.SOFTWARE_DEVELOPER).ToString() },
+                    new Positions { Name = nameof(JobPosition.DATA_SCIENTIST).Replace("_", " "), Code = ((int)JobPosition.DATA_SCIENTIST).ToString() },
+                    new Positions { Name = nameof(JobPosition.PRODUCT_MANAGER).Replace("_", " "), Code = ((int)JobPosition.PRODUCT_MANAGER).ToString() },
+                    new Positions { Name = nameof(JobPosition.GRAPHIC_DESIGNER).Replace("_", " "), Code = ((int)JobPosition.GRAPHIC_DESIGNER).ToString() },
+                    new Positions { Name = nameof(JobPosition.SYSTEM_ADMINISTRATOR).Replace("_", " "), Code = ((int)JobPosition.SYSTEM_ADMINISTRATOR).ToString() },
+                    new Positions { Name = nameof(JobPosition.MARKETING_SPECIALIST).Replace("_", " "), Code = ((int)JobPosition.MARKETING_SPECIALIST).ToString() },
+                    new Positions { Name = nameof(JobPosition.UX_RESEARCHER).Replace("_", " "), Code = ((int)JobPosition.UX_RESEARCHER).ToString() },
+                    new Positions { Name = nameof(JobPosition.SALES_MANAGER).Replace("_", " "), Code = ((int)JobPosition.SALES_MANAGER).ToString() },
+                    new Positions { Name = nameof(JobPosition.BUSINESS_ANALYST).Replace("_", " "), Code = ((int)JobPosition.BUSINESS_ANALYST).ToString() },
+                    new Positions { Name = nameof(JobPosition.NETWORK_ENGINEER).Replace("_", " "), Code = ((int)JobPosition.NETWORK_ENGINEER).ToString() },
+                    new Positions { Name = nameof(JobPosition.DATABASE_ADMINISTRATOR).Replace("_", " "), Code = ((int)JobPosition.DATABASE_ADMINISTRATOR).ToString() },
+                    new Positions { Name = nameof(JobPosition.FRONTEND_DEVELOPER).Replace("_", " "), Code = ((int)JobPosition.FRONTEND_DEVELOPER).ToString() },
+                    new Positions { Name = nameof(JobPosition.BACKEND_DEVELOPER).Replace("_", " "), Code = ((int)JobPosition.BACKEND_DEVELOPER).ToString() },
+                    new Positions { Name = nameof(JobPosition.DEVOPS_ENGINEER).Replace("_", " "), Code = ((int)JobPosition.DEVOPS_ENGINEER).ToString() },
+                    new Positions { Name = nameof(JobPosition.QUALITY_ASSURANCE_TESTER).Replace("_", " "), Code = ((int)JobPosition.QUALITY_ASSURANCE_TESTER).ToString() },
+                    new Positions { Name = nameof(JobPosition.TECHNICAL_SUPPORT_SPECIALIST).Replace("_", " "), Code = ((int)JobPosition.TECHNICAL_SUPPORT_SPECIALIST).ToString() },
+                    new Positions { Name = nameof(JobPosition.HUMAN_RESOURCES_MANAGER).Replace("_", " "), Code = ((int)JobPosition.HUMAN_RESOURCES_MANAGER).ToString() },
+                    new Positions { Name = nameof(JobPosition.CONTENT_CREATOR).Replace("_", " "), Code = ((int)JobPosition.CONTENT_CREATOR).ToString() },
+                    new Positions { Name = nameof(JobPosition.IT_CONSULTANT).Replace("_", " "), Code = ((int)JobPosition.IT_CONSULTANT).ToString() },
+                    new Positions { Name = nameof(JobPosition.WEB_DESIGNER).Replace("_", " "), Code = ((int)JobPosition.WEB_DESIGNER).ToString() }
+                };
+
+                UnitOfWork.PositionsRepository.AddRange(positions);
+                UnitOfWork.SaveChanges();
+            }
+
+            if(!hasContractTypes)
+            {
+                List<ContractTypes> contractTypes = new List<ContractTypes>
+                {
+                    new ContractTypes { Name = nameof(ContractType.FULL_TIME).Replace("_", " "), Code = ((int)ContractType.FULL_TIME).ToString() },
+                    new ContractTypes { Name = nameof(ContractType.PART_TIME).Replace("_", " "), Code = ((int)ContractType.PART_TIME).ToString() },
+                    new ContractTypes { Name = nameof(ContractType.TEMPORARY).Replace("_", " "), Code = ((int)ContractType.TEMPORARY).ToString() },
+                    new ContractTypes { Name = nameof(ContractType.CONTRACTOR).Replace("_", " "), Code = ((int)ContractType.CONTRACTOR).ToString() },
+                    new ContractTypes { Name = nameof(ContractType.INTERNSHIP).Replace("_", " "), Code = ((int)ContractType.INTERNSHIP).ToString() },
+                    new ContractTypes { Name = nameof(ContractType.CONSULTANT).Replace("_", " "), Code = ((int)ContractType.CONSULTANT).ToString() },
+                    new ContractTypes { Name = nameof(ContractType.FIXED_TERM).Replace("_", " "), Code = ((int)ContractType.FIXED_TERM).ToString() },
+                    new ContractTypes { Name = nameof(ContractType.ZERO_HOUR).Replace("_", " "), Code = ((int)ContractType.ZERO_HOUR).ToString() },
+                    new ContractTypes { Name = nameof(ContractType.SEASONAL).Replace("_", " "), Code = ((int)ContractType.SEASONAL).ToString() },
+                    new ContractTypes { Name = nameof(ContractType.PROBATIONARY).Replace("_", " "), Code = ((int)ContractType.PROBATIONARY).ToString() },
+                    new ContractTypes { Name = nameof(ContractType.REMOTE).Replace("_", " "), Code = ((int)ContractType.REMOTE).ToString() },
+                    new ContractTypes { Name = nameof(ContractType.ON_CALL).Replace("_", " "), Code = ((int)ContractType.ON_CALL).ToString() }
+                };
+
+                UnitOfWork.ContractTypeRepository.AddRange(contractTypes);
+                UnitOfWork.SaveChanges();
+            }
+
+            if(!hasTaskPriorities)
+            {
+                List<TaskPriorities> taskPriorities = new List<TaskPriorities>
+                {
+                    new TaskPriorities { Name = nameof(TaskPriority.LOW), Code = ((int)TaskPriority.LOW).ToString() },
+                    new TaskPriorities { Name = nameof(TaskPriority.MEDIUM), Code = ((int)TaskPriority.MEDIUM).ToString() },
+                    new TaskPriorities { Name = nameof(TaskPriority.HIGH), Code = ((int)TaskPriority.HIGH).ToString() }
+                };
+
+                UnitOfWork.TaskPrioritiesRepository.AddRange(taskPriorities);
                 UnitOfWork.SaveChanges();
             }
         }

@@ -1,11 +1,14 @@
-﻿using Core.UnitOfWork;
+﻿using Core.Repositories.Repository;
+using Core.UnitOfWork;
 using Helpers.Constants;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
 using Models.Entities.Dtos;
 using Models.Entities.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 
 namespace RS2_Application.Controllers.Area.Mobile
@@ -22,17 +25,38 @@ namespace RS2_Application.Controllers.Area.Mobile
         [HttpGet(nameof(GetAll))]
         public List<TasksDto> GetAll(int? userId)
         {
-            return UnitOfWork.TasksRepository.GetTasksByUserId(userId);
+            return UnitOfWork.TasksRepository.GetAllTasks();
         }
 
-        [HttpGet(nameof(GetByStatusCode))]
-        public List<TasksDto> GetByStatusCode(int? statusCode)
+        [HttpGet(nameof(Details))]
+        public TaskDetailsDto Details(int taskId, int userId)
         {
-            return UnitOfWork.TasksRepository.GetTasksByStatusCode(statusCode);
+            return UnitOfWork.TasksRepository.GetTaskDetails(taskId, userId);
         }
+
+        [HttpPost(nameof(ChangeStatus))]
+        public IActionResult ChangeStatus(int taskId, string statusName)
+        {
+            var task = UnitOfWork.TasksRepository.GetById(taskId);
+            if (task != null)
+            {
+                var taskStatus = UnitOfWork.TaskStatusesRepository.GetByName(statusName);
+                task.StatusCode = int.Parse(taskStatus.Code);
+                UnitOfWork.TasksRepository.Update(task);
+                UnitOfWork.SaveChanges();
+
+                return Ok(new { success = true, message = "Task status updated successfully" });
+            }
+            else
+            {
+                return NotFound(new { success = false, message = "Task not found" });
+            }
+        }
+
+
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(TaskViewModel model)
+        public IActionResult Add([FromBody] TaskViewModel model)
         {
             if(ModelState.IsValid)
             {
@@ -44,13 +68,14 @@ namespace RS2_Application.Controllers.Area.Mobile
                         Name = model.Name,
                         Description = model.Description,
                         DueDate = model.DueDate,
-                        Priority = model.Priority,
-                        StatusCode = model.Status,
+                        Priority = model.TaskPriorityId,
+                        StatusCode = (int)Enumerations.TaskStatus.PENDING,
+                        CityId = model.CityId
                     };
                     UnitOfWork.TasksRepository.Add(task);
                     UnitOfWork.SaveChanges();
 
-                    if(model.UserIds != null && model.UserIds.Count != 0)
+                    if(model.UserIds != null)
                     {
                         List<UserTasks> userTasks = new List<UserTasks>();
                         model.UserIds.ForEach(userId =>
@@ -78,24 +103,6 @@ namespace RS2_Application.Controllers.Area.Mobile
                 }
             }
             return BadRequest();
-        }
-
-        public IActionResult ChangeStatus(int taskId, int statusCode)
-        {
-            try
-            {
-                var task = UnitOfWork.TasksRepository.GetById(taskId);
-                task.StatusCode = statusCode;
-                UnitOfWork.TasksRepository.Update(task);
-                UnitOfWork.SaveChanges();
-            }
-            catch(Exception e)
-            {
-                throw e;
-            }
-            
-
-            return Ok();
         }
     }
 }

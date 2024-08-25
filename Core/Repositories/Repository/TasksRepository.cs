@@ -1,6 +1,8 @@
 ﻿using Core.DatabaseContext;
 using Core.Repositories.IRepository;
+using Helpers.Constants;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Update;
 using Models.Entities;
 using Models.Entities.Dtos;
 using System;
@@ -14,52 +16,96 @@ namespace Core.Repositories.Repository
     {
         public TasksRepository(ApplicationDbContext context) : base(context) { }
 
-        public List<TasksDto> GetTasksByUserId(int? userId)
+        public List<TasksDto> GetAllTasks()
         {
 
-            var taskIds = _context.UserTasks.Where(x => x.UserId == userId || userId == null).Select(x => x.TaskId).ToList();
-            var userTasks = _context.UserTasks.Where(x => taskIds.Contains(x.TaskId)).ToList();
+            var taskIds = _context.UserTasks.Select(x => x.TaskId).ToList();
+            var userTasks = _context.UserTasks.Include(x => x.User)
+                .Where(x => taskIds.Contains(x.TaskId))
+                .ToList();
 
-            List<TasksDto> results = _context.Tasks.Where(x => taskIds.Contains(x.Id)).Select(x => new TasksDto
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description,
-                StatusCode = x.StatusCode,
-                DueDate = x.DueDate,
-                Priority = x.Priority,
-            }).ToList();
+            var userTaskSummary = userTasks
+                .GroupBy(x => x.TaskId)
+                .Select(g => new
+                {
+                    TaskId = g.Key,
+                    UsersAssigned = g.Count() > 1
+                        ? g.FirstOrDefault().User.FullName + " and " + (g.Count() - 1).ToString() + " others"
+                        : g.FirstOrDefault().User.FullName
+                })
+                .ToDictionary(x => x.TaskId, x => x.UsersAssigned);
 
-            results.ForEach(x =>
-            {
-                x.UserIds = userTasks.Where(y => y.TaskId == x.Id).Select(y => y.UserId).ToList();
-            });
+            var results = _context.Tasks
+                .Include(x => x.City)
+                .ThenInclude(x => x.Country)
+                .Select(x => new TasksDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    StatusCode = x.StatusCode,
+                    Priority = x.Priority,
+                    Location = x.City.Name + ", " + x.City.Country.Iso,
+                    UsersAssigned = userTaskSummary.ContainsKey(x.Id)
+                        ? userTaskSummary[x.Id]
+                        : string.Empty
+                })
+                .ToList();
 
             return results;
         }
 
-        public List<TasksDto> GetTasksByStatusCode(int? statusCode)
+        public TaskDetailsDto GetTaskDetails(int taskId, int userId)
         {
+            var userIds = _context.UserTasks.Include(x => x.User)
+                .Where(x => taskId == x.TaskId).Select(x => x.UserId).ToList();
 
-            var taskIds = _context.UserTasks.Select(x => x.TaskId).ToList();
-            var userTasks = _context.UserTasks.Where(x => taskIds.Contains(x.TaskId)).ToList();
+            var users = _context.UserPositions.Include(x => x.User).Include(x => x.Position).Where(x => userIds.Contains(x.UserId)).ToList();
 
-            List<TasksDto> results = _context.Tasks.Where(x => taskIds.Contains(x.Id) && (x.StatusCode == statusCode || statusCode == null)).Select(x => new TasksDto
+            var userTask = _context.UserTasks.FirstOrDefault(x => x.UserId == userId && x.TaskId == taskId);
+            bool allowReview = true;
+            if(userTask != null)
             {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description,
-                StatusCode = x.StatusCode,
-                DueDate = x.DueDate,
-                Priority = x.Priority,
-            }).ToList();
+                allowReview = _context.TaskReviews.Where(x => x.UserTaskId == userTask.Id).Any() ? false : true;
+            }
 
-            results.ForEach(x =>
+
+            List<UserPositionBasicDto> usersDto = new List<UserPositionBasicDto>();
+            users.ForEach(x =>
             {
-                x.UserIds = userTasks.Where(y => y.TaskId == x.Id).Select(y => y.UserId).ToList();
+                UserPositionBasicDto userDto = new UserPositionBasicDto
+                {
+                    FullName = x.User.FullName,
+                    PositionName = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Position.Name.ToLower()),
+                };
+                usersDto.Add(userDto);
             });
+            
 
-            return results;
+            var task = _context.Tasks.Include(x => x.City).ThenInclude(x => x.Country).
+                FirstOrDefault(x => x.Id == taskId);
+
+            var calculatedDays = task.DueDate != null
+            ? (DateTime.Now.Date > task.DueDate.Value.Date
+                ? $"{(DateTime.Now.Date - task.DueDate.Value.Date).Days} days ago"
+                : $"{(task.DueDate.Value.Date - DateTime.Now.Date).Days} days left")
+            : "No due date";
+
+            TaskDetailsDto result = new TaskDetailsDto
+            {
+                Id = task.Id,
+                Name = task.Name,
+                Description = task.Description,
+                DueDate = task.DueDate,
+                CalculatedDays = calculatedDays,
+                Location = $"{task.City.Name}, {task.City.Country.Name}",
+                Priority = Enum.GetName(typeof(Enumerations.TaskPriority), task.Priority),
+                Status = Enum.GetName(typeof(Enumerations.TaskStatus), task.StatusCode).Replace("_", " "),
+                Users = usersDto,
+                AllowedReview = allowReview
+            };
+
+            return result;
+
         }
 
 

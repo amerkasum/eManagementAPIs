@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,6 +15,14 @@ namespace RS2_Application
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            //var host = new WebHostBuilder()
+            //    .UseKestrel()
+            //    .UseContentRoot(Directory.GetCurrentDirectory())
+            //    .UseUrls("https://localhost:5001", "https://192.168.0.11:5001")
+            //    .UseIISIntegration()
+            //    .UseStartup<Startup>()
+            //    .Build();
+            //host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

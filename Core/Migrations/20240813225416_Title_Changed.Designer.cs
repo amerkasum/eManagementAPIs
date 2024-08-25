@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240807000357_init")]
-    partial class init
+    [Migration("20240813225416_Title_Changed")]
+    partial class Title_Changed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -180,8 +180,8 @@ namespace Core.Migrations
                     b.Property<string>("Subtitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Title")
-                        .HasColumnType("int");
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -257,6 +257,41 @@ namespace Core.Migrations
                     b.ToTable("Shifts");
                 });
 
+            modelBuilder.Entity("Models.Entities.TaskReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Review")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserTaskId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserTaskId");
+
+                    b.ToTable("TaskReviews");
+                });
+
             modelBuilder.Entity("Models.Entities.TaskStatuses", b =>
                 {
                     b.Property<int>("Id")
@@ -303,7 +338,7 @@ namespace Core.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DueDate")
+                    b.Property<DateTime?>("DueDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
@@ -318,7 +353,7 @@ namespace Core.Migrations
                     b.Property<int>("Priority")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
+                    b.Property<int>("StatusCode")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -611,6 +646,15 @@ namespace Core.Migrations
                     b.HasOne("Models.Entities.Countries", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Models.Entities.TaskReview", b =>
+                {
+                    b.HasOne("Models.Entities.UserTasks", "UserTask")
+                        .WithMany()
+                        .HasForeignKey("UserTaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

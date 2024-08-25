@@ -86,5 +86,46 @@ namespace Helpers.Constants
             ALWAYS
         }
 
+        public enum JobPosition
+        {
+            SOFTWARE_DEVELOPER = 1,
+            DATA_SCIENTIST,
+            PRODUCT_MANAGER,
+            GRAPHIC_DESIGNER,
+            SYSTEM_ADMINISTRATOR,
+            MARKETING_SPECIALIST,
+            UX_RESEARCHER,
+            SALES_MANAGER,
+            BUSINESS_ANALYST,
+            NETWORK_ENGINEER,
+            DATABASE_ADMINISTRATOR,
+            FRONTEND_DEVELOPER,
+            BACKEND_DEVELOPER,
+            DEVOPS_ENGINEER,
+            QUALITY_ASSURANCE_TESTER,
+            TECHNICAL_SUPPORT_SPECIALIST,
+            HUMAN_RESOURCES_MANAGER,
+            CONTENT_CREATOR,
+            IT_CONSULTANT,
+            WEB_DESIGNER
+        }
+
+        public enum ContractType
+        {
+            FULL_TIME = 1,
+            PART_TIME,
+            TEMPORARY,
+            CONTRACTOR,
+            INTERNSHIP,
+            CONSULTANT,
+            FIXED_TERM,
+            ZERO_HOUR,
+            SEASONAL,
+            PROBATIONARY,
+            REMOTE,
+            ON_CALL
+        }
+
+
     }
 }

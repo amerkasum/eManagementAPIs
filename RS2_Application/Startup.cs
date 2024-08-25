@@ -72,6 +72,7 @@ namespace RS2_Application
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 

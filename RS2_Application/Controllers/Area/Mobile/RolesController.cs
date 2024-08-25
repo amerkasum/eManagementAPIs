@@ -1,6 +1,8 @@
 ﻿using Core.Services.IServices;
 using Core.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
+using Models.Entities.Helpers;
+using System.Collections.Generic;
 
 namespace RS2_Application.Controllers.Area.Mobile
 {
@@ -14,17 +16,10 @@ namespace RS2_Application.Controllers.Area.Mobile
             this.DataUnitOfWork = unitOfWork;
         }
 
-
-        #region Add
-
-        #endregion
-
-        #region Edit
-
-        #endregion
-
-        #region Delete
-
-        #endregion
+        [HttpGet(nameof(GetAll))]
+        public List<SelectListHelper> GetAll()
+        {
+            return DataUnitOfWork.RolesRepository.GetSelectLists();
+        }
     }
 }

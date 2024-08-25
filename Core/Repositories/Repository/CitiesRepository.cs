@@ -3,6 +3,7 @@ using Core.Repositories.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Models.Entities;
 using Models.Entities.Dtos;
+using Models.Entities.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,18 @@ namespace Core.Repositories.Repository
         public bool DoesCityAlreadyExist(string cityName, string pttCode)
         {
             return _context.Cities.Any(x => x.Name.ToLower().Equals(cityName.ToLower()) && x.PttCode.ToLower().Equals(pttCode.ToLower()));
+        }
+
+        public List<SelectListHelper> GetSelectLists()
+        {
+            var result = _context.Cities.Select(x => new SelectListHelper
+            {
+                Id = x.Id,
+                Name = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Name.ToLower()),
+                Code = "none"
+            }).ToList();
+
+            return result;
         }
     }
 }

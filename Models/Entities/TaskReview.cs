@@ -16,7 +16,6 @@ namespace Models.Entities
         public int UserTaskId { get; set; }
 
         public int Review { get; set; }
-        public string Note { get; set; }
 
         public DateTime CreatedDateTime { get; set; }
         public DateTime? ModifiedDateTime { get; set; }

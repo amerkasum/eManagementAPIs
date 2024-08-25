@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
 using Models.Entities.Dtos;
+using Models.Entities.Helpers;
 using RS2_Application.ViewModels;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data.Odbc;
 
 namespace RS2_Application.Controllers.Area.Regions
@@ -16,6 +18,12 @@ namespace RS2_Application.Controllers.Area.Regions
         public CitiesController(IUnitOfWork unitOfWork)
         {
             this.DataUnitOfWork = unitOfWork;
+        }
+
+        [HttpGet(nameof(GetAll))]
+        public List<SelectListHelper> GetAll()
+        {
+            return DataUnitOfWork.CitiesRepository.GetSelectLists();
         }
 
         [HttpGet(nameof(GetCityByName))]

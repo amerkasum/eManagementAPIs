@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Models.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Models.Entities;
 using System;
@@ -56,5 +58,9 @@ namespace Core.DatabaseContext
         public DbSet<AbsenceTypes> AbsenceTypes { get; set; }
         public DbSet<UserResidence> UserResidence { get; set; }
         public DbSet<TaskReview> TaskReviews { get; set; }
+        public DbSet<Positions> Positions { get; set; }
+        public DbSet<UserPositions> UserPositions { get; set; }
+        public DbSet<ContractTypes> ContractTypes { get; set; }
+        public DbSet<TaskPriorities> TaskPriorities { get; set; }
     }
 }

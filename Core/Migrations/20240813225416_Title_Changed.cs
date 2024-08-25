@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Core.Migrations
 {
-    public partial class init : Migration
+    public partial class Title_Changed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,7 +49,7 @@ namespace Core.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
                     Subtitle = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
@@ -130,9 +130,9 @@ namespace Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    DueDate = table.Column<DateTime>(nullable: false),
+                    DueDate = table.Column<DateTime>(nullable: true),
                     Priority = table.Column<int>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
+                    StatusCode = table.Column<int>(nullable: false),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     DeletedDateTime = table.Column<DateTime>(nullable: true),
@@ -394,10 +394,40 @@ namespace Core.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TaskReviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserTaskId = table.Column<int>(nullable: false),
+                    Review = table.Column<int>(nullable: false),
+                    Note = table.Column<string>(nullable: true),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
+                    DeletedDateTime = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TaskReviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TaskReviews_UserTasks_UserTaskId",
+                        column: x => x.UserTaskId,
+                        principalTable: "UserTasks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Cities_CountryId",
                 table: "Cities",
                 column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaskReviews_UserTaskId",
+                table: "TaskReviews",
+                column: "UserTaskId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserLogger_UserId",
@@ -464,6 +494,9 @@ namespace Core.Migrations
                 name: "EventStatuses");
 
             migrationBuilder.DropTable(
+                name: "TaskReviews");
+
+            migrationBuilder.DropTable(
                 name: "TaskStatuses");
 
             migrationBuilder.DropTable(
@@ -476,13 +509,13 @@ namespace Core.Migrations
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
-                name: "UserTasks");
-
-            migrationBuilder.DropTable(
                 name: "WorkingAbsences");
 
             migrationBuilder.DropTable(
                 name: "WorkingDays");
+
+            migrationBuilder.DropTable(
+                name: "UserTasks");
 
             migrationBuilder.DropTable(
                 name: "Cities");
@@ -491,13 +524,13 @@ namespace Core.Migrations
                 name: "Roles");
 
             migrationBuilder.DropTable(
-                name: "Tasks");
-
-            migrationBuilder.DropTable(
                 name: "AbsenceTypes");
 
             migrationBuilder.DropTable(
                 name: "Shifts");
+
+            migrationBuilder.DropTable(
+                name: "Tasks");
 
             migrationBuilder.DropTable(
                 name: "Users");

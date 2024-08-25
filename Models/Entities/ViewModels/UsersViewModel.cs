@@ -13,9 +13,11 @@ namespace RS2_Application.ViewModels
         public int RoleId { get; set; }
         public int CityId { get; set; }
         public int ShiftId { get; set; }
+        public int PositionId { get; set; }
+        public int ContractTypeId { get; set; }
+        public DateTime? ContractExpireDate { get; set; }
         public DateTime DateOfBirth { get; set; }
-        [DefaultValue(true)]
         public bool Active { get; set; }
-        public string FullName => FirstName  + " " + LastName;
+        public string ImageUrl { get; set; }
     }
 }

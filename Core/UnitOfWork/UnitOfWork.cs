@@ -28,6 +28,10 @@ namespace Core.UnitOfWork
         public TasksRepository TasksRepository => new TasksRepository(_context);
         public UserTasksRepository UserTasksRepository => new UserTasksRepository(_context);
         public TaskReviewRepository TaskReviewRepository => new TaskReviewRepository(_context);
+        public UserPositionsRepository UserPositionsRepository => new UserPositionsRepository(_context);
+        public PositionsRepository PositionsRepository => new PositionsRepository(_context);    
+        public ContractTypeRepository ContractTypeRepository => new ContractTypeRepository(_context);
+        public TaskPrioritiesRepository TaskPrioritiesRepository => new TaskPrioritiesRepository(_context);
 
         public UnitOfWork(ApplicationDbContext context)
         {

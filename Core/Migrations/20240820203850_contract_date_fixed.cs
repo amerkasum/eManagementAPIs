@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Core.Migrations
 {
-    public partial class DueDate : Migration
+    public partial class contract_date_fixed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<DateTime>(
-                name: "DueDate",
-                table: "Tasks",
+                name: "ContractExpireDate",
+                table: "UserPositions",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2");
@@ -18,8 +18,8 @@ namespace Core.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<DateTime>(
-                name: "DueDate",
-                table: "Tasks",
+                name: "ContractExpireDate",
+                table: "UserPositions",
                 type: "datetime2",
                 nullable: false,
                 oldClrType: typeof(DateTime),

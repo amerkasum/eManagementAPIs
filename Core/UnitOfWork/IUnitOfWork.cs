@@ -28,6 +28,10 @@ namespace Core.UnitOfWork
         TasksRepository TasksRepository { get; }
         UserTasksRepository UserTasksRepository { get; }
         TaskReviewRepository TaskReviewRepository { get; }
+        PositionsRepository PositionsRepository { get; }
+        UserPositionsRepository UserPositionsRepository { get; }
+        ContractTypeRepository ContractTypeRepository { get; }
+        TaskPrioritiesRepository TaskPrioritiesRepository { get; }
         #endregion
 
         int SaveChanges();
