@@ -15,11 +15,11 @@ namespace Core.Repositories.Repository
         public ApplicationDbContext _context;
         private DbSet<T> table;
 
-        public Repository()
-        {
-            this._context = new ApplicationDbContext();
-            table = _context.Set<T>();
-        }
+        //public Repository()
+        //{
+        //    this._context = new ApplicationDbContext();
+        //    table = _context.Set<T>();
+        //}
 
         public Repository(ApplicationDbContext context)
         {

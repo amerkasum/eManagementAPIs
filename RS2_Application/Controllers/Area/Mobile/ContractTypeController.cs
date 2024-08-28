@@ -1,5 +1,4 @@
-﻿using Core.Migrations;
-using Core.UnitOfWork;
+﻿using Core.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
 using Models.Entities.Helpers;

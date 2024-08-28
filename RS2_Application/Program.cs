@@ -1,7 +1,11 @@
+using Core.DatabaseContext;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,15 +18,13 @@ namespace RS2_Application
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-            //var host = new WebHostBuilder()
-            //    .UseKestrel()
-            //    .UseContentRoot(Directory.GetCurrentDirectory())
-            //    .UseUrls("https://localhost:5001", "https://192.168.0.11:5001")
-            //    .UseIISIntegration()
-            //    .UseStartup<Startup>()
-            //    .Build();
-            //host.Run();
+            var host = CreateHostBuilder(args).Build();
+            using (var scope = host.Services.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                service.Database.Migrate();
+            }
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
