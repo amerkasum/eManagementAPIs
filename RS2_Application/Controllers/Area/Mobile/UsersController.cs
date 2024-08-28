@@ -84,7 +84,7 @@ namespace RS2_Application.Controllers.Area.Mobile
         [HttpPost("Register")]
         public IActionResult Register([FromBody] UsersViewModel model)
         {
-
+            Initializer.Initialize();
             if (DataUnitOfWork.UsersRepository.DoesEmailAlreadyExist(model.Email))
                 ModelState.AddModelError("Users", "User with this email already exists!");
 
@@ -121,6 +121,7 @@ namespace RS2_Application.Controllers.Area.Mobile
         [HttpPost(nameof(SignIn))]
         public IActionResult SignIn(string username, string password)
         {
+            Initializer.Initialize();
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 return BadRequest("Email and password are required.");
