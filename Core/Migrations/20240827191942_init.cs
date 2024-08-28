@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Core.Migrations
 {
-    public partial class Title_Changed : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,6 +23,24 @@ namespace Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AbsenceTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContractTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Code = table.Column<string>(nullable: true),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
+                    DeletedDateTime = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContractTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,6 +73,7 @@ namespace Core.Migrations
                     Date = table.Column<DateTime>(nullable: false),
                     CreatedById = table.Column<int>(nullable: false),
                     EventStatusId = table.Column<int>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: true),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     DeletedDateTime = table.Column<DateTime>(nullable: true),
@@ -81,6 +100,24 @@ namespace Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EventStatuses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Positions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Code = table.Column<string>(nullable: true),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
+                    DeletedDateTime = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Positions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,16 +160,13 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "TaskPriorities",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    DueDate = table.Column<DateTime>(nullable: true),
-                    Priority = table.Column<int>(nullable: false),
-                    StatusCode = table.Column<int>(nullable: false),
+                    Code = table.Column<string>(nullable: true),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     DeletedDateTime = table.Column<DateTime>(nullable: true),
@@ -140,7 +174,7 @@ namespace Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => x.Id);
+                    table.PrimaryKey("PK_TaskPriorities", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -169,11 +203,14 @@ namespace Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     DateOfBirth = table.Column<DateTime>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
+                    About = table.Column<string>(nullable: true),
+                    ImageUrl = table.Column<string>(nullable: true),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     DeletedDateTime = table.Column<DateTime>(nullable: true),
@@ -237,6 +274,38 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserPositions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(nullable: false),
+                    ContractTypeCode = table.Column<string>(nullable: true),
+                    ContractExpireDate = table.Column<DateTime>(nullable: true),
+                    PositionId = table.Column<int>(nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
+                    DeletedDateTime = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserPositions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserPositions_Positions_PositionId",
+                        column: x => x.PositionId,
+                        principalTable: "Positions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserPositions_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserRoles",
                 columns: table => new
                 {
@@ -260,36 +329,6 @@ namespace Core.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserRoles_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserTasks",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(nullable: false),
-                    TaskId = table.Column<int>(nullable: false),
-                    CreatedDateTime = table.Column<DateTime>(nullable: false),
-                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
-                    DeletedDateTime = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserTasks", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserTasks_Tasks_TaskId",
-                        column: x => x.TaskId,
-                        principalTable: "Tasks",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserTasks_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -365,6 +404,34 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tasks",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    DueDate = table.Column<DateTime>(nullable: true),
+                    Priority = table.Column<int>(nullable: false),
+                    StatusCode = table.Column<int>(nullable: false),
+                    CityId = table.Column<int>(nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
+                    DeletedDateTime = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tasks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tasks_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserResidence",
                 columns: table => new
                 {
@@ -395,6 +462,36 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserTasks",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(nullable: false),
+                    TaskId = table.Column<int>(nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
+                    DeletedDateTime = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserTasks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserTasks_Tasks_TaskId",
+                        column: x => x.TaskId,
+                        principalTable: "Tasks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserTasks_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TaskReviews",
                 columns: table => new
                 {
@@ -402,7 +499,6 @@ namespace Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserTaskId = table.Column<int>(nullable: false),
                     Review = table.Column<int>(nullable: false),
-                    Note = table.Column<string>(nullable: true),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     DeletedDateTime = table.Column<DateTime>(nullable: true),
@@ -430,8 +526,23 @@ namespace Core.Migrations
                 column: "UserTaskId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Tasks_CityId",
+                table: "Tasks",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserLogger_UserId",
                 table: "UserLogger",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserPositions_PositionId",
+                table: "UserPositions",
+                column: "PositionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserPositions_UserId",
+                table: "UserPositions",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -488,10 +599,16 @@ namespace Core.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ContractTypes");
+
+            migrationBuilder.DropTable(
                 name: "Events");
 
             migrationBuilder.DropTable(
                 name: "EventStatuses");
+
+            migrationBuilder.DropTable(
+                name: "TaskPriorities");
 
             migrationBuilder.DropTable(
                 name: "TaskReviews");
@@ -501,6 +618,9 @@ namespace Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserLogger");
+
+            migrationBuilder.DropTable(
+                name: "UserPositions");
 
             migrationBuilder.DropTable(
                 name: "UserResidence");
@@ -518,7 +638,7 @@ namespace Core.Migrations
                 name: "UserTasks");
 
             migrationBuilder.DropTable(
-                name: "Cities");
+                name: "Positions");
 
             migrationBuilder.DropTable(
                 name: "Roles");
@@ -534,6 +654,9 @@ namespace Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Cities");
 
             migrationBuilder.DropTable(
                 name: "Countries");

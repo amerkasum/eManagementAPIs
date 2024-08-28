@@ -1,0 +1,33 @@
+version: '3.1'
+services: 
+#mssql docker
+  rs2app-sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: unless-stopped
+    environment: 
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Ib210322.
+      - MSSQL_PID=Developer
+    ports: 
+      - 1401:1433
+    networks: 
+      - rs2appnet
+  
+  rs2app-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:RS2_Application=Server=rs2app-sql, 1433;Database=210322Docker;User=sa;Password=Ib210322.;TrustServerCertificate=True;ConnectRetryCount=0'
+    ports:
+      - 5001:80
+    networks:
+      - rs2appnet
+    links:
+      - rs2app-sql
+    depends_on:
+      - rs2app-sql
+    
+networks:
+  rs2appnet: 
+    driver: bridge
