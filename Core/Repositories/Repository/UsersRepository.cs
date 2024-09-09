@@ -50,9 +50,18 @@ namespace Core.Repositories.Repository
         }
 
         public IEnumerable<UsersDto> GetUsers(string fullName) {
-            
+
+            //valjda radi
+            var absenceStatus = _context.AbsenceStatuses.FirstOrDefault(x => x.Name.ToLower() == nameof(Enumerations.AbsenceStatus.APPROVED).ToLower());
             var workingAbsences = _context.WorkingAbsences.Include(x => x.AbsenceType)
-                .Where(x => !x.IsDeleted && x.StartDate.Date >= DateTime.Now.Date).ToList();
+               .Where(x => !x.IsDeleted && x.AbsenceStatusId == absenceStatus.Id &&
+                (
+                    (x.EndDate != null && DateTime.Now.Date >= x.StartDate.Date && DateTime.Now.Date <= x.EndDate.Value.Date) ||
+                    (x.EndDate == null && x.StartDate.Date == DateTime.Now.Date)
+                    
+                )
+            ).ToList();
+
 
             List<PositionsDto> positions = _context.UserPositions.Include(x => x.Position).Where(x => !x.IsDeleted).Select(x => new PositionsDto {
                 Id = x.Position.Id,
@@ -66,7 +75,7 @@ namespace Core.Repositories.Repository
               .AsEnumerable()  // Switch to in-memory processing
               .Select(x => {
                   var position = positions.FirstOrDefault(y => y.UserId == x.Id);
-                  var absence = workingAbsences.FirstOrDefault(y => y.UserId == x.Id);
+                  var absence = workingAbsences.OrderByDescending(x => x.CreatedDateTime).FirstOrDefault(y => y.UserId == x.Id);
              
                   return new UsersDto
                   {
@@ -77,7 +86,8 @@ namespace Core.Repositories.Repository
                       PhoneNumber = x.PhoneNumber,
                       JobPositionCode = position?.Code ?? "0",
                       JobPositionName = position != null ? System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(position.Name.ToLower()) : "Unknown",
-                      Availability = absence?.AbsenceType?.Name ?? "AVAILABLE"
+                      Availability = absence != null ?
+                        System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(absence.AbsenceType.Name.ToLower()).Replace("_", " ") : "Available"
                   };
               }).ToList();
 
@@ -91,8 +101,14 @@ namespace Core.Repositories.Repository
             var position = _context.UserPositions.Include(x => x.Position).FirstOrDefault(x => !x.IsDeleted && x.UserId == userId);
             var residence = _context.UserResidence.Include(x => x.City).FirstOrDefault(x => x.UserId == userId).City.Name;
 
-            var availability = _context.WorkingAbsences.Include(x => x.AbsenceType)
-                .FirstOrDefault(x => !x.IsDeleted && x.StartDate.Date >= DateTime.Now.Date);
+            var absenceStatus = _context.AbsenceStatuses.FirstOrDefault(x => x.Name.ToLower() == nameof(Enumerations.AbsenceStatus.APPROVED).ToLower());
+            var workingAbsence = _context.WorkingAbsences.Include(x => x.AbsenceType).OrderByDescending(x => x.CreatedDateTime)
+               .FirstOrDefault(x => !x.IsDeleted && userId == x.UserId && x.AbsenceStatusId == absenceStatus.Id &&
+                (
+                    (x.EndDate != null && DateTime.Now.Date >= x.StartDate.Date && DateTime.Now.Date <= x.EndDate.Value.Date) ||
+                    (x.EndDate == null && x.StartDate.Date == DateTime.Now.Date)
+                )
+            );
 
             UserProfileDto result = new UserProfileDto
             {
@@ -105,15 +121,23 @@ namespace Core.Repositories.Repository
                 DateOfBirth = user.DateOfBirth,
                 JobPosition = position != null ? System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(position.Position.Name.ToLower()) : "Unknown",
                 Residence = residence,
-                Availability = availability?.AbsenceType?.Name ?? "Available",
+                Availability = workingAbsence != null ?
+                        System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(workingAbsence.AbsenceType.Name.ToLower()).Replace("_", " ") : "Available"
             };
             return result;
         }
 
         public List<UsersDesktopDto> GetUsersDesktop()
         {
+            var absenceStatus = _context.AbsenceStatuses.FirstOrDefault(x => x.Name.ToLower() == nameof(Enumerations.AbsenceStatus.APPROVED).ToLower());
             var workingAbsences = _context.WorkingAbsences.Include(x => x.AbsenceType)
-                .Where(x => !x.IsDeleted && x.StartDate.Date >= DateTime.Now.Date).ToList();
+               .Where(x => !x.IsDeleted && x.AbsenceStatusId == absenceStatus.Id &&
+                (
+                    (x.EndDate != null && DateTime.Now.Date >= x.StartDate.Date && DateTime.Now.Date <= x.EndDate.Value.Date) ||
+                    (x.EndDate == null && x.StartDate.Date == DateTime.Now.Date)
+                ) 
+
+            ).ToList();
 
             var userPositions = _context.UserPositions
               .Include(x => x.Position)
@@ -134,6 +158,7 @@ namespace Core.Repositories.Repository
             {
 
                 var position = positions.FirstOrDefault(y => y.UserId == x.Id);
+                var absence = workingAbsences.OrderByDescending(x => x.CreatedDateTime).FirstOrDefault(y => y.UserId == x.Id);
                 return new UsersDesktopDto
                 {
                     Id = x.Id,
@@ -142,9 +167,10 @@ namespace Core.Repositories.Repository
                     PhoneNumber = x.PhoneNumber,
                     ImageUrl = x.ImageUrl ?? "assets/user.jpg",
                     Position = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(position.Name.ToLower()),
-                    ContractType = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(position.ContractType.ToLower()),
+                    ContractType = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(position.ContractType.ToLower()).Replace("_", " "),
                     ContractExpireDate = position.ContractExpireDate ?? null,
-                    Availability = "Available"
+                    Availability = absence != null ? 
+                        System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(absence.AbsenceType.Name.ToLower()).Replace("_", " ") : "Available"
                 };
             }).ToList();
 

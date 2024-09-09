@@ -35,7 +35,7 @@ namespace Helpers.Constants
 
         public enum AbsenceStatus
         {
-            PENDING = 1,
+            REQUEST = 1,
             APPROVED, 
             CANCELLED,
             REJECTED

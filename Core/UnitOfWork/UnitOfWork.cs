@@ -32,6 +32,7 @@ namespace Core.UnitOfWork
         public PositionsRepository PositionsRepository => new PositionsRepository(_context);    
         public ContractTypeRepository ContractTypeRepository => new ContractTypeRepository(_context);
         public TaskPrioritiesRepository TaskPrioritiesRepository => new TaskPrioritiesRepository(_context);
+        public AbsenceStatusRepository AbsenceStatusRepository => new AbsenceStatusRepository(_context);
 
         public UnitOfWork(ApplicationDbContext context)
         {

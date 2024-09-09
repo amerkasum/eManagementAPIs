@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240828020553_init")]
+    [Migration("20240906085648_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,70 @@ namespace Core.Migrations
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Models.Entities.AbsenceStatuses", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AbsenceStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "1",
+                            CreatedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "REQUEST"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "2",
+                            CreatedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "APPROVED"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "4",
+                            CreatedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "REJECTED"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Code = "3",
+                            CreatedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "CANCELLED"
+                        });
+                });
 
             modelBuilder.Entity("Models.Entities.AbsenceTypes", b =>
                 {
@@ -246,6 +310,278 @@ namespace Core.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(5894),
+                            IsDeleted = false,
+                            Name = "Sarajevo",
+                            PttCode = "71000"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7237),
+                            IsDeleted = false,
+                            Name = "Banja Luka",
+                            PttCode = "78000"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7273),
+                            IsDeleted = false,
+                            Name = "Mostar",
+                            PttCode = "88000"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7278),
+                            IsDeleted = false,
+                            Name = "Tuzla",
+                            PttCode = "75000"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7280),
+                            IsDeleted = false,
+                            Name = "Zenica",
+                            PttCode = "72000"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7283),
+                            IsDeleted = false,
+                            Name = "Bijeljina",
+                            PttCode = "76300"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7286),
+                            IsDeleted = false,
+                            Name = "Prijedor",
+                            PttCode = "79101"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7288),
+                            IsDeleted = false,
+                            Name = "Brčko",
+                            PttCode = "76100"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7291),
+                            IsDeleted = false,
+                            Name = "Cazin",
+                            PttCode = "77220"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7294),
+                            IsDeleted = false,
+                            Name = "Doboj",
+                            PttCode = "74000"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7296),
+                            IsDeleted = false,
+                            Name = "Bihać",
+                            PttCode = "77000"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7299),
+                            IsDeleted = false,
+                            Name = "Gradiška",
+                            PttCode = "78400"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7301),
+                            IsDeleted = false,
+                            Name = "Trebinje",
+                            PttCode = "89101"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7304),
+                            IsDeleted = false,
+                            Name = "Travnik",
+                            PttCode = "72270"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7309),
+                            IsDeleted = false,
+                            Name = "Tešanj",
+                            PttCode = "74260"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7311),
+                            IsDeleted = false,
+                            Name = "Visoko",
+                            PttCode = "71300"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7314),
+                            IsDeleted = false,
+                            Name = "Sanski Most",
+                            PttCode = "79260"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7316),
+                            IsDeleted = false,
+                            Name = "Bugojno",
+                            PttCode = "70230"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7319),
+                            IsDeleted = false,
+                            Name = "Živinice",
+                            PttCode = "75270"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7322),
+                            IsDeleted = false,
+                            Name = "Lukavac",
+                            PttCode = "75300"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7324),
+                            IsDeleted = false,
+                            Name = "Foča",
+                            PttCode = "73300"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7327),
+                            IsDeleted = false,
+                            Name = "Goražde",
+                            PttCode = "73000"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7329),
+                            IsDeleted = false,
+                            Name = "Konjic",
+                            PttCode = "88400"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7331),
+                            IsDeleted = false,
+                            Name = "Livno",
+                            PttCode = "80101"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7334),
+                            IsDeleted = false,
+                            Name = "Neum",
+                            PttCode = "88390"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7336),
+                            IsDeleted = false,
+                            Name = "Posušje",
+                            PttCode = "88240"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7338),
+                            IsDeleted = false,
+                            Name = "Široki Brijeg",
+                            PttCode = "88220"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7342),
+                            IsDeleted = false,
+                            Name = "Srebrenica",
+                            PttCode = "75430"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7344),
+                            IsDeleted = false,
+                            Name = "Tomislavgrad",
+                            PttCode = "80240"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CountryId = 22,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7347),
+                            IsDeleted = false,
+                            Name = "Vitez",
+                            PttCode = "72250"
+                        });
                 });
 
             modelBuilder.Entity("Models.Entities.ContractTypes", b =>
@@ -2067,6 +2403,56 @@ namespace Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Events");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedById = 1,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 402, DateTimeKind.Local).AddTicks(8379),
+                            Date = new DateTime(2024, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A weekend retreat for team building and relaxation.",
+                            EventStatusId = 1,
+                            IsDeleted = false,
+                            Subtitle = "Annual team building",
+                            Title = "Company Retreat"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedById = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(327),
+                            Date = new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Kickoff meeting for the new project launch.",
+                            EventStatusId = 1,
+                            IsDeleted = false,
+                            Subtitle = "New project initiation",
+                            Title = "Project Kickoff"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedById = 1,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(382),
+                            Date = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A conference featuring industry leaders and insightful sessions.",
+                            EventStatusId = 3,
+                            IsDeleted = false,
+                            Subtitle = "Industry insights",
+                            Title = "Annual Conference"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedById = 1,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(387),
+                            Date = new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Celebrate the end of the year with food, fun, and festivities.",
+                            EventStatusId = 4,
+                            IsDeleted = false,
+                            Subtitle = "End of year celebration",
+                            Title = "Holiday Party"
+                        });
                 });
 
             modelBuilder.Entity("Models.Entities.Positions", b =>
@@ -2466,6 +2852,168 @@ namespace Core.Migrations
                     b.HasIndex("UserTaskId");
 
                     b.ToTable("TaskReviews");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(2001),
+                            IsDeleted = false,
+                            Review = 5,
+                            UserTaskId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3807),
+                            IsDeleted = false,
+                            Review = 4,
+                            UserTaskId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3860),
+                            IsDeleted = false,
+                            Review = 3,
+                            UserTaskId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3866),
+                            IsDeleted = false,
+                            Review = 5,
+                            UserTaskId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3870),
+                            IsDeleted = false,
+                            Review = 2,
+                            UserTaskId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3874),
+                            IsDeleted = false,
+                            Review = 4,
+                            UserTaskId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3879),
+                            IsDeleted = false,
+                            Review = 3,
+                            UserTaskId = 7
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3883),
+                            IsDeleted = false,
+                            Review = 5,
+                            UserTaskId = 8
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3887),
+                            IsDeleted = false,
+                            Review = 4,
+                            UserTaskId = 9
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3891),
+                            IsDeleted = false,
+                            Review = 3,
+                            UserTaskId = 10
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3896),
+                            IsDeleted = false,
+                            Review = 5,
+                            UserTaskId = 11
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3900),
+                            IsDeleted = false,
+                            Review = 2,
+                            UserTaskId = 12
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3904),
+                            IsDeleted = false,
+                            Review = 4,
+                            UserTaskId = 13
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3908),
+                            IsDeleted = false,
+                            Review = 3,
+                            UserTaskId = 14
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3912),
+                            IsDeleted = false,
+                            Review = 5,
+                            UserTaskId = 15
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3917),
+                            IsDeleted = false,
+                            Review = 4,
+                            UserTaskId = 16
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3922),
+                            IsDeleted = false,
+                            Review = 2,
+                            UserTaskId = 17
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3926),
+                            IsDeleted = false,
+                            Review = 5,
+                            UserTaskId = 18
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3930),
+                            IsDeleted = false,
+                            Review = 4,
+                            UserTaskId = 19
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3934),
+                            IsDeleted = false,
+                            Review = 3,
+                            UserTaskId = 20
+                        });
                 });
 
             modelBuilder.Entity("Models.Entities.TaskStatuses", b =>
@@ -2574,6 +3122,128 @@ namespace Core.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("Tasks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityId = 1,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(647),
+                            Description = "Description for Task 1",
+                            DueDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Task 1",
+                            Priority = 3,
+                            StatusCode = 3
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityId = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2439),
+                            Description = "Description for Task 2",
+                            DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Task 2",
+                            Priority = 3,
+                            StatusCode = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CityId = 3,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2480),
+                            Description = "Description for Task 3",
+                            DueDate = new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Task 3",
+                            Priority = 3,
+                            StatusCode = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CityId = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2484),
+                            Description = "Description for Task 4",
+                            DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Task 4",
+                            Priority = 3,
+                            StatusCode = 3
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CityId = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2486),
+                            Description = "Description for Task 5",
+                            DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Task 5",
+                            Priority = 3,
+                            StatusCode = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CityId = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2673),
+                            Description = "Description for Task 6",
+                            DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Task 6",
+                            Priority = 3,
+                            StatusCode = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CityId = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2683),
+                            Description = "Description for Task 7",
+                            DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Task 7",
+                            Priority = 3,
+                            StatusCode = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CityId = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2689),
+                            Description = "Description for Task 8",
+                            DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Task 8",
+                            Priority = 3,
+                            StatusCode = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CityId = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2694),
+                            Description = "Description for Task 9",
+                            DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Task 9",
+                            Priority = 3,
+                            StatusCode = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CityId = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2700),
+                            Description = "Description for Task 10",
+                            DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Task 10",
+                            Priority = 3,
+                            StatusCode = 3
+                        });
                 });
 
             modelBuilder.Entity("Models.Entities.UserLogger", b =>
@@ -2655,6 +3325,38 @@ namespace Core.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserPositions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ContractExpireDate = new DateTime(2025, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ContractTypeCode = "1",
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 394, DateTimeKind.Utc).AddTicks(2709),
+                            IsDeleted = false,
+                            PositionId = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ContractExpireDate = new DateTime(2026, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ContractTypeCode = "6",
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 394, DateTimeKind.Utc).AddTicks(4327),
+                            IsDeleted = false,
+                            PositionId = 1,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ContractExpireDate = new DateTime(2026, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ContractTypeCode = "6",
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 394, DateTimeKind.Utc).AddTicks(4367),
+                            IsDeleted = false,
+                            PositionId = 2,
+                            UserId = 3
+                        });
                 });
 
             modelBuilder.Entity("Models.Entities.UserResidence", b =>
@@ -2689,6 +3391,32 @@ namespace Core.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserResidence");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityId = 1,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(7955),
+                            IsDeleted = false,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CityId = 3,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 394, DateTimeKind.Utc).AddTicks(233),
+                            IsDeleted = false,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CityId = 3,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 394, DateTimeKind.Utc).AddTicks(283),
+                            IsDeleted = false,
+                            UserId = 3
+                        });
                 });
 
             modelBuilder.Entity("Models.Entities.UserRoles", b =>
@@ -2723,6 +3451,32 @@ namespace Core.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(451),
+                            IsDeleted = false,
+                            RoleId = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(2293),
+                            IsDeleted = false,
+                            RoleId = 2,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(2334),
+                            IsDeleted = false,
+                            RoleId = 2,
+                            UserId = 3
+                        });
                 });
 
             modelBuilder.Entity("Models.Entities.UserTasks", b =>
@@ -2757,6 +3511,168 @@ namespace Core.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserTasks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(4442),
+                            IsDeleted = false,
+                            TaskId = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6359),
+                            IsDeleted = false,
+                            TaskId = 1,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6460),
+                            IsDeleted = false,
+                            TaskId = 2,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6464),
+                            IsDeleted = false,
+                            TaskId = 2,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6466),
+                            IsDeleted = false,
+                            TaskId = 3,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6468),
+                            IsDeleted = false,
+                            TaskId = 3,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6470),
+                            IsDeleted = false,
+                            TaskId = 4,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6473),
+                            IsDeleted = false,
+                            TaskId = 4,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6474),
+                            IsDeleted = false,
+                            TaskId = 5,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6476),
+                            IsDeleted = false,
+                            TaskId = 5,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6478),
+                            IsDeleted = false,
+                            TaskId = 6,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6479),
+                            IsDeleted = false,
+                            TaskId = 6,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6481),
+                            IsDeleted = false,
+                            TaskId = 7,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6482),
+                            IsDeleted = false,
+                            TaskId = 7,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6484),
+                            IsDeleted = false,
+                            TaskId = 8,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6485),
+                            IsDeleted = false,
+                            TaskId = 8,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6487),
+                            IsDeleted = false,
+                            TaskId = 9,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6489),
+                            IsDeleted = false,
+                            TaskId = 9,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6490),
+                            IsDeleted = false,
+                            TaskId = 10,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6492),
+                            IsDeleted = false,
+                            TaskId = 10,
+                            UserId = 3
+                        });
                 });
 
             modelBuilder.Entity("Models.Entities.Users", b =>
@@ -2811,6 +3727,53 @@ namespace Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            About = "A brief description about Admin Istrator.",
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 391, DateTimeKind.Utc).AddTicks(6350),
+                            DateOfBirth = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "administrator@example.com",
+                            FirstName = "Admin",
+                            IsActive = true,
+                            IsDeleted = false,
+                            LastName = "Istrator",
+                            Password = "test",
+                            PhoneNumber = "123-456-7890",
+                            Username = "administrator"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            About = "A brief description about Emplo Yee.",
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 391, DateTimeKind.Utc).AddTicks(8520),
+                            DateOfBirth = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "employee@example.com",
+                            FirstName = "Emplo",
+                            IsActive = true,
+                            IsDeleted = false,
+                            LastName = "Yee",
+                            Password = "test",
+                            PhoneNumber = "123-456-7890",
+                            Username = "employee"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            About = "A brief description about John Doe.",
+                            CreatedDateTime = new DateTime(2024, 9, 6, 8, 56, 47, 391, DateTimeKind.Utc).AddTicks(8674),
+                            DateOfBirth = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "johndoe@example.com",
+                            FirstName = "John",
+                            IsActive = true,
+                            IsDeleted = false,
+                            LastName = "Doe",
+                            Password = "test",
+                            PhoneNumber = "123-456-7890",
+                            Username = "john.doe"
+                        });
                 });
 
             modelBuilder.Entity("Models.Entities.WorkingAbsences", b =>
@@ -2819,6 +3782,9 @@ namespace Core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AbsenceStatusId")
+                        .HasColumnType("int");
 
                     b.Property<int>("AbsenceTypeId")
                         .HasColumnType("int");
@@ -2849,11 +3815,74 @@ namespace Core.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AbsenceStatusId");
+
                     b.HasIndex("AbsenceTypeId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("WorkingAbsences");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AbsenceStatusId = 1,
+                            AbsenceTypeId = 1,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 394, DateTimeKind.Local).AddTicks(7874),
+                            EndDate = new DateTime(2024, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Note = "Vacation leave",
+                            StartDate = new DateTime(2024, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AbsenceStatusId = 1,
+                            AbsenceTypeId = 2,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 402, DateTimeKind.Local).AddTicks(3993),
+                            EndDate = new DateTime(2024, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Note = "Sick leave",
+                            StartDate = new DateTime(2024, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AbsenceStatusId = 1,
+                            AbsenceTypeId = 3,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 402, DateTimeKind.Local).AddTicks(4148),
+                            EndDate = new DateTime(2024, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Note = "Personal leave",
+                            StartDate = new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AbsenceStatusId = 1,
+                            AbsenceTypeId = 4,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 402, DateTimeKind.Local).AddTicks(4158),
+                            IsDeleted = false,
+                            Note = "Parental leave",
+                            StartDate = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AbsenceStatusId = 1,
+                            AbsenceTypeId = 5,
+                            CreatedDateTime = new DateTime(2024, 9, 6, 10, 56, 47, 402, DateTimeKind.Local).AddTicks(4165),
+                            EndDate = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Note = "Bereavement leave",
+                            StartDate = new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("Models.Entities.WorkingDays", b =>
@@ -3003,6 +4032,12 @@ namespace Core.Migrations
 
             modelBuilder.Entity("Models.Entities.WorkingAbsences", b =>
                 {
+                    b.HasOne("Models.Entities.AbsenceStatuses", "AbsenceStatus")
+                        .WithMany()
+                        .HasForeignKey("AbsenceStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Models.Entities.AbsenceTypes", "AbsenceType")
                         .WithMany()
                         .HasForeignKey("AbsenceTypeId")

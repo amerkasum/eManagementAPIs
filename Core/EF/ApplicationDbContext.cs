@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using Helpers.Constants;
 using static Helpers.Constants.Enumerations;
+using Core.Services.IServices;
+using Microsoft.Extensions.Logging;
 
 namespace Core.DatabaseContext
 {
@@ -74,6 +76,13 @@ namespace Core.DatabaseContext
                 new TaskPriorities { Id = 3, Name = nameof(TaskPriority.HIGH), Code = ((int)TaskPriority.HIGH).ToString() }
             );
 
+            modelBuilder.Entity<AbsenceStatuses>().HasData(
+                new AbsenceStatuses { Id = 1, Name = nameof(AbsenceStatus.REQUEST), Code = ((int)AbsenceStatus.REQUEST).ToString() },
+                new AbsenceStatuses { Id = 2, Name = nameof(AbsenceStatus.APPROVED), Code = ((int)AbsenceStatus.APPROVED).ToString() },
+                new AbsenceStatuses { Id = 3, Name = nameof(AbsenceStatus.REJECTED), Code = ((int)AbsenceStatus.REJECTED).ToString() },
+                new AbsenceStatuses { Id = 4, Name = nameof(AbsenceStatus.CANCELLED), Code = ((int)AbsenceStatus.CANCELLED).ToString() }
+            );
+
             modelBuilder.Entity<Positions>().HasData(
                  new Positions { Id = 1, Name = nameof(JobPosition.SOFTWARE_DEVELOPER).Replace("_", " "), Code = ((int)JobPosition.SOFTWARE_DEVELOPER).ToString() },
                  new Positions { Id = 2, Name = nameof(JobPosition.DATA_SCIENTIST).Replace("_", " "), Code = ((int)JobPosition.DATA_SCIENTIST).ToString() },
@@ -119,6 +128,24 @@ namespace Core.DatabaseContext
                 new AbsenceTypes { Id = 19, Name = nameof(Enumerations.AbsenceType.FLOATING_HOLIDAY).Replace("_", " "), Code = ((int)Enumerations.AbsenceType.FLOATING_HOLIDAY).ToString() },
                 new AbsenceTypes { Id = 20, Name = nameof(Enumerations.AbsenceType.RELIGIOUS_LEAVE).Replace("_", " "), Code = ((int)Enumerations.AbsenceType.RELIGIOUS_LEAVE).ToString() }
             );
+
+            modelBuilder.Entity<Users>().HasData(
+                new Users { Id = 1, FirstName = "Admin", LastName = "Istrator", Username = "administrator", Email = "administrator@example.com", Password = "test", PhoneNumber = "123-456-7890", DateOfBirth = new DateTime(1990, 1, 1), IsActive = true, About = "A brief description about Admin Istrator.", ImageUrl = null, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Users { Id = 2, FirstName = "Emplo", LastName = "Yee", Username = "employee", Email = "employee@example.com", Password = "test", PhoneNumber = "123-456-7890", DateOfBirth = new DateTime(1990, 1, 1), IsActive = true, About = "A brief description about Emplo Yee.", ImageUrl = null, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Users { Id = 3, FirstName = "John", LastName = "Doe", Username = "john.doe", Email = "johndoe@example.com", Password = "test", PhoneNumber = "123-456-7890", DateOfBirth = new DateTime(1990, 1, 1), IsActive = true, About = "A brief description about John Doe.", ImageUrl = null, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+
+            );
+
+
+            modelBuilder.Entity<UserRoles>().HasData(
+                new UserRoles { Id = 1, UserId = 1, RoleId = 1, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserRoles { Id = 2, UserId = 2, RoleId = 2, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserRoles { Id = 3, UserId = 3, RoleId = 2, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+
+            );
+
+
+
 
             modelBuilder.Entity<Countries>().HasData(
                 new Countries { Id = 1, Name = "Afghanistan", Iso = "AF" },
@@ -316,6 +343,129 @@ namespace Core.DatabaseContext
                 new Countries { Id = 193, Name = "Zambia", Iso = "ZM" },
                 new Countries { Id = 194, Name = "Zimbabwe", Iso = "ZW" }
             );
+
+            modelBuilder.Entity<Cities>().HasData(
+                new Cities { Id = 1, Name = "Sarajevo", CountryId = 22, PttCode = "71000", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 2, Name = "Banja Luka", CountryId = 22, PttCode = "78000", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 3, Name = "Mostar", CountryId = 22, PttCode = "88000", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 4, Name = "Tuzla", CountryId = 22, PttCode = "75000", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 5, Name = "Zenica", CountryId = 22, PttCode = "72000", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 6, Name = "Bijeljina", CountryId = 22, PttCode = "76300", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 7, Name = "Prijedor", CountryId = 22, PttCode = "79101", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 8, Name = "Brčko", CountryId = 22, PttCode = "76100", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 9, Name = "Cazin", CountryId = 22, PttCode = "77220", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 10, Name = "Doboj", CountryId = 22, PttCode = "74000", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 11, Name = "Bihać", CountryId = 22, PttCode = "77000", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 12, Name = "Gradiška", CountryId = 22, PttCode = "78400", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 13, Name = "Trebinje", CountryId = 22, PttCode = "89101", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 14, Name = "Travnik", CountryId = 22, PttCode = "72270", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 15, Name = "Tešanj", CountryId = 22, PttCode = "74260", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 16, Name = "Visoko", CountryId = 22, PttCode = "71300", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 17, Name = "Sanski Most", CountryId = 22, PttCode = "79260", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 18, Name = "Bugojno", CountryId = 22, PttCode = "70230", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 19, Name = "Živinice", CountryId = 22, PttCode = "75270", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 20, Name = "Lukavac", CountryId = 22, PttCode = "75300", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 21, Name = "Foča", CountryId = 22, PttCode = "73300", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 22, Name = "Goražde", CountryId = 22, PttCode = "73000", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 23, Name = "Konjic", CountryId = 22, PttCode = "88400", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 24, Name = "Livno", CountryId = 22, PttCode = "80101", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 25, Name = "Neum", CountryId = 22, PttCode = "88390", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 26, Name = "Posušje", CountryId = 22, PttCode = "88240", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 27, Name = "Široki Brijeg", CountryId = 22, PttCode = "88220", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 28, Name = "Srebrenica", CountryId = 22, PttCode = "75430", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 29, Name = "Tomislavgrad", CountryId = 22, PttCode = "80240", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Cities { Id = 30, Name = "Vitez", CountryId = 22, PttCode = "72250", CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
+
+            modelBuilder.Entity<Tasks>().HasData(
+                new Tasks { Id = 1, Name = "Task 1", Description = "Description for Task 1", DueDate = new DateTime(2024, 12, 31), Priority = (int)Enumerations.TaskPriority.HIGH, StatusCode = (int)Enumerations.TaskStatus.FINISHED, CityId = 1, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Tasks { Id = 2, Name = "Task 2", Description = "Description for Task 2", DueDate = new DateTime(2024, 11, 15), Priority = (int)Enumerations.TaskPriority.HIGH, StatusCode = (int)Enumerations.TaskStatus.FINISHED, CityId = 2, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Tasks { Id = 3, Name = "Task 3", Description = "Description for Task 3", DueDate = new DateTime(2024, 10, 01), Priority = (int)Enumerations.TaskPriority.HIGH, StatusCode = (int)Enumerations.TaskStatus.FINISHED, CityId = 3, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Tasks { Id = 4, Name = "Task 4", Description = "Description for Task 4", DueDate = new DateTime(2024, 11, 15), Priority = (int)Enumerations.TaskPriority.HIGH, StatusCode = (int)Enumerations.TaskStatus.FINISHED, CityId = 2, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Tasks { Id = 5, Name = "Task 5", Description = "Description for Task 5", DueDate = new DateTime(2024, 11, 15), Priority = (int)Enumerations.TaskPriority.HIGH, StatusCode = (int)Enumerations.TaskStatus.FINISHED, CityId = 2, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Tasks { Id = 6, Name = "Task 6", Description = "Description for Task 6", DueDate = new DateTime(2024, 11, 15), Priority = (int)Enumerations.TaskPriority.HIGH, StatusCode = (int)Enumerations.TaskStatus.FINISHED, CityId = 2, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Tasks { Id = 7, Name = "Task 7", Description = "Description for Task 7", DueDate = new DateTime(2024, 11, 15), Priority = (int)Enumerations.TaskPriority.HIGH, StatusCode = (int)Enumerations.TaskStatus.FINISHED, CityId = 2, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Tasks { Id = 8, Name = "Task 8", Description = "Description for Task 8", DueDate = new DateTime(2024, 11, 15), Priority = (int)Enumerations.TaskPriority.HIGH, StatusCode = (int)Enumerations.TaskStatus.FINISHED, CityId = 2, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Tasks { Id = 9, Name = "Task 9", Description = "Description for Task 9", DueDate = new DateTime(2024, 11, 15), Priority = (int)Enumerations.TaskPriority.HIGH, StatusCode = (int)Enumerations.TaskStatus.FINISHED, CityId = 2, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Tasks { Id = 10, Name = "Task 10", Description = "Description for Task 10", DueDate = new DateTime(2024, 11, 15), Priority = (int)Enumerations.TaskPriority.HIGH, StatusCode = (int)Enumerations.TaskStatus.FINISHED, CityId = 2, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+
+            );
+
+            modelBuilder.Entity<UserTasks>().HasData(
+                new UserTasks { Id = 1, UserId = 1, TaskId = 1, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 2, UserId = 2, TaskId = 1, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 3, UserId = 1, TaskId = 2, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 4, UserId = 2, TaskId = 2, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 5, UserId = 1, TaskId = 3, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 6, UserId = 2, TaskId = 3, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 7, UserId = 1, TaskId = 4, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 8, UserId = 3, TaskId = 4, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 9, UserId = 1, TaskId = 5, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 10, UserId = 3, TaskId = 5, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 11, UserId = 1, TaskId = 6, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 12, UserId = 3, TaskId = 6, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 13, UserId = 1, TaskId = 7, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 14, UserId = 3, TaskId = 7, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 15, UserId = 2, TaskId = 8, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 16, UserId = 3, TaskId = 8, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 17, UserId = 2, TaskId = 9, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 18, UserId = 3, TaskId = 9, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 19, UserId = 2, TaskId = 10, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserTasks { Id = 20, UserId = 3, TaskId = 10, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+
+            );
+
+            modelBuilder.Entity<UserResidence>().HasData(
+                new UserResidence { Id = 1, UserId = 1, CityId = 1, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserResidence { Id = 3, UserId = 2, CityId = 3, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserResidence { Id = 4, UserId = 3, CityId = 3, CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+
+            );
+
+            modelBuilder.Entity<UserPositions>().HasData(
+                new UserPositions { Id = 1, UserId = 1, PositionId = 1, ContractTypeCode = ((int)Enumerations.ContractType.FULL_TIME).ToString(), ContractExpireDate = new DateTime(2025, 12, 31), CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserPositions { Id = 3, UserId = 2, PositionId = 1, ContractTypeCode = ((int)Enumerations.ContractType.CONSULTANT).ToString(), ContractExpireDate = new DateTime(2026, 12, 31), CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserPositions { Id = 4, UserId = 3, PositionId = 2, ContractTypeCode = ((int)Enumerations.ContractType.CONSULTANT).ToString(), ContractExpireDate = new DateTime(2026, 12, 31), CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+
+            );
+
+            modelBuilder.Entity<WorkingAbsences>().HasData(
+                new WorkingAbsences { Id = 1, UserId = 1, StartDate = new DateTime(2024, 9, 1), EndDate = new DateTime(2024, 9, 10), Note = "Vacation leave", AbsenceTypeId = 1, AbsenceStatusId = 1, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingAbsences { Id = 2, UserId = 2, StartDate = new DateTime(2024, 9, 5), EndDate = new DateTime(2024, 9, 15), Note = "Sick leave", AbsenceTypeId = 2, AbsenceStatusId = 1, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingAbsences { Id = 3, UserId = 1, StartDate = new DateTime(2024, 10, 1), EndDate = new DateTime(2024, 10, 3), Note = "Personal leave", AbsenceTypeId = 3, AbsenceStatusId = 1, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingAbsences { Id = 4, UserId = 2, StartDate = new DateTime(2024, 11, 1), EndDate = null, Note = "Parental leave", AbsenceTypeId = 4, AbsenceStatusId = 1, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingAbsences { Id = 5, UserId = 1, StartDate = new DateTime(2024, 12, 1), EndDate = new DateTime(2024, 12, 15), Note = "Bereavement leave", AbsenceTypeId = 5, AbsenceStatusId = 1, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
+
+            modelBuilder.Entity<Events>().HasData(
+                new Events { Id = 1, Title = "Company Retreat", Subtitle = "Annual team building", Description = "A weekend retreat for team building and relaxation.", Date = new DateTime(2024, 9, 15), CreatedById = 1, EventStatusId = 1, ImageUrl = null, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Events { Id = 2, Title = "Project Kickoff", Subtitle = "New project initiation", Description = "Kickoff meeting for the new project launch.", Date = new DateTime(2024, 10, 1), CreatedById = 2, EventStatusId = 1, ImageUrl = null, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Events { Id = 3, Title = "Annual Conference", Subtitle = "Industry insights", Description = "A conference featuring industry leaders and insightful sessions.", Date = new DateTime(2024, 11, 5), CreatedById = 1, EventStatusId = 3, ImageUrl = null, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Events { Id = 4, Title = "Holiday Party", Subtitle = "End of year celebration", Description = "Celebrate the end of the year with food, fun, and festivities.", Date = new DateTime(2024, 12, 20), CreatedById = 1, EventStatusId = 4, ImageUrl = null, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
+
+            modelBuilder.Entity<TaskReview>().HasData(
+                new TaskReview { Id = 1, UserTaskId = 1, Review = 5, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 2, UserTaskId = 2, Review = 4, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 3, UserTaskId = 3, Review = 3, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 4, UserTaskId = 4, Review = 5, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 5, UserTaskId = 5, Review = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 6, UserTaskId = 6, Review = 4, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 7, UserTaskId = 7, Review = 3, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 8, UserTaskId = 8, Review = 5, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 9, UserTaskId = 9, Review = 4, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 10, UserTaskId = 10, Review = 3, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 11, UserTaskId = 11, Review = 5, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 12, UserTaskId = 12, Review = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 13, UserTaskId = 13, Review = 4, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 14, UserTaskId = 14, Review = 3, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 15, UserTaskId = 15, Review = 5, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 16, UserTaskId = 16, Review = 4, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 17, UserTaskId = 17, Review = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 18, UserTaskId = 18, Review = 5, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 19, UserTaskId = 19, Review = 4, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new TaskReview { Id = 20, UserTaskId = 20, Review = 3, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
         }
 
         public override int SaveChanges()
@@ -355,6 +505,7 @@ namespace Core.DatabaseContext
         public DbSet<UserPositions> UserPositions { get; set; }
         public DbSet<ContractTypes> ContractTypes { get; set; }
         public DbSet<TaskPriorities> TaskPriorities { get; set; }
+        public DbSet<AbsenceStatuses> AbsenceStatuses { get; set; }
 
 
 

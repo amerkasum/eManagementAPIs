@@ -3,6 +3,7 @@ using Core.Repositories.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Models.Entities;
 using Models.Entities.Dtos;
+using Models.Entities.ML;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +29,22 @@ namespace Core.Repositories.Repository
 
         public TaskReview GetByUserTaskId(int userTaskId)
         {
-
             return _context.TaskReviews.Include(x => x.UserTask).FirstOrDefault(x => x.UserTask.Id == userTaskId);
+        }
+
+        public List<UserTaskReviewData> GetHistoryOfReviews(int userId)
+        {
+            var tasksOfUser = _context.UserTasks.Where(x => x.UserId == userId).Select(x => x.TaskId).ToList();
+
+            var result = _context.TaskReviews.Include(x => x.UserTask).Where(x => x.UserTask.UserId != userId && tasksOfUser.Contains(x.UserTask.TaskId))
+                .Select(x => new UserTaskReviewData
+            {
+                UserId = (uint)x.UserTask.UserId,
+                TaskId = (uint)x.UserTask.TaskId,
+                Review = x.Review
+            }).ToList();
+
+            return result;
         }
     }
 }

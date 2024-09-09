@@ -32,6 +32,7 @@ namespace Core.UnitOfWork
         UserPositionsRepository UserPositionsRepository { get; }
         ContractTypeRepository ContractTypeRepository { get; }
         TaskPrioritiesRepository TaskPrioritiesRepository { get; }
+        AbsenceStatusRepository AbsenceStatusRepository { get; }
         #endregion
 
         int SaveChanges();

@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Core.Repositories.IRepository
 {
-    public interface IUserRolesRepository : IRepository<UserRoles>
+    public interface IAbsenceStatusRepository : IRepository<AbsenceStatuses>
     {
-        UserRoles GetByUserId(int userId);
+        AbsenceStatuses GetByName(string absenceName);
     }
 }

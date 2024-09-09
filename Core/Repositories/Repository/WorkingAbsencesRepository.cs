@@ -1,5 +1,6 @@
 ﻿using Core.DatabaseContext;
 using Core.Repositories.IRepository;
+using Helpers.Constants;
 using Microsoft.EntityFrameworkCore;
 using Models.Entities;
 using Models.Entities.Dtos;
@@ -52,6 +53,47 @@ namespace Core.Repositories.Repository
                     AbsenceTypeCode = x.AbsenceType.Code,
                     EmployeeFullName = x.User.FullName
                 }).ToList();
+
+            return result;
+        }
+
+        public List<WorkingAbsenceBasicDto> GetWorkingAbsences(int userId)
+        {
+            var userRole = _context.UserRoles.FirstOrDefault(x => x.UserId == userId);
+            var role = userRole != null ? _context.Roles.FirstOrDefault(x => x.Id == userRole.RoleId) : null;
+
+            List<WorkingAbsenceBasicDto> result = new List<WorkingAbsenceBasicDto>();
+
+            if (role.Name == nameof(Enumerations.Role.EMPLOYEE))
+            {
+                result = _context.WorkingAbsences.Include(x => x.AbsenceType)
+                .Where(x => userId == x.UserId).Select(x => new WorkingAbsenceBasicDto
+                {
+                    Id = x.Id,
+                    AbsenceType = x.AbsenceType.Name,
+                    AbsenceStatus = x.AbsenceStatus.Name,
+                    FullName = x.User.FullName,
+                    Note = x.Note ?? "No additional data.",
+                    ImageUrl = x.User.ImageUrl ?? "assets/user.jpg",
+                    Date = x.EndDate != null ? $"{x.StartDate.ToString(Statics.Dates.StandardFormat)} - {x.EndDate.Value.ToString(Statics.Dates.StandardFormat)}" 
+                    : x.StartDate.ToString(Statics.Dates.StandardFormat)
+                }).OrderBy(x => x.AbsenceType).ToList();
+            }
+            else
+            {
+                result = _context.WorkingAbsences.Include(x => x.AbsenceType).Select(x => new WorkingAbsenceBasicDto
+                {
+                    Id = x.Id,
+                    AbsenceType = x.AbsenceType.Name,
+                    AbsenceStatus = x.AbsenceStatus.Name,
+                    FullName = x.User.FullName,
+                    Note = x.Note ?? "No additional data.",
+                    ImageUrl = x.User.ImageUrl ?? "assets/user.jpg",
+                    Date = x.EndDate != null ? $"{x.StartDate.ToString(Statics.Dates.StandardFormat)} - {x.EndDate.Value.ToString(Statics.Dates.StandardFormat)}" 
+                    : x.StartDate.ToString(Statics.Dates.StandardFormat)
+                }).OrderBy(x => x.AbsenceType).ToList();
+            }
+
 
             return result;
         }

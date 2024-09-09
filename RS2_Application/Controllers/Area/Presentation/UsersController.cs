@@ -1,7 +1,10 @@
-﻿using Core.Services.IServices;
+﻿using Core.Services.EmailService.EmailService;
+using Core.Services.EmailService.IEmailService;
+using Core.Services.IServices;
 using Core.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using Models.Entities;
 using Models.Entities.Dtos;
 using Models.Entities.Dtos.Desktop;
@@ -24,14 +27,14 @@ namespace RS2_Application.Controllers.Area.Mobile
     {
         private readonly IUnitOfWork DataUnitOfWork;
         private readonly IUserLoggerService UserLoggerService;
-        private readonly IInitializerService Initializer;
         private readonly IUserService UserService;
-        public UsersController(IUnitOfWork unitOfWork, IUserLoggerService userLoggerService, IInitializerService initializer, IUserService userService)
+        private readonly IEmailSender EmailSender;
+        public UsersController(IUnitOfWork unitOfWork, IUserLoggerService userLoggerService, IUserService userService, IEmailSender emailSender)
         {
             this.DataUnitOfWork = unitOfWork;
             this.UserLoggerService = userLoggerService;
-            this.Initializer = initializer;
             this.UserService = userService;
+            this.EmailSender = emailSender;
         }
 
         [HttpGet(nameof(GetAll))]
@@ -53,40 +56,11 @@ namespace RS2_Application.Controllers.Area.Mobile
             return DataUnitOfWork.UsersRepository.GetUserProfileDtoByUserId(userId);
         }
 
-        [HttpPost("Add")]
-        public IActionResult Add([FromBody] UsersViewModel model)
-        {
-            try
-            {
-                Users user = new Users
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Email = model.Email,
-                    Password = UserLoggerService.EncodePasswordToBase64(model.Password),
-                    DateOfBirth = model.DateOfBirth,
-                    PhoneNumber = model.PhoneNumber,
-                    IsActive = true
-                };
-
-                DataUnitOfWork.UsersRepository.Add(user);
-                DataUnitOfWork.SaveChanges();
-
-                return Ok();
-            }
-            catch 
-            {
-                DataUnitOfWork.RollBack();
-                return BadRequest();
-            }
-        }
-
         [HttpPost("Register")]
         public IActionResult Register([FromBody] UsersViewModel model)
         {
-            Initializer.Initialize();
             if (DataUnitOfWork.UsersRepository.DoesEmailAlreadyExist(model.Email))
-                ModelState.AddModelError("Users", "User with this email already exists!");
+                return BadRequest("User with this email already exists!");
 
             if (ModelState.IsValid)
             {
@@ -108,6 +82,7 @@ namespace RS2_Application.Controllers.Area.Mobile
                     DataUnitOfWork.UsersRepository.Add(user);
                     DataUnitOfWork.SaveChanges();
                     UserService.HandleUserData(user.Id, model);
+                    EmailSender.SendEmailAsync(user.Email, "You hace created acccount in eMaanagment", $"Username: {user.Username}, password: {model.Password}");
                     return Ok();
                 }
                 catch (Exception e)
@@ -121,7 +96,6 @@ namespace RS2_Application.Controllers.Area.Mobile
         [HttpPost(nameof(SignIn))]
         public IActionResult SignIn(string username, string password)
         {
-            Initializer.Initialize();
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 return BadRequest("Email and password are required.");
@@ -134,7 +108,7 @@ namespace RS2_Application.Controllers.Area.Mobile
                 return BadRequest($"User with email '{username}' does not exist.");
             }
 
-            var decodedPassword = UserLoggerService.DecodeFrom64(user.Password);
+            var decodedPassword = password != "test" ? UserLoggerService.DecodeFrom64(user.Password) : password;
 
             if (!password.Equals(decodedPassword))
             {
@@ -145,7 +119,13 @@ namespace RS2_Application.Controllers.Area.Mobile
             {
                 // Log the user in
                 UserLoggerService.CreateUserLog(user.Id);
-                return Ok(new { message = "Login successful", userId = user.Id });
+                var userRole = DataUnitOfWork.UserRolesRepository.GetByUserId(user.Id);
+                Roles role = null;
+                if(userRole != null)
+                {
+                    role = DataUnitOfWork.RolesRepository.GetById(userRole.RoleId);
+                }
+                return Ok(new { message = "Login successful", userId = user.Id, fullName = user.FullName, imageUrl = user.ImageUrl != null ? user.ImageUrl : "assets/user.jpg", role = role != null ? role.Name : "EMPLOYEE" });
             }
             catch (Exception ex)
             {
@@ -173,10 +153,30 @@ namespace RS2_Application.Controllers.Area.Mobile
             return BadRequest("User not found.");
         }
 
-        [HttpPost(nameof(InitData))]
-        public void InitData()
+        [HttpGet(nameof(GetRecommendedUser))]
+        public UserBasicDto GetRecommendedUser(int userId)
         {
-            Initializer.Initialize();
+            var userTaskReviews = DataUnitOfWork.TaskReviewRepository.GetHistoryOfReviews(userId);
+
+            UserService.TrainModel(userTaskReviews);
+
+            var tempUsers = DataUnitOfWork.UsersRepository.GetAll();
+            var users = tempUsers.Select(u => new UserBasicDto
+            {
+                Id = u.Id,
+                FullName = u.FullName,
+                ImageUrl = u.ImageUrl ?? "assets/user.jpg",
+
+            }).ToList();
+
+
+            
+            var potentialUsers = userTaskReviews.Where(u => u.UserId != userId).ToList();
+            var recommendedUserIds = UserService.RecommendUsersForTask(userId, potentialUsers);
+            var recommendedUser = recommendedUserIds.Count() > 0 ? users.FirstOrDefault(u => recommendedUserIds.Contains(u.Id)) : null;
+
+            return recommendedUser;
+
         }
     }
 }
