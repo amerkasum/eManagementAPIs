@@ -82,7 +82,7 @@ namespace RS2_Application.Controllers.Area.Mobile
                     DataUnitOfWork.UsersRepository.Add(user);
                     DataUnitOfWork.SaveChanges();
                     UserService.HandleUserData(user.Id, model);
-                    EmailSender.SendEmailAsync(user.Email, "You hace created acccount in eMaanagment", $"Username: {user.Username}, password: {model.Password}");
+                    EmailSender.SendEmailAsync(user.Email, "You have created acccount in eMaanagment", $"Username: {user.Username}, password: {model.Password}");
                     return Ok();
                 }
                 catch (Exception e)
