@@ -1,5 +1,4 @@
-﻿using Core.Services.EmailService.IEmailService;
-using Core.Services.IServices;
+﻿using Core.Services.IServices;
 using Core.UnitOfWork;
 using Helpers.Constants;
 using Microsoft.AspNetCore.Http;
@@ -17,12 +16,13 @@ namespace Core.Services.Services
     {
         private readonly IUnitOfWork DataUnitOfWork;
         private readonly IHttpContextAccessor ContextAccessor;
-        private readonly IEmailSender EmailSender;
-        public UserLoggerService(IUnitOfWork unitOfWork, IHttpContextAccessor contextAccessor, IEmailSender emailSender)
+        private readonly IEmailServiceClient  EmailServiceClient;
+        public UserLoggerService(IUnitOfWork unitOfWork, IHttpContextAccessor contextAccessor, IEmailServiceClient emailSergiveClient
+            )
         {
             this.DataUnitOfWork = unitOfWork;
             this.ContextAccessor = contextAccessor;
-            this.EmailSender = emailSender;
+            this.EmailServiceClient = emailSergiveClient;
         }
 
         public UserLogger CreateUserLog(int userId)
@@ -52,7 +52,7 @@ namespace Core.Services.Services
                 {
                     var subject = "Security message";
                     var message = $"Someone is trying to sign in to your account from {ipAddress}.\n We want to make sure that this is you, here is your access code:\n {code}";
-                    EmailSender.SendEmailAsync(user.Email, subject, message);
+                    EmailServiceClient.SendEmailAsync(user.Email, subject, message);
                 }
             }
 

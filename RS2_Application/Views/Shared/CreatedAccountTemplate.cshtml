@@ -1,0 +1,88 @@
+﻿@model Models.Entities.Templates.CreatedAccountTemplateModel
+
+@{
+    var model = Model;
+}
+
+@if (Model == null)
+{
+    <p>Error: Model is null.</p>
+}
+else
+{
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome to eManagement</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                color: #333333;
+                line-height: 1.6;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+                background-color: #f9f9f9;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                color: #4CAF50;
+                font-size: 24px;
+                text-align: center;
+            }
+
+            p {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .footer {
+                text-align: center;
+                font-size: 14px;
+                color: #888888;
+                margin-top: 20px;
+            }
+
+                .footer a {
+                    color: #4CAF50;
+                    text-decoration: none;
+                }
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+            <h1>Welcome to eManagement!</h1>
+
+            <p>Dear <strong>@(model.FullName ?? "FullName")</strong>,</p>
+
+            <p>Thank you for signing up for eManagement. We're thrilled to have you as part of our community! To get started, we’ve created an account for you. Please find your login details below:</p>
+
+            <table style="width: 100%; border: 1px solid #dddddd; padding: 10px; margin-bottom: 20px;">
+                <tr>
+                    <td><strong>Username</strong></td>
+                    <td>@(model.Username ?? "Username")</td>
+                </tr>
+                <tr>
+                    <td><strong>Password</strong></td>
+                    <td>@(model.Password ?? "Password")</td>
+                </tr>
+            </table>
+
+            <p>You can log in to your account at any time using the credentials above. If you have any questions or need assistance, feel free to reach out to our support team at <a href="mailto:support@emanagement.com">support@emanagement.com</a>.</p>
+
+            <p>We hope you have a great experience using eManagement!</p>
+
+            <p class="footer">Best regards,<br>The eManagement Team</p>
+        </div>
+
+    </body>
+    </html>
+}

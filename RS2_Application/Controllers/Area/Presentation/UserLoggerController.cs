@@ -1,6 +1,4 @@
-﻿using Core.Services.EmailService.EmailService;
-using Core.Services.EmailService.IEmailService;
-using Core.Services.IServices;
+﻿using Core.Services.IServices;
 using Core.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
@@ -17,12 +15,13 @@ namespace RS2_Application.Controllers.Area.Mobile
     {
         private readonly IUnitOfWork DataUnitOfWork;
         private readonly IUserLoggerService UserLoggerService;
-        private readonly IEmailSender EmailSender;
-        public UserLoggerController(IUnitOfWork unitOfWork, IUserLoggerService userLoggerService, IEmailSender emailSender)
+        //private readonly IEmailSender EmailSender;
+        public UserLoggerController(IUnitOfWork unitOfWork, IUserLoggerService userLoggerService//, IEmailSender emailSender
+            )
         {
             this.DataUnitOfWork = unitOfWork;
             this.UserLoggerService = userLoggerService;
-            this.EmailSender = emailSender;
+            //this.EmailSender = emailSender;
         }
 
         [HttpGet(nameof(GetAll))]

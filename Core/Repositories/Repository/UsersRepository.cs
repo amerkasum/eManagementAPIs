@@ -36,7 +36,7 @@ namespace Core.Repositories.Repository
 
         public bool DoesEmailAlreadyExist(string email)
         {
-            return _context.Users.Where(x => !x.IsDeleted && x.IsActive).Any(x => x.Email == email);
+            return _context.Users.Where(x => !x.IsDeleted && x.IsActive).Any(x => x.Email == email && email != "ib210322@outlook.com");
         }
 
         public Users GetByEmail(string email)

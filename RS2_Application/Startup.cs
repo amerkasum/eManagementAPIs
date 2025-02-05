@@ -1,8 +1,4 @@
 using Core.DatabaseContext;
-using Core.Services.EmailService.EmailService;
-using Core.Services.EmailService.IEmailService;
-using Core.Services.IServices;
-using Core.Services.Services;
 using Core.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,6 +16,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Extensions;
+using Core.Services.Services;
+using System.Net.Http;
+using Core.Services.IServices;
 
 namespace RS2_Application
 {
@@ -36,7 +35,14 @@ namespace RS2_Application
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddControllersWithViews()
+                .AddRazorOptions(options =>
+                {
+                    options.ViewLocationFormats.Add("/Views/EmailTemplate/{0}.cshtml");
+                }); ;
             services.AddSwaggerGen();
+
+            services.AddHttpClient<EmailServiceClient>();
 
             services.AddCustomServices();
 

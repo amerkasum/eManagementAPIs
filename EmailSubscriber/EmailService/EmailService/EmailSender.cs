@@ -10,6 +10,11 @@ namespace Core.Services.EmailService.EmailService
 {
     public class EmailSender : IEmailSender
     {
+
+        public EmailSender()
+        {
+
+        }
         public Task SendEmailAsync(string emailTo, string subject, string message)
         {
             var emailFrom = "ib210322@outlook.com";

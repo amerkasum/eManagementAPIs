@@ -1,22 +1,37 @@
-﻿using Core.Services.EmailService.EmailService;
-using Core.Services.EmailService.IEmailService;
+﻿using Core.Services.HelperServices.IHelperService;
 using Core.Services.IServices;
+using Core.Services.Services;
 using Core.UnitOfWork;
+using Helpers.Constants;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Models.Entities;
 using Models.Entities.Dtos;
 using Models.Entities.Dtos.Desktop;
 using Models.Entities.Helpers;
+using Models.Entities.Templates;
 using RS2_Application.ViewModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace RS2_Application.Controllers.Area.Mobile
@@ -28,13 +43,18 @@ namespace RS2_Application.Controllers.Area.Mobile
         private readonly IUnitOfWork DataUnitOfWork;
         private readonly IUserLoggerService UserLoggerService;
         private readonly IUserService UserService;
-        private readonly IEmailSender EmailSender;
-        public UsersController(IUnitOfWork unitOfWork, IUserLoggerService userLoggerService, IUserService userService, IEmailSender emailSender)
+        private readonly IEmailServiceClient EmailServiceClient;
+        private readonly IHelperService HelperService;
+
+        public UsersController(IUnitOfWork unitOfWork, IUserLoggerService userLoggerService, IUserService userService, IEmailServiceClient emailServiceClient,
+            IHelperService helperService)
         {
             this.DataUnitOfWork = unitOfWork;
             this.UserLoggerService = userLoggerService;
             this.UserService = userService;
-            this.EmailSender = emailSender;
+            this.EmailServiceClient = emailServiceClient;
+            this.HelperService = helperService;
+            
         }
 
         [HttpGet(nameof(GetAll))]
@@ -57,7 +77,7 @@ namespace RS2_Application.Controllers.Area.Mobile
         }
 
         [HttpPost("Register")]
-        public IActionResult Register([FromBody] UsersViewModel model)
+        public async Task<IActionResult> Register([FromBody] UsersViewModel model)
         {
             if (DataUnitOfWork.UsersRepository.DoesEmailAlreadyExist(model.Email))
                 return BadRequest("User with this email already exists!");
@@ -82,7 +102,17 @@ namespace RS2_Application.Controllers.Area.Mobile
                     DataUnitOfWork.UsersRepository.Add(user);
                     DataUnitOfWork.SaveChanges();
                     UserService.HandleUserData(user.Id, model);
-                    EmailSender.SendEmailAsync(user.Email, "You have created acccount in eMaanagment", $"Username: {user.Username}, password: {model.Password}");
+
+                    CreatedAccountTemplateModel emailModel = new CreatedAccountTemplateModel
+                    {
+                        FullName = user.FullName,
+                        Username = user.Username,
+                        Password = model.Password
+                    };
+
+                    var emailBody = await HelperService.RenderRazorViewToString("CreatedAccountTemplate", emailModel);
+
+                    await EmailServiceClient.SendEmailAsync(user.Email, "Welcome to eManagement", emailBody);
                     return Ok();
                 }
                 catch (Exception e)
@@ -121,7 +151,7 @@ namespace RS2_Application.Controllers.Area.Mobile
                 UserLoggerService.CreateUserLog(user.Id);
                 var userRole = DataUnitOfWork.UserRolesRepository.GetByUserId(user.Id);
                 Roles role = null;
-                if(userRole != null)
+                if (userRole != null)
                 {
                     role = DataUnitOfWork.RolesRepository.GetById(userRole.RoleId);
                 }
@@ -144,7 +174,7 @@ namespace RS2_Application.Controllers.Area.Mobile
         {
             var user = DataUnitOfWork.UsersRepository.GetById(id);
 
-            if(user != null)
+            if (user != null)
             {
                 DataUnitOfWork.UsersRepository.Remove(user);
                 DataUnitOfWork.SaveChanges();
@@ -170,7 +200,7 @@ namespace RS2_Application.Controllers.Area.Mobile
             }).ToList();
 
 
-            
+
             var potentialUsers = userTaskReviews.Where(u => u.UserId != userId).ToList();
             var recommendedUserIds = UserService.RecommendUsersForTask(userId, potentialUsers);
             var recommendedUser = recommendedUserIds.Count() > 0 ? users.FirstOrDefault(u => recommendedUserIds.Contains(u.Id)) : null;
@@ -178,5 +208,6 @@ namespace RS2_Application.Controllers.Area.Mobile
             return recommendedUser;
 
         }
+
     }
 }
