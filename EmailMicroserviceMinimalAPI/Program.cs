@@ -1,4 +1,5 @@
 using Core.Services.EmailService.EmailService;
+using EasyNetQ;
 using EmailMicroserviceMinimalAPI.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,8 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<EmailSender>();
+builder.Services.AddHostedService<EmailSender>();
+
+/*builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(80);
+});*/
 
 var app = builder.Build();
+
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -22,11 +31,11 @@ app.UseHttpsRedirection();
 
 
 
-app.MapPost("/send-email", async (EmailSender emailSender, EmailRequest request) =>
+app.MapPost("/send-email", async (EmailSender emailSender, Email request) =>
 {
     try
     {
-        await emailSender.SendEmailAsync(request.EmailTo, request.Subject, request.Message);
+        emailSender.SendEmailAsync(request.EmailTo, request.Subject, request.Body);
         return Results.Ok("Email sent successfully.");
     }
     catch (Exception ex)

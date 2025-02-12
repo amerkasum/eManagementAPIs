@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Models.Entities;
 using Models.Entities.Dtos;
 using Models.Entities.Dtos.Desktop;
+using Models.Entities.Email;
 using Models.Entities.Helpers;
 using Models.Entities.Templates;
 using RS2_Application.ViewModels;
@@ -79,8 +80,8 @@ namespace RS2_Application.Controllers.Area.Mobile
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] UsersViewModel model)
         {
-            if (DataUnitOfWork.UsersRepository.DoesEmailAlreadyExist(model.Email))
-                return BadRequest("User with this email already exists!");
+            //if (DataUnitOfWork.UsersRepository.DoesEmailAlreadyExist(model.Email))
+               // return BadRequest("User with this email already exists!");
 
             if (ModelState.IsValid)
             {
@@ -112,7 +113,15 @@ namespace RS2_Application.Controllers.Area.Mobile
 
                     var emailBody = await HelperService.RenderRazorViewToString("CreatedAccountTemplate", emailModel);
 
-                    await EmailServiceClient.SendEmailAsync(user.Email, "Welcome to eManagement", emailBody);
+                    //await EmailServiceClient.SendEmailAsync(user.Email, "Welcome to eManagement", emailBody);
+
+                    Email emailMessage = new Email
+                    {
+                        EmailTo = user.Email,
+                        Subject = "Welcome to eManagement.",
+                        Body = emailBody
+                    };
+                    EmailServiceClient.PublishEmail(emailMessage);
                     return Ok();
                 }
                 catch (Exception e)

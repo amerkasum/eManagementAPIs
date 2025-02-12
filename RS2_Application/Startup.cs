@@ -51,7 +51,6 @@ namespace RS2_Application
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",

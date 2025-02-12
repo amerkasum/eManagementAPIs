@@ -1,5 +1,6 @@
 using Core.DatabaseContext;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RS2_Application
@@ -22,7 +24,24 @@ namespace RS2_Application
             using (var scope = host.Services.CreateScope())
             {
                 var service = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                service.Database.Migrate();
+                service.Database.EnsureCreated();
+                int maxRetries = 5;
+                int retries = 0;
+
+                while (retries < maxRetries)
+                {
+                    try
+                    {
+                        service.Database.Migrate();
+                        break; // Break out of the loop if migration succeeds
+                    }
+                    catch (SqlException)
+                    {
+                        retries++;
+                        Console.WriteLine($"Retrying migration ({retries}/{maxRetries})...");
+                        Thread.Sleep(5000); // Wait 5 seconds before retrying
+                    }
+                }
             }
             host.Run();
         }
