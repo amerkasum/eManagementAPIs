@@ -38,7 +38,7 @@ services:
         - ConnectionStrings__DefaultConnection=Server=rs2app-sql,1433;Database=210322Docker;User=sa;Password=Ib210322.;TrustServerCertificate=True;ConnectRetryCount=0
         - ASPNETCORE_ENVIRONMENT=Development
       ports:
-        - 5269:5269
+        - 5001:5001
       networks:
         - rs2appnet
       links:
