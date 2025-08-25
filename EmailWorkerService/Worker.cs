@@ -28,6 +28,8 @@ namespace EmailWorkerService
             var connection = factory.CreateConnection();
             var channel = connection.CreateModel();
 
+            channel.QueueDeclare(queue: "email-send", durable: true, exclusive: false, autoDelete: false, arguments: null);
+
             var consumer = new EventingBasicConsumer(channel);
 
             consumer.Received += (model, e) =>
