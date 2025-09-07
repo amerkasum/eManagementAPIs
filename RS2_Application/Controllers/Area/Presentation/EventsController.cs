@@ -1,10 +1,12 @@
 ﻿using Core.UnitOfWork;
+using Helpers.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
 using Models.Entities.Dtos;
 using Models.Entities.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Security.AccessControl;
 
 namespace RS2_Application.Controllers.Area.Mobile
 {
@@ -49,12 +51,14 @@ namespace RS2_Application.Controllers.Area.Mobile
 
                 UnitOfWork.EventsRepository.Add(e);
                 UnitOfWork.SaveChanges();
+
+                return Ok(string.Format(Statics.Notifications.Common.Added, e.Title));
             }
             catch
             {
-                return BadRequest("Failed to create an event.");
+                return BadRequest(Statics.Notifications.Common.InternalServerError);
             }
-            return Ok(new { message = "Event created successfuly." });
+
         }
     }
 }

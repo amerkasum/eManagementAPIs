@@ -18,6 +18,8 @@ namespace Core.Repositories.IRepository
         //GetById
         Task<T> GetByIdAsync(int Id);
         T GetById(int Id);
+        IEnumerable<T> GetByIds(IEnumerable<int> ids);
+        Task<List<T>> GetByIdsAsync(IEnumerable<int> ids);
 
         //Remove
         void RemoveById(int id, bool softDelete = true);

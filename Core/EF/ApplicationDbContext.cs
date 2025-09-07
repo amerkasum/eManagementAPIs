@@ -466,6 +466,32 @@ namespace Core.DatabaseContext
                 new TaskReview { Id = 19, UserTaskId = 19, Review = 4, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
                 new TaskReview { Id = 20, UserTaskId = 20, Review = 3, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
+
+            modelBuilder.Entity<WorkingDays>().HasData(
+                new WorkingDays { Id = 1, UserId = 1, ShiftId = 1, Day = 1, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 2, UserId = 1, ShiftId = 1, Day = 2, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 3, UserId = 1, ShiftId = 1, Day = 3, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 4, UserId = 1, ShiftId = 1, Day = 4, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 5, UserId = 1, ShiftId = 1, Day = 5, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 6, UserId = 1, ShiftId = 1, Day = 6, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 7, UserId = 1, ShiftId = 1, Day = 7, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                                                                                                       
+                new WorkingDays { Id = 8, UserId = 2, ShiftId = 1, Day = 1, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 9, UserId = 2, ShiftId = 1, Day = 2, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 10, UserId = 2, ShiftId = 1, Day = 3, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 11, UserId = 2, ShiftId = 1, Day = 4, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 12, UserId = 2, ShiftId = 1, Day = 5, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 13, UserId = 2, ShiftId = 1, Day = 6, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 14, UserId = 2, ShiftId = 1, Day = 7, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                                                                                                       
+                new WorkingDays { Id = 15, UserId = 3, ShiftId = 1, Day = 1, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 16, UserId = 3, ShiftId = 1, Day = 2, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 17, UserId = 3, ShiftId = 1, Day = 3, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 18, UserId = 3, ShiftId = 1, Day = 4, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 19, UserId = 3, ShiftId = 1, Day = 5, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 20, UserId = 3, ShiftId = 1, Day = 6, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new WorkingDays { Id = 21, UserId = 3, ShiftId = 1, Day = 7, Date = null, RepeatState = (int)Enumerations.RepeatState.ALWAYS, IsWorking = true, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
         }
 
         public override int SaveChanges()
@@ -474,6 +500,18 @@ namespace Core.DatabaseContext
             {
                 entry.Property("CreatedDateTime").CurrentValue = DateTime.Now;
                 entry.Property("IsDeleted").CurrentValue = false;
+            }
+
+            foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Modified))
+            {
+                entry.Property("ModifiedDateTime").CurrentValue = DateTime.Now;
+                entry.Property("IsDeleted").CurrentValue = false;
+            }
+
+            foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Deleted))
+            {
+                entry.Property("DeletedDateTime").CurrentValue = DateTime.Now;
+                entry.Property("IsDeleted").CurrentValue = true;
             }
 
             return base.SaveChanges();

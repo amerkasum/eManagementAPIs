@@ -25,45 +25,20 @@ namespace Core.Services.Services
             this.WorkingAbsenceService = workingAbsenceService;
         }
 
-        public List<WorkingDaysDto> GetWeeklyWorkingDays(int userId)
+        public WorkingDaysDto GetWeeklyWorkingDays(int userId)
         {
-            List<DateTime> currentWeek = HelperService.GetCurrentWeek();
-            List<WorkingDaysDto> workingDays = UnitOfWork.WorkingDaysRepository.GetWorkingDaysByUserId(userId).ToList();
+            var user = UnitOfWork.UsersRepository.GetById(userId);
 
-            currentWeek.ForEach(date =>
+            List<WorkingDaysBasicDto> workingDaysBasic = UnitOfWork.WorkingDaysRepository.GetWorkingDaysByUserId(userId).ToList();
+
+            WorkingDaysDto workingDays = new WorkingDaysDto
             {
-                WorkingDaysDto weeklyWorkingDay = new WorkingDaysDto
-                {
-                    Day = (int)date.DayOfWeek == 0 ? (int)date.DayOfWeek + 7 : (int)date.DayOfWeek, //Sunday = 0 + 7 = 7
-                    DayName = date.DayOfWeek.ToString().ToUpper(),
-                    Date = date,
-                    ShiftCode = workingDays.FirstOrDefault(x => x.Day == (int)date.DayOfWeek).ShiftCode,
-                    ShiftName = workingDays.FirstOrDefault(x => x.Day == (int)date.DayOfWeek).ShiftName,
-                    IsWorking = workingDays.FirstOrDefault(x => x.Day == (int)date.DayOfWeek).IsWorking,
-                };
+                UserId = user.Id,
+                FullName = user.FullName,
+                ImageUrl = user.ImageUrl,
+                WorkingDays = workingDaysBasic
 
-                workingDays.Add(weeklyWorkingDay);
-            });
-
-            List<WorkingAbsenceDatesDto> workingAbsenceDates = WorkingAbsenceService.GetWorkingAbsenceDatesDtoByParameters(userId, currentWeek);
-
-            if(workingAbsenceDates != null)
-            {
-                workingAbsenceDates.ForEach(workingAbsenceDate =>
-                {
-                    workingDays.ForEach(workingDay =>
-                    {
-                        if(workingAbsenceDate.Date == workingDay.Date?.Date)
-                        {
-                            workingDay.ShiftCode = null;
-                            workingDay.ShiftName = null;
-                            workingDay.IsWorking = false;
-                            workingDay.AbsenceTypeName =  workingAbsenceDate.AbsenceTypeName;
-                            workingDay.AbsenceTypeCode = workingAbsenceDate.AbsenceTypeCode;
-                        }
-                    });
-                });
-            }
+            };
 
             return workingDays;
         }

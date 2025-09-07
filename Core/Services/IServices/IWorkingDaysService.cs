@@ -7,6 +7,6 @@ namespace Core.Services.IServices
 {
     public interface IWorkingDaysService
     {
-        List<WorkingDaysDto> GetWeeklyWorkingDays(int userId);
+        WorkingDaysDto GetWeeklyWorkingDays(int userId);
     }
 }

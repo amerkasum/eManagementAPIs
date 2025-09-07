@@ -40,11 +40,11 @@ namespace RS2_Application.Controllers.Area.Mobile
                 UnitOfWork.WorkingAbsencesRepository.Update(workingAbsence);
                 UnitOfWork.SaveChanges();
 
-                return Ok(new { success = true, message = "Working absence status updated successfully" });
+                return Ok(Statics.Notifications.AbsenceMessages.AbsenceStatusUpdated);
             }
             else
             {
-                return NotFound(new { success = false, message = "Working absence not found" });
+                return NotFound(string.Format(Statics.Notifications.Common.NotFound, "Absence"));
             }
         }
 
@@ -67,11 +67,11 @@ namespace RS2_Application.Controllers.Area.Mobile
                 UnitOfWork.WorkingAbsencesRepository.Add(workingAbsence);
                 UnitOfWork.SaveChanges();
 
-                return Ok(new { message = "Working Absence added successfuly." });
+                return Ok(string.Format(Statics.Notifications.Common.Added, "Absence"));    
             }
             catch
             {
-                return BadRequest(new { Message = "Working Absence add failed." });
+                return BadRequest(Statics.Notifications.Common.InternalServerError);
             }
         }
     }

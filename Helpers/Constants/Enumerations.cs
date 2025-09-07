@@ -36,7 +36,7 @@ namespace Helpers.Constants
         public enum AbsenceStatus
         {
             REQUEST = 1,
-            APPROVED, 
+            APPROVED,
             CANCELLED,
             REJECTED
         }
@@ -126,6 +126,16 @@ namespace Helpers.Constants
             ON_CALL
         }
 
+        public enum DayName
+        {
+            MONDAY = 1,
+            TUESDAY,
+            WEDNESDAY,
+            THURSDAY,
+            FRIDAY,
+            SATURDAY,
+            SUNDAY
+        }
 
     }
 }

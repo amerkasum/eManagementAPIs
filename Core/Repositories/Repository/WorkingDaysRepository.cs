@@ -1,6 +1,7 @@
 ﻿using Core.DatabaseContext;
 using Core.Repositories.IRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Models.Entities;
 using Models.Entities.Dtos;
 using System;
@@ -15,20 +16,17 @@ namespace Core.Repositories.Repository
     {
         public WorkingDaysRepository(ApplicationDbContext context) : base(context) { }
 
-        public IEnumerable<WorkingDaysDto> GetWorkingDaysByUserId(int userId)
+        public IEnumerable<WorkingDaysBasicDto> GetWorkingDaysByUserId(int userId)
         {
-            IEnumerable<WorkingDaysDto> response = _context.WorkingDays.Include(x => x.Shift).Include(x => x.User)
+
+            IEnumerable<WorkingDaysBasicDto> response = _context.WorkingDays.Include(x => x.Shift)
                 .Where(x => x.UserId == userId)
-                .Select(x => new WorkingDaysDto
+                .Select(x => new WorkingDaysBasicDto
                 {
-                    Id = x.Id,
+                    WorkingDayId = x.Id,
                     Day = x.Day,
-                    Date = x.Date,
                     ShiftName = x.Shift.Name,
-                    ShiftCode = x.Shift.Code,
-                    Description = x.Description,
-                    EmployeeFullName = x.User.FullName,
-                    RepeatState = x.RepeatState,
+                    ShiftId = x.Shift.Id,
                     IsWorking = x.IsWorking
                 });
 

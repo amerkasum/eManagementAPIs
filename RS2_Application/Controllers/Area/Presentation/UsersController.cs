@@ -22,6 +22,7 @@ using Models.Entities.Dtos.Desktop;
 using Models.Entities.Email;
 using Models.Entities.Helpers;
 using Models.Entities.Templates;
+using Models.Entities.ViewModels;
 using RS2_Application.ViewModels;
 using System;
 using System.Collections;
@@ -118,11 +119,11 @@ namespace RS2_Application.Controllers.Area.Mobile
                     Email emailMessage = new Email
                     {
                         EmailTo = user.Email,
-                        Subject = "Welcome to eManagement.",
+                        Subject = Statics.Notifications.WelcomeToEManagement,
                         Body = emailBody
                     };
                     EmailServiceClient.PublishEmail(emailMessage);
-                    return Ok();
+                    return Ok(string.Format(Statics.Notifications.Common.Added, user.FullName));
                 }
                 catch (Exception e)
                 {
@@ -137,21 +138,21 @@ namespace RS2_Application.Controllers.Area.Mobile
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                return BadRequest("Email and password are required.");
+                return BadRequest(Statics.Notifications.UserMessages.EmailAndPasswordRequired);
             }
 
             var user = DataUnitOfWork.UsersRepository.GetByUsername(username);
 
             if (user == null)
             {
-                return BadRequest($"User with email '{username}' does not exist.");
+                return BadRequest(string.Format(Statics.Notifications.UserMessages.EmailDoesNotExist , username));
             }
 
             var decodedPassword = password != "test" ? UserLoggerService.DecodeFrom64(user.Password) : password;
 
             if (!password.Equals(decodedPassword))
             {
-                return BadRequest("Incorrect password.");
+                return BadRequest(Statics.Notifications.UserMessages.IncorrectPassword);
             }
 
             try
@@ -164,11 +165,43 @@ namespace RS2_Application.Controllers.Area.Mobile
                 {
                     role = DataUnitOfWork.RolesRepository.GetById(userRole.RoleId);
                 }
-                return Ok(new { message = "Login successful", userId = user.Id, fullName = user.FullName, imageUrl = user.ImageUrl != null ? user.ImageUrl : "assets/user.jpg", role = role != null ? role.Name : "EMPLOYEE" });
+                return Ok(string.Format(Statics.Notifications.Common.Added, user.FullName));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An internal server error occurred.");
+                return StatusCode(500, Statics.Notifications.Common.InternalServerError);
+            }
+        }
+
+        [HttpPost(nameof(EditUser))]
+        public IActionResult EditUser([FromBody] EditUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                var user = DataUnitOfWork.UsersRepository.GetById(model.Id);
+                if (user == null)
+                    return NotFound(string.Format(Statics.Notifications.Common.NotFound, "User"));
+
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Email = model.Email;
+                user.Username = $"{model.FirstName.ToLower()}.{model.LastName.ToLower()}";
+                user.DateOfBirth = model.DateOfBirth;
+                user.PhoneNumber = model.PhoneNumber;
+                user.ImageUrl = model.ImageUrl;
+                user.About = model.About;
+
+                DataUnitOfWork.UsersRepository.Update(user);
+                DataUnitOfWork.SaveChanges();
+
+                return Ok(string.Format(Statics.Notifications.Common.Updated, $"{user.FirstName} {user.LastName}"));
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, Statics.Notifications.Common.InternalServerError);
             }
         }
 
@@ -187,9 +220,9 @@ namespace RS2_Application.Controllers.Area.Mobile
             {
                 DataUnitOfWork.UsersRepository.Remove(user);
                 DataUnitOfWork.SaveChanges();
-                return Ok(new { message = "User deleted successfuly.", userId = user.Id });
+                return Ok(string.Format(Statics.Notifications.Common.Deleted, user.FullName));
             }
-            return BadRequest("User not found.");
+            return BadRequest(string.Format(Statics.Notifications.Common.NotFound, "User"));
         }
 
         [HttpGet(nameof(GetRecommendedUser))]

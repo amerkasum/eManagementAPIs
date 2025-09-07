@@ -8,6 +8,7 @@ using Models.Entities.Dtos;
 using Models.Entities.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 
@@ -45,11 +46,11 @@ namespace RS2_Application.Controllers.Area.Mobile
                 UnitOfWork.TasksRepository.Update(task);
                 UnitOfWork.SaveChanges();
 
-                return Ok(new { success = true, message = "Task status updated successfully" });
+                return Ok(Statics.Notifications.TaskMessages.TaskStatusUpdated);
             }
             else
             {
-                return NotFound(new { success = false, message = "Task not found" });
+                return NotFound(string.Format(Statics.Notifications.Common.NotFound, "Task"));
             }
         }
 
@@ -58,51 +59,47 @@ namespace RS2_Application.Controllers.Area.Mobile
         [HttpPost(nameof(Add))]
         public IActionResult Add([FromBody] TaskViewModel model)
         {
-            if(ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
             {
-                try
+                UnitOfWork.BeginTransaction();
+
+                var task = new Tasks
                 {
-                    UnitOfWork.BeginTransaction();
-                    Tasks task = new Tasks
+                    Name = model.Name,
+                    Description = model.Description,
+                    DueDate = model.DueDate,
+                    Priority = model.TaskPriorityId,
+                    StatusCode = (int)Enumerations.TaskStatus.PENDING,
+                    CityId = model.CityId
+                };
+
+                UnitOfWork.TasksRepository.Add(task);
+                UnitOfWork.SaveChanges();
+
+                if (model.UserIds?.Any() == true)
+                {
+                    var userTasks = model.UserIds.Select(userId => new UserTasks
                     {
-                        Name = model.Name,
-                        Description = model.Description,
-                        DueDate = model.DueDate,
-                        Priority = model.TaskPriorityId,
-                        StatusCode = (int)Enumerations.TaskStatus.PENDING,
-                        CityId = model.CityId
-                    };
-                    UnitOfWork.TasksRepository.Add(task);
+                        TaskId = task.Id,
+                        UserId = userId
+                    }).ToList();
+
+                    UnitOfWork.UserTasksRepository.AddRange(userTasks);
                     UnitOfWork.SaveChanges();
-
-                    if(model.UserIds != null)
-                    {
-                        List<UserTasks> userTasks = new List<UserTasks>();
-                        model.UserIds.ForEach(userId =>
-                        {
-                            userTasks.Add(new UserTasks
-                            {
-                                TaskId = task.Id,
-                                UserId = userId
-                            });
-                        });
-
-                        UnitOfWork.UserTasksRepository.AddRange(userTasks);
-                        UnitOfWork.SaveChanges();
-
-                        UnitOfWork.Commit();
-                        
-                    }
-
-                    return Ok();
                 }
-                catch
-                {
-                    UnitOfWork.RollBack();
-                    return BadRequest(ModelState);
-                }
+
+                UnitOfWork.Commit();
+                return Ok(string.Format(Statics.Notifications.Common.Added, task.Name));
             }
-            return BadRequest();
+            catch 
+            {
+                UnitOfWork.RollBack();
+                return BadRequest(Statics.Notifications.Common.InternalServerError);
+            }
         }
+
     }
 }

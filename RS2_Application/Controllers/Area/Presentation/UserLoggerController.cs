@@ -29,19 +29,5 @@ namespace RS2_Application.Controllers.Area.Mobile
         {
             return DataUnitOfWork.UserLoggerRepository.GetAll();
         }
-
-        [HttpPost(nameof(Add))]  
-        public IActionResult Add()
-        {
-            try
-            {
-
-                return Ok();
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
     }
 }

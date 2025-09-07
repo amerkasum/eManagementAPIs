@@ -57,6 +57,15 @@ namespace Core.Repositories.Repository
         public virtual T GetById(int Id) => table.Find(Id);
         public virtual async Task<T> GetByIdAsync(int Id) => await table.FindAsync(Id);
 
+        public virtual IEnumerable<T> GetByIds(IEnumerable<int> ids)
+        {
+            return table.Where(entity => ids.Contains(entity.Id)).ToList();
+        }
+
+        public virtual async Task<List<T>> GetByIdsAsync(IEnumerable<int> ids)
+        {
+            return await table.Where(entity => ids.Contains(entity.Id)).ToListAsync();
+        }
 
 
         //Remove

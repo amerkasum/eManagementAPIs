@@ -1,4 +1,5 @@
 ﻿using Core.UnitOfWork;
+using Helpers.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
 using Models.Entities.Dtos;
@@ -36,7 +37,7 @@ namespace RS2_Application.Controllers.Area.Regions
         public IActionResult Add(CitiesViewModel model)
         {
             if (DataUnitOfWork.CitiesRepository.DoesCityAlreadyExist(model.Name, model.PttCode))
-                ModelState.AddModelError("Cities", "This city already exist in our database!");
+                ModelState.AddModelError("Cities", string.Format(Statics.Notifications.Common.AlreadyExist, model.Name));
 
             if(ModelState.IsValid)
             {
@@ -66,12 +67,12 @@ namespace RS2_Application.Controllers.Area.Regions
                     }
                     DataUnitOfWork.Commit();
 
-                    return Ok();
+                    return Ok(string.Format(Statics.Notifications.Common.Added, model.Name));
                 }
                 catch
                 {
                     DataUnitOfWork.RollBack();
-                    return BadRequest();
+                    return BadRequest(Statics.Notifications.Common.InternalServerError);
                 }
             }
             return BadRequest(ModelState);

@@ -37,22 +37,25 @@ namespace Core.Repositories.Repository
 
         public List<WorkingAbsenceDto> GetWorkingAbsenceDtosByUserIdAndDateRange(int userId, List<DateTime> dates)
         {
-            int datesLength = dates.Count();
+            var startDate = dates.Min().Date;
+            var endDate = dates.Max().Date;
 
             //Assume this query is right!
-            List<WorkingAbsenceDto> result = _context.WorkingAbsences.Include(x => x.AbsenceType)
-                .Where(x => x.StartDate.Date <= dates[0].Date 
-                && (x.EndDate == null || x.EndDate.GetValueOrDefault().Date <= dates[datesLength - 1].Date) 
-                && userId == x.UserId).Select(x => new WorkingAbsenceDto
-                {
-                    Id = x.Id,
-                    StartDate = x.StartDate,
-                    EndDate = x.EndDate,
-                    AbsenceTypeId = x.AbsenceTypeId,
-                    AbsenceTypeName = x.AbsenceType.Name,
-                    AbsenceTypeCode = x.AbsenceType.Code,
-                    EmployeeFullName = x.User.FullName
-                }).ToList();
+            var result = _context.WorkingAbsences.Include(x => x.AbsenceType).Include(x => x.User)
+                        .Where(x => x.UserId == userId &&
+                        x.StartDate.Date <= endDate &&
+                        (x.EndDate == null || x.EndDate.Value.Date >= startDate))
+                        .Select(x => new WorkingAbsenceDto
+                        {
+                            Id = x.Id,
+                            StartDate = x.StartDate,
+                            EndDate = x.EndDate,
+                            AbsenceTypeId = x.AbsenceTypeId,
+                            AbsenceTypeName = x.AbsenceType.Name,
+                            AbsenceTypeCode = x.AbsenceType.Code,
+                            EmployeeFullName = x.User.FullName
+                        })
+                        .ToList();
 
             return result;
         }

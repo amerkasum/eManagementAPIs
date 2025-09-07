@@ -8,6 +8,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IWorkingDaysRepository : IRepository<WorkingDays>
     {
-        IEnumerable<WorkingDaysDto> GetWorkingDaysByUserId(int userId);
+        IEnumerable<WorkingDaysBasicDto> GetWorkingDaysByUserId(int userId);
     }
 }
