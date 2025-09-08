@@ -46,11 +46,11 @@ namespace RS2_Application.Controllers.Area.Mobile
                 UnitOfWork.TasksRepository.Update(task);
                 UnitOfWork.SaveChanges();
 
-                return Ok(Statics.Notifications.TaskMessages.TaskStatusUpdated);
+                return Ok(new { success = true, message = Statics.Notifications.TaskMessages.TaskStatusUpdated });
             }
             else
             {
-                return NotFound(string.Format(Statics.Notifications.Common.NotFound, "Task"));
+                return NotFound(new { success = false, message = string.Format(Statics.Notifications.Common.NotFound, "Task") });
             }
         }
 
@@ -60,7 +60,7 @@ namespace RS2_Application.Controllers.Area.Mobile
         public IActionResult Add([FromBody] TaskViewModel model)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return BadRequest(new { success = false, message = Statics.Notifications.Common.SomethingWentWrong});
 
             try
             {
@@ -92,12 +92,12 @@ namespace RS2_Application.Controllers.Area.Mobile
                 }
 
                 UnitOfWork.Commit();
-                return Ok(string.Format(Statics.Notifications.Common.Added, task.Name));
+                return Ok(new { success = true, message = string.Format(Statics.Notifications.Common.Added, task.Name) });
             }
             catch 
             {
                 UnitOfWork.RollBack();
-                return BadRequest(Statics.Notifications.Common.InternalServerError);
+                return BadRequest(new { success = false, message = Statics.Notifications.Common.InternalServerError });
             }
         }
 

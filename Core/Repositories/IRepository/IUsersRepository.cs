@@ -3,6 +3,7 @@ using Models.Entities;
 using Models.Entities.Dtos;
 using Models.Entities.Dtos.Desktop;
 using Models.Entities.Helpers;
+using Models.Entities.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,5 +21,6 @@ namespace Core.Repositories.IRepository
         List<UsersDesktopDto> GetUsersDesktop();
         List<SelectListHelper> GetSelectLists();
         Users GetByUsername(string username);
+        EditUserViewModel GetUserToEditData(int userId);
     }
 }

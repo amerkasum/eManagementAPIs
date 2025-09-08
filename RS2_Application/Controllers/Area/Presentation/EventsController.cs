@@ -52,11 +52,11 @@ namespace RS2_Application.Controllers.Area.Mobile
                 UnitOfWork.EventsRepository.Add(e);
                 UnitOfWork.SaveChanges();
 
-                return Ok(string.Format(Statics.Notifications.Common.Added, e.Title));
+                return Ok( new { success = true, message = string.Format(Statics.Notifications.Common.Added, e.Title) });
             }
             catch
             {
-                return BadRequest(Statics.Notifications.Common.InternalServerError);
+                return BadRequest(new { success = false, message = Statics.Notifications.Common.InternalServerError });
             }
 
         }

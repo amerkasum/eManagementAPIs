@@ -7,5 +7,7 @@ namespace Core.Repositories.IRepository
 {
     public interface IUserResidenceRepository : IRepository<UserResidence>
     {
+
+        UserResidence GetByUserId(int userId);
     }
 }

@@ -8,6 +8,7 @@ using Models.Entities;
 using Models.Entities.Dtos;
 using Models.Entities.Dtos.Desktop;
 using Models.Entities.Helpers;
+using Models.Entities.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -187,6 +188,41 @@ namespace Core.Repositories.Repository
             }).ToList();
 
             return result;
+        }
+
+        public EditUserViewModel GetUserToEditData(int userId)
+        {
+            var user = _context.Users.FirstOrDefault(y => y.Id == userId);
+
+            var position = _context.UserPositions.Include(x => x.Position).FirstOrDefault(x => !x.IsDeleted && x.UserId == userId);
+            var cityId = _context.UserResidence.Include(x => x.City).FirstOrDefault(x => x.UserId == userId).City.Id;
+            var shiftId = _context.WorkingDays.FirstOrDefault(x => x.UserId == userId).ShiftId;
+            var roleId = _context.UserRoles.FirstOrDefault(x => x.UserId == userId).RoleId;
+            var userPosition = _context.UserPositions.FirstOrDefault(x => x.UserId == userId);
+
+            var contractType = _context.ContractTypes.FirstOrDefault(x => x.Code == userPosition.ContractTypeCode);
+            if (user == null) return null; // Or handle not found case
+
+            var model = new EditUserViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                RoleId = roleId,
+                CityId = cityId,
+                ShiftId = shiftId,
+                PositionId = position.Id,
+                ContractTypeId = contractType.Id,
+                ContractExpireDate = userPosition.ContractExpireDate,
+                DateOfBirth = user.DateOfBirth,
+                ImageUrl = user.ImageUrl,
+                About = user.About
+            };
+
+            return model;
+
         }
     }
 }

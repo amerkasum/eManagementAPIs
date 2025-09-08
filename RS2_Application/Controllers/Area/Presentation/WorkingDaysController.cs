@@ -34,7 +34,7 @@ namespace RS2_Application.Controllers.Area.Presentation
             try
             {
                 if (models == null || !models.Any())
-                    return BadRequest(Statics.Notifications.Common.NoDataProvided);
+                    return BadRequest(new { success = false, message = Statics.Notifications.Common.NoDataProvided });
 
                 var workingDaysIds = models.Select(x => x.WorkingDayId).ToList();
                 var workingDays = UnitOfWork.WorkingDaysRepository.GetByIds(workingDaysIds);
@@ -46,7 +46,6 @@ namespace RS2_Application.Controllers.Area.Presentation
 
                     if(model != null && (model.IsWorking != workingDay.IsWorking || model.ShiftId != workingDay.ShiftId))
                     {
-                        workingDay.ShiftId = model.ShiftId;
                         workingDay.IsWorking = model.IsWorking;
 
                         workingDaysToEdit.Add(workingDay);
@@ -57,11 +56,11 @@ namespace RS2_Application.Controllers.Area.Presentation
                     UnitOfWork.WorkingDaysRepository.UpdateRange(workingDaysToEdit);
                     UnitOfWork.SaveChanges();
 
-                    return Ok(string.Format(Statics.Notifications.Common.Updated, "Updated"));
+                    return Ok(new { success = true, message = string.Format(Statics.Notifications.Common.Updated, "Updated") });
 
                 }
                 
-                return Ok(Statics.Notifications.Common.NothindToUpdate);
+                return Ok(new { success = true, message = Statics.Notifications.Common.NothindToUpdate });
             }
             catch (Exception ex)
             {

@@ -67,12 +67,12 @@ namespace RS2_Application.Controllers.Area.Regions
                     }
                     DataUnitOfWork.Commit();
 
-                    return Ok(string.Format(Statics.Notifications.Common.Added, model.Name));
+                    return Ok(new {success = true, message = string.Format(Statics.Notifications.Common.Added, model.Name) } );
                 }
                 catch
                 {
                     DataUnitOfWork.RollBack();
-                    return BadRequest(Statics.Notifications.Common.InternalServerError);
+                    return BadRequest(new { success = false, message = Statics.Notifications.Common.InternalServerError });
                 }
             }
             return BadRequest(ModelState);

@@ -7,5 +7,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IUserPositionsRepository : IRepository<UserPositions>
     {
+        UserPositions GetByUserId(int userId);
     }
 }

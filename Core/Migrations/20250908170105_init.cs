@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Core.Migrations
@@ -815,10 +814,10 @@ namespace Core.Migrations
                 columns: new[] { "Id", "CreatedById", "CreatedDateTime", "Date", "DeletedDateTime", "Description", "EventStatusId", "ImageUrl", "IsDeleted", "ModifiedDateTime", "Subtitle", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 9, 6, 10, 56, 47, 402, DateTimeKind.Local).AddTicks(8379), new DateTime(2024, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "A weekend retreat for team building and relaxation.", 1, null, false, null, "Annual team building", "Company Retreat" },
-                    { 2, 2, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(327), new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Kickoff meeting for the new project launch.", 1, null, false, null, "New project initiation", "Project Kickoff" },
-                    { 3, 1, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(382), new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "A conference featuring industry leaders and insightful sessions.", 3, null, false, null, "Industry insights", "Annual Conference" },
-                    { 4, 1, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(387), new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Celebrate the end of the year with food, fun, and festivities.", 4, null, false, null, "End of year celebration", "Holiday Party" }
+                    { 1, 1, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(4841), new DateTime(2024, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "A weekend retreat for team building and relaxation.", 1, null, false, null, "Annual team building", "Company Retreat" },
+                    { 2, 2, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(6250), new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Kickoff meeting for the new project launch.", 1, null, false, null, "New project initiation", "Project Kickoff" },
+                    { 3, 1, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(6299), new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "A conference featuring industry leaders and insightful sessions.", 3, null, false, null, "Industry insights", "Annual Conference" },
+                    { 4, 1, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(6304), new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Celebrate the end of the year with food, fun, and festivities.", 4, null, false, null, "End of year celebration", "Holiday Party" }
                 });
 
             migrationBuilder.InsertData(
@@ -893,9 +892,9 @@ namespace Core.Migrations
                 columns: new[] { "Id", "About", "CreatedDateTime", "DateOfBirth", "DeletedDateTime", "Email", "FirstName", "ImageUrl", "IsActive", "IsDeleted", "LastName", "ModifiedDateTime", "Password", "PhoneNumber", "Username" },
                 values: new object[,]
                 {
-                    { 2, "A brief description about Emplo Yee.", new DateTime(2024, 9, 6, 8, 56, 47, 391, DateTimeKind.Utc).AddTicks(8520), new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "employee@example.com", "Emplo", null, true, false, "Yee", null, "test", "123-456-7890", "employee" },
-                    { 1, "A brief description about Admin Istrator.", new DateTime(2024, 9, 6, 8, 56, 47, 391, DateTimeKind.Utc).AddTicks(6350), new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "administrator@example.com", "Admin", null, true, false, "Istrator", null, "test", "123-456-7890", "administrator" },
-                    { 3, "A brief description about John Doe.", new DateTime(2024, 9, 6, 8, 56, 47, 391, DateTimeKind.Utc).AddTicks(8674), new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "johndoe@example.com", "John", null, true, false, "Doe", null, "test", "123-456-7890", "john.doe" }
+                    { 2, "A brief description about Emplo Yee.", new DateTime(2025, 9, 8, 17, 1, 4, 633, DateTimeKind.Utc).AddTicks(4968), new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "employee@example.com", "Emplo", null, true, false, "Yee", null, "test", "123-456-7890", "employee" },
+                    { 1, "A brief description about Admin Istrator.", new DateTime(2025, 9, 8, 17, 1, 4, 633, DateTimeKind.Utc).AddTicks(3346), new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "administrator@example.com", "Admin", null, true, false, "Istrator", null, "test", "123-456-7890", "administrator" },
+                    { 3, "A brief description about John Doe.", new DateTime(2025, 9, 8, 17, 1, 4, 633, DateTimeKind.Utc).AddTicks(5051), new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "johndoe@example.com", "John", null, true, false, "Doe", null, "test", "123-456-7890", "john.doe" }
                 });
 
             migrationBuilder.InsertData(
@@ -903,36 +902,36 @@ namespace Core.Migrations
                 columns: new[] { "Id", "CountryId", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "Name", "PttCode" },
                 values: new object[,]
                 {
-                    { 1, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(5894), null, false, null, "Sarajevo", "71000" },
-                    { 30, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7347), null, false, null, "Vitez", "72250" },
-                    { 29, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7344), null, false, null, "Tomislavgrad", "80240" },
-                    { 28, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7342), null, false, null, "Srebrenica", "75430" },
-                    { 27, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7338), null, false, null, "Široki Brijeg", "88220" },
-                    { 26, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7336), null, false, null, "Posušje", "88240" },
-                    { 25, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7334), null, false, null, "Neum", "88390" },
-                    { 24, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7331), null, false, null, "Livno", "80101" },
-                    { 23, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7329), null, false, null, "Konjic", "88400" },
-                    { 22, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7327), null, false, null, "Goražde", "73000" },
-                    { 20, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7322), null, false, null, "Lukavac", "75300" },
-                    { 19, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7319), null, false, null, "Živinice", "75270" },
-                    { 18, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7316), null, false, null, "Bugojno", "70230" },
-                    { 17, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7314), null, false, null, "Sanski Most", "79260" },
-                    { 16, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7311), null, false, null, "Visoko", "71300" },
-                    { 21, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7324), null, false, null, "Foča", "73300" },
-                    { 14, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7304), null, false, null, "Travnik", "72270" },
-                    { 2, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7237), null, false, null, "Banja Luka", "78000" },
-                    { 15, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7309), null, false, null, "Tešanj", "74260" },
-                    { 4, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7278), null, false, null, "Tuzla", "75000" },
-                    { 5, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7280), null, false, null, "Zenica", "72000" },
-                    { 6, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7283), null, false, null, "Bijeljina", "76300" },
-                    { 7, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7286), null, false, null, "Prijedor", "79101" },
-                    { 3, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7273), null, false, null, "Mostar", "88000" },
-                    { 9, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7291), null, false, null, "Cazin", "77220" },
-                    { 10, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7294), null, false, null, "Doboj", "74000" },
-                    { 11, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7296), null, false, null, "Bihać", "77000" },
-                    { 12, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7299), null, false, null, "Gradiška", "78400" },
-                    { 13, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7301), null, false, null, "Trebinje", "89101" },
-                    { 8, 22, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(7288), null, false, null, "Brčko", "76100" }
+                    { 1, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(827), null, false, null, "Sarajevo", "71000" },
+                    { 30, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2266), null, false, null, "Vitez", "72250" },
+                    { 29, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2264), null, false, null, "Tomislavgrad", "80240" },
+                    { 28, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2262), null, false, null, "Srebrenica", "75430" },
+                    { 27, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2261), null, false, null, "Široki Brijeg", "88220" },
+                    { 26, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2259), null, false, null, "Posušje", "88240" },
+                    { 25, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2258), null, false, null, "Neum", "88390" },
+                    { 24, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2256), null, false, null, "Livno", "80101" },
+                    { 23, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2254), null, false, null, "Konjic", "88400" },
+                    { 22, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2253), null, false, null, "Goražde", "73000" },
+                    { 21, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2251), null, false, null, "Foča", "73300" },
+                    { 20, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2249), null, false, null, "Lukavac", "75300" },
+                    { 19, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2247), null, false, null, "Živinice", "75270" },
+                    { 18, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2245), null, false, null, "Bugojno", "70230" },
+                    { 17, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2244), null, false, null, "Sanski Most", "79260" },
+                    { 16, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2242), null, false, null, "Visoko", "71300" },
+                    { 15, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2240), null, false, null, "Tešanj", "74260" },
+                    { 14, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2239), null, false, null, "Travnik", "72270" },
+                    { 13, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2237), null, false, null, "Trebinje", "89101" },
+                    { 12, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2236), null, false, null, "Gradiška", "78400" },
+                    { 11, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2234), null, false, null, "Bihać", "77000" },
+                    { 10, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2232), null, false, null, "Doboj", "74000" },
+                    { 9, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2231), null, false, null, "Cazin", "77220" },
+                    { 8, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2229), null, false, null, "Brčko", "76100" },
+                    { 7, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2226), null, false, null, "Prijedor", "79101" },
+                    { 6, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2224), null, false, null, "Bijeljina", "76300" },
+                    { 5, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2223), null, false, null, "Zenica", "72000" },
+                    { 4, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2221), null, false, null, "Tuzla", "75000" },
+                    { 3, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2219), null, false, null, "Mostar", "88000" },
+                    { 2, 22, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2169), null, false, null, "Banja Luka", "78000" }
                 });
 
             migrationBuilder.InsertData(
@@ -940,9 +939,9 @@ namespace Core.Migrations
                 columns: new[] { "Id", "ContractExpireDate", "ContractTypeCode", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "PositionId", "UserId" },
                 values: new object[,]
                 {
-                    { 4, new DateTime(2026, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "6", new DateTime(2024, 9, 6, 8, 56, 47, 394, DateTimeKind.Utc).AddTicks(4367), null, false, null, 2, 3 },
-                    { 1, new DateTime(2025, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", new DateTime(2024, 9, 6, 8, 56, 47, 394, DateTimeKind.Utc).AddTicks(2709), null, false, null, 1, 1 },
-                    { 3, new DateTime(2026, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "6", new DateTime(2024, 9, 6, 8, 56, 47, 394, DateTimeKind.Utc).AddTicks(4327), null, false, null, 1, 2 }
+                    { 4, new DateTime(2026, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "6", new DateTime(2025, 9, 8, 17, 1, 4, 635, DateTimeKind.Utc).AddTicks(4635), null, false, null, 2, 3 },
+                    { 3, new DateTime(2026, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "6", new DateTime(2025, 9, 8, 17, 1, 4, 635, DateTimeKind.Utc).AddTicks(4598), null, false, null, 1, 2 },
+                    { 1, new DateTime(2025, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", new DateTime(2025, 9, 8, 17, 1, 4, 635, DateTimeKind.Utc).AddTicks(3393), null, false, null, 1, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -950,9 +949,9 @@ namespace Core.Migrations
                 columns: new[] { "Id", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { 2, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(2293), null, false, null, 2, 2 },
-                    { 3, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(2334), null, false, null, 2, 3 },
-                    { 1, new DateTime(2024, 9, 6, 8, 56, 47, 392, DateTimeKind.Utc).AddTicks(451), null, false, null, 1, 1 }
+                    { 2, new DateTime(2025, 9, 8, 17, 1, 4, 633, DateTimeKind.Utc).AddTicks(7597), null, false, null, 2, 2 },
+                    { 3, new DateTime(2025, 9, 8, 17, 1, 4, 633, DateTimeKind.Utc).AddTicks(7636), null, false, null, 2, 3 },
+                    { 1, new DateTime(2025, 9, 8, 17, 1, 4, 633, DateTimeKind.Utc).AddTicks(6370), null, false, null, 1, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -960,11 +959,39 @@ namespace Core.Migrations
                 columns: new[] { "Id", "AbsenceStatusId", "AbsenceTypeId", "CreatedDateTime", "DeletedDateTime", "EndDate", "IsDeleted", "ModifiedDateTime", "Note", "StartDate", "UserId" },
                 values: new object[,]
                 {
-                    { 3, 1, 3, new DateTime(2024, 9, 6, 10, 56, 47, 402, DateTimeKind.Local).AddTicks(4148), null, new DateTime(2024, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Personal leave", new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 2, 1, 2, new DateTime(2024, 9, 6, 10, 56, 47, 402, DateTimeKind.Local).AddTicks(3993), null, new DateTime(2024, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Sick leave", new DateTime(2024, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 4, 1, 4, new DateTime(2024, 9, 6, 10, 56, 47, 402, DateTimeKind.Local).AddTicks(4158), null, null, false, null, "Parental leave", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 5, 1, 5, new DateTime(2024, 9, 6, 10, 56, 47, 402, DateTimeKind.Local).AddTicks(4165), null, new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Bereavement leave", new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 1, 1, 1, new DateTime(2024, 9, 6, 10, 56, 47, 394, DateTimeKind.Local).AddTicks(7874), null, new DateTime(2024, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Vacation leave", new DateTime(2024, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 }
+                    { 3, 1, 3, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(1748), null, new DateTime(2024, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Personal leave", new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 5, 1, 5, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(1762), null, new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Bereavement leave", new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 1, 1, 1, new DateTime(2025, 9, 8, 19, 1, 4, 635, DateTimeKind.Local).AddTicks(7115), null, new DateTime(2024, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Vacation leave", new DateTime(2024, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 4, 1, 4, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(1757), null, null, false, null, "Parental leave", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 2, 1, 2, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(1605), null, new DateTime(2024, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Sick leave", new DateTime(2024, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "WorkingDays",
+                columns: new[] { "Id", "CreatedDateTime", "Date", "Day", "DeletedDateTime", "Description", "IsDeleted", "IsWorking", "ModifiedDateTime", "RepeatState", "ShiftId", "UserId" },
+                values: new object[,]
+                {
+                    { 14, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2845), null, 7, null, null, false, true, null, 2, 1, 2 },
+                    { 20, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2872), null, 6, null, null, false, true, null, 2, 1, 3 },
+                    { 15, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2849), null, 1, null, null, false, true, null, 2, 1, 3 },
+                    { 16, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2853), null, 2, null, null, false, true, null, 2, 1, 3 },
+                    { 17, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2858), null, 3, null, null, false, true, null, 2, 1, 3 },
+                    { 18, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2862), null, 4, null, null, false, true, null, 2, 1, 3 },
+                    { 19, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2866), null, 5, null, null, false, true, null, 2, 1, 3 },
+                    { 13, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2841), null, 6, null, null, false, true, null, 2, 1, 2 },
+                    { 12, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2836), null, 5, null, null, false, true, null, 2, 1, 2 },
+                    { 9, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2822), null, 2, null, null, false, true, null, 2, 1, 2 },
+                    { 10, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2826), null, 3, null, null, false, true, null, 2, 1, 2 },
+                    { 8, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2818), null, 1, null, null, false, true, null, 2, 1, 2 },
+                    { 7, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2813), null, 7, null, null, false, true, null, 2, 1, 1 },
+                    { 6, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2809), null, 6, null, null, false, true, null, 2, 1, 1 },
+                    { 5, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2804), null, 5, null, null, false, true, null, 2, 1, 1 },
+                    { 4, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2799), null, 4, null, null, false, true, null, 2, 1, 1 },
+                    { 3, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2793), null, 3, null, null, false, true, null, 2, 1, 1 },
+                    { 2, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2744), null, 2, null, null, false, true, null, 2, 1, 1 },
+                    { 1, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(1500), null, 1, null, null, false, true, null, 2, 1, 1 },
+                    { 11, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2832), null, 4, null, null, false, true, null, 2, 1, 2 },
+                    { 21, new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2876), null, 7, null, null, false, true, null, 2, 1, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -972,16 +999,16 @@ namespace Core.Migrations
                 columns: new[] { "Id", "CityId", "CreatedDateTime", "DeletedDateTime", "Description", "DueDate", "IsDeleted", "ModifiedDateTime", "Name", "Priority", "StatusCode" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(647), null, "Description for Task 1", new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 1", 3, 3 },
-                    { 2, 2, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2439), null, "Description for Task 2", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 2", 3, 3 },
-                    { 4, 2, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2484), null, "Description for Task 4", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 4", 3, 3 },
-                    { 5, 2, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2486), null, "Description for Task 5", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 5", 3, 3 },
-                    { 6, 2, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2673), null, "Description for Task 6", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 6", 3, 3 },
-                    { 7, 2, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2683), null, "Description for Task 7", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 7", 3, 3 },
-                    { 8, 2, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2689), null, "Description for Task 8", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 8", 3, 3 },
-                    { 9, 2, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2694), null, "Description for Task 9", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 9", 3, 3 },
-                    { 10, 2, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2700), null, "Description for Task 10", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 10", 3, 3 },
-                    { 3, 3, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(2480), null, "Description for Task 3", new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 3", 3, 3 }
+                    { 1, 1, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(4830), null, "Description for Task 1", new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 1", 3, 3 },
+                    { 2, 2, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6127), null, "Description for Task 2", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 2", 3, 3 },
+                    { 4, 2, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6168), null, "Description for Task 4", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 4", 3, 3 },
+                    { 5, 2, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6171), null, "Description for Task 5", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 5", 3, 3 },
+                    { 6, 2, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6173), null, "Description for Task 6", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 6", 3, 3 },
+                    { 7, 2, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6177), null, "Description for Task 7", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 7", 3, 3 },
+                    { 8, 2, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6180), null, "Description for Task 8", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 8", 3, 3 },
+                    { 9, 2, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6182), null, "Description for Task 9", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 9", 3, 3 },
+                    { 10, 2, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6186), null, "Description for Task 10", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 10", 3, 3 },
+                    { 3, 3, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6165), null, "Description for Task 3", new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Task 3", 3, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -989,9 +1016,9 @@ namespace Core.Migrations
                 columns: new[] { "Id", "CityId", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "UserId" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(7955), null, false, null, 1 },
-                    { 3, 3, new DateTime(2024, 9, 6, 8, 56, 47, 394, DateTimeKind.Utc).AddTicks(233), null, false, null, 2 },
-                    { 4, 3, new DateTime(2024, 9, 6, 8, 56, 47, 394, DateTimeKind.Utc).AddTicks(283), null, false, null, 3 }
+                    { 1, 1, new DateTime(2025, 9, 8, 17, 1, 4, 635, DateTimeKind.Utc).AddTicks(141), null, false, null, 1 },
+                    { 3, 3, new DateTime(2025, 9, 8, 17, 1, 4, 635, DateTimeKind.Utc).AddTicks(1492), null, false, null, 2 },
+                    { 4, 3, new DateTime(2025, 9, 8, 17, 1, 4, 635, DateTimeKind.Utc).AddTicks(1531), null, false, null, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -999,26 +1026,26 @@ namespace Core.Migrations
                 columns: new[] { "Id", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "TaskId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(4442), null, false, null, 1, 1 },
-                    { 20, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6492), null, false, null, 10, 3 },
-                    { 19, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6490), null, false, null, 10, 2 },
-                    { 18, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6489), null, false, null, 9, 3 },
-                    { 17, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6487), null, false, null, 9, 2 },
-                    { 16, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6485), null, false, null, 8, 3 },
-                    { 15, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6484), null, false, null, 8, 2 },
-                    { 14, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6482), null, false, null, 7, 3 },
-                    { 13, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6481), null, false, null, 7, 1 },
-                    { 12, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6479), null, false, null, 6, 3 },
-                    { 11, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6478), null, false, null, 6, 1 },
-                    { 10, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6476), null, false, null, 5, 3 },
-                    { 9, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6474), null, false, null, 5, 1 },
-                    { 8, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6473), null, false, null, 4, 3 },
-                    { 7, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6470), null, false, null, 4, 1 },
-                    { 4, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6464), null, false, null, 2, 2 },
-                    { 3, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6460), null, false, null, 2, 1 },
-                    { 2, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6359), null, false, null, 1, 2 },
-                    { 5, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6466), null, false, null, 3, 1 },
-                    { 6, new DateTime(2024, 9, 6, 8, 56, 47, 393, DateTimeKind.Utc).AddTicks(6468), null, false, null, 3, 2 }
+                    { 1, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(7561), null, false, null, 1, 1 },
+                    { 20, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8832), null, false, null, 10, 3 },
+                    { 19, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8831), null, false, null, 10, 2 },
+                    { 18, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8825), null, false, null, 9, 3 },
+                    { 17, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8824), null, false, null, 9, 2 },
+                    { 16, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8821), null, false, null, 8, 3 },
+                    { 15, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8819), null, false, null, 8, 2 },
+                    { 14, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8818), null, false, null, 7, 3 },
+                    { 13, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8813), null, false, null, 7, 1 },
+                    { 12, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8812), null, false, null, 6, 3 },
+                    { 11, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8809), null, false, null, 6, 1 },
+                    { 10, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8808), null, false, null, 5, 3 },
+                    { 9, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8806), null, false, null, 5, 1 },
+                    { 8, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8805), null, false, null, 4, 3 },
+                    { 7, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8803), null, false, null, 4, 1 },
+                    { 4, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8798), null, false, null, 2, 2 },
+                    { 3, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8797), null, false, null, 2, 1 },
+                    { 2, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8757), null, false, null, 1, 2 },
+                    { 5, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8800), null, false, null, 3, 1 },
+                    { 6, new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8802), null, false, null, 3, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -1026,26 +1053,26 @@ namespace Core.Migrations
                 columns: new[] { "Id", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "Review", "UserTaskId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(2001), null, false, null, 5, 1 },
-                    { 20, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3934), null, false, null, 3, 20 },
-                    { 19, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3930), null, false, null, 4, 19 },
-                    { 18, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3926), null, false, null, 5, 18 },
-                    { 17, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3922), null, false, null, 2, 17 },
-                    { 16, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3917), null, false, null, 4, 16 },
-                    { 15, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3912), null, false, null, 5, 15 },
-                    { 14, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3908), null, false, null, 3, 14 },
-                    { 13, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3904), null, false, null, 4, 13 },
-                    { 12, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3900), null, false, null, 2, 12 },
-                    { 11, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3896), null, false, null, 5, 11 },
-                    { 10, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3891), null, false, null, 3, 10 },
-                    { 9, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3887), null, false, null, 4, 9 },
-                    { 8, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3883), null, false, null, 5, 8 },
-                    { 7, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3879), null, false, null, 3, 7 },
-                    { 4, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3866), null, false, null, 5, 4 },
-                    { 3, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3860), null, false, null, 3, 3 },
-                    { 2, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3807), null, false, null, 4, 2 },
-                    { 5, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3870), null, false, null, 2, 5 },
-                    { 6, new DateTime(2024, 9, 6, 10, 56, 47, 403, DateTimeKind.Local).AddTicks(3874), null, false, null, 4, 6 }
+                    { 1, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(7703), null, false, null, 5, 1 },
+                    { 20, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9137), null, false, null, 3, 20 },
+                    { 19, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9133), null, false, null, 4, 19 },
+                    { 18, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9128), null, false, null, 5, 18 },
+                    { 17, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9124), null, false, null, 2, 17 },
+                    { 16, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9119), null, false, null, 4, 16 },
+                    { 15, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9113), null, false, null, 5, 15 },
+                    { 14, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9038), null, false, null, 3, 14 },
+                    { 13, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9035), null, false, null, 4, 13 },
+                    { 12, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9030), null, false, null, 2, 12 },
+                    { 11, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9026), null, false, null, 5, 11 },
+                    { 10, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9022), null, false, null, 3, 10 },
+                    { 9, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9017), null, false, null, 4, 9 },
+                    { 8, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9013), null, false, null, 5, 8 },
+                    { 7, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9008), null, false, null, 3, 7 },
+                    { 4, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(8995), null, false, null, 5, 4 },
+                    { 3, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(8990), null, false, null, 3, 3 },
+                    { 2, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(8930), null, false, null, 4, 2 },
+                    { 5, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(8999), null, false, null, 2, 5 },
+                    { 6, new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9003), null, false, null, 4, 6 }
                 });
 
             migrationBuilder.CreateIndex(

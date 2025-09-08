@@ -1,7 +1,9 @@
-﻿using Core.Services.HelperServices.IHelperService;
+﻿using Core.Repositories.Repository;
+using Core.Services.HelperServices.IHelperService;
 using Core.Services.IServices;
 using Core.Services.Services;
 using Core.UnitOfWork;
+using EasyNetQ;
 using Helpers.Constants;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -123,14 +125,14 @@ namespace RS2_Application.Controllers.Area.Mobile
                         Body = emailBody
                     };
                     EmailServiceClient.PublishEmail(emailMessage);
-                    return Ok(string.Format(Statics.Notifications.Common.Added, user.FullName));
+                    return Ok(new { success = true, message = string.Format(Statics.Notifications.Common.Added, user.FullName) } );
                 }
                 catch (Exception e)
                 {
                     throw e;
                 }
             }
-            return BadRequest(ModelState);
+            return BadRequest(new { success = false, message = Statics.Notifications.Common.SomethingWentWrong });
         }
 
         [HttpPost(nameof(SignIn))]
@@ -138,21 +140,21 @@ namespace RS2_Application.Controllers.Area.Mobile
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                return BadRequest(Statics.Notifications.UserMessages.EmailAndPasswordRequired);
+                return BadRequest(new { success = false, message = Statics.Notifications.UserMessages.EmailAndPasswordRequired });
             }
 
             var user = DataUnitOfWork.UsersRepository.GetByUsername(username);
 
             if (user == null)
             {
-                return BadRequest(string.Format(Statics.Notifications.UserMessages.EmailDoesNotExist , username));
+                return BadRequest(new { success = false, message = string.Format(Statics.Notifications.UserMessages.EmailDoesNotExist, username) });
             }
 
             var decodedPassword = password != "test" ? UserLoggerService.DecodeFrom64(user.Password) : password;
 
             if (!password.Equals(decodedPassword))
             {
-                return BadRequest(Statics.Notifications.UserMessages.IncorrectPassword);
+                return BadRequest(new { success = false, Statics.Notifications.UserMessages.IncorrectPassword });
             }
 
             try
@@ -165,7 +167,8 @@ namespace RS2_Application.Controllers.Area.Mobile
                 {
                     role = DataUnitOfWork.RolesRepository.GetById(userRole.RoleId);
                 }
-                return Ok(string.Format(Statics.Notifications.Common.Added, user.FullName));
+
+                return Ok(new { success = true, message = Statics.Notifications.UserMessages.SuccessfulSignIn, userId = user.Id, fullName = user.FullName, imageUrl = user.ImageUrl != null ? user.ImageUrl : "assets/user.jpg", role = role != null ? role.Name : "EMPLOYEE" });
             }
             catch (Exception ex)
             {
@@ -173,14 +176,16 @@ namespace RS2_Application.Controllers.Area.Mobile
             }
         }
 
+
         [HttpPost(nameof(EditUser))]
         public IActionResult EditUser([FromBody] EditUserViewModel model)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return BadRequest(new { success = false, message = Statics.Notifications.Common.SomethingWentWrong });
 
             try
             {
+                DataUnitOfWork.BeginTransaction();
                 var user = DataUnitOfWork.UsersRepository.GetById(model.Id);
                 if (user == null)
                     return NotFound(string.Format(Statics.Notifications.Common.NotFound, "User"));
@@ -197,12 +202,41 @@ namespace RS2_Application.Controllers.Area.Mobile
                 DataUnitOfWork.UsersRepository.Update(user);
                 DataUnitOfWork.SaveChanges();
 
-                return Ok(string.Format(Statics.Notifications.Common.Updated, $"{user.FirstName} {user.LastName}"));
+                var userRole = DataUnitOfWork.UserRolesRepository.GetByUserId(model.Id);
+                userRole.RoleId = model.RoleId;
+
+                DataUnitOfWork.UserRolesRepository.Update(userRole);
+                DataUnitOfWork.SaveChanges();
+
+                var userResidence = DataUnitOfWork.UserResidenceRepository.GetByUserId(model.Id);
+                userResidence.CityId = model.CityId;
+
+                DataUnitOfWork.UserResidenceRepository.Update(userResidence);
+                DataUnitOfWork.SaveChanges();
+
+                var userPosition = DataUnitOfWork.UserPositionsRepository.GetByUserId(model.Id);
+                userPosition.PositionId = model.PositionId;
+                userPosition.ContractTypeCode = model.ContractTypeId.ToString();
+                userPosition.ContractExpireDate = model.ContractExpireDate;
+
+                DataUnitOfWork.UserPositionsRepository.Update(userPosition);
+                DataUnitOfWork.SaveChanges();
+
+                DataUnitOfWork.Commit();
+
+                return Ok(new { success = true, message = string.Format(Statics.Notifications.Common.Updated, $"{user.FirstName} {user.LastName}") });
             }
             catch(Exception ex)
             {
+                DataUnitOfWork.RollBack();
                 return StatusCode(500, Statics.Notifications.Common.InternalServerError);
             }
+        }
+
+        [HttpGet(nameof(GetUserToEdit))]
+        public EditUserViewModel GetUserToEdit(int userId)
+        {
+            return DataUnitOfWork.UsersRepository.GetUserToEditData(userId);
         }
 
         [HttpGet(nameof(GetUsersDesktop))]
@@ -220,9 +254,9 @@ namespace RS2_Application.Controllers.Area.Mobile
             {
                 DataUnitOfWork.UsersRepository.Remove(user);
                 DataUnitOfWork.SaveChanges();
-                return Ok(string.Format(Statics.Notifications.Common.Deleted, user.FullName));
+                return Ok( new { success = true, message = string.Format(Statics.Notifications.Common.Deleted, user.FullName) });
             }
-            return BadRequest(string.Format(Statics.Notifications.Common.NotFound, "User"));
+            return BadRequest(new { success = false, message = string.Format(Statics.Notifications.Common.NotFound, "User") });
         }
 
         [HttpGet(nameof(GetRecommendedUser))]

@@ -3,6 +3,7 @@ using Core.Repositories.IRepository;
 using Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Core.Repositories.Repository
@@ -12,6 +13,11 @@ namespace Core.Repositories.Repository
         public UserPositionsRepository(ApplicationDbContext context) : base(context)
         {
             
+        }
+
+        public UserPositions GetByUserId(int userId)
+        {
+            return _context.UserPositions.FirstOrDefault(x => x.UserId == userId);
         }
     }
 }
