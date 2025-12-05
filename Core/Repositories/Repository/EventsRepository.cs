@@ -18,7 +18,7 @@ namespace Core.Repositories.Repository
 
         public List<EventsDto> GetAllDto()
         {
-            List<EventsDto> rerponse = _context.Events.Select(x => new EventsDto
+            List<EventsDto> rerponse = _context.Events.Where(x => !x.IsDeleted).Select(x => new EventsDto
             {
                 Id = x.Id,
                 Subtitle = x.Subtitle,

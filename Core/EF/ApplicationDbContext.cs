@@ -9,6 +9,7 @@ using Helpers.Constants;
 using static Helpers.Constants.Enumerations;
 using Core.Services.IServices;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Core.DatabaseContext
 {
@@ -505,13 +506,6 @@ namespace Core.DatabaseContext
             foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Modified))
             {
                 entry.Property("ModifiedDateTime").CurrentValue = DateTime.Now;
-                entry.Property("IsDeleted").CurrentValue = false;
-            }
-
-            foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Deleted))
-            {
-                entry.Property("DeletedDateTime").CurrentValue = DateTime.Now;
-                entry.Property("IsDeleted").CurrentValue = true;
             }
 
             return base.SaveChanges();
