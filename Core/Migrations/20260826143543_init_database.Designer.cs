@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250908170105_init")]
-    partial class init
+    [Migration("20260826143543_init_database")]
+    partial class init_database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -316,7 +316,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(827),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(3862),
                             IsDeleted = false,
                             Name = "Sarajevo",
                             PttCode = "71000"
@@ -325,7 +325,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2169),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5282),
                             IsDeleted = false,
                             Name = "Banja Luka",
                             PttCode = "78000"
@@ -334,7 +334,7 @@ namespace Core.Migrations
                         {
                             Id = 3,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2219),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5325),
                             IsDeleted = false,
                             Name = "Mostar",
                             PttCode = "88000"
@@ -343,7 +343,7 @@ namespace Core.Migrations
                         {
                             Id = 4,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2221),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5327),
                             IsDeleted = false,
                             Name = "Tuzla",
                             PttCode = "75000"
@@ -352,7 +352,7 @@ namespace Core.Migrations
                         {
                             Id = 5,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2223),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5329),
                             IsDeleted = false,
                             Name = "Zenica",
                             PttCode = "72000"
@@ -361,7 +361,7 @@ namespace Core.Migrations
                         {
                             Id = 6,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2224),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5331),
                             IsDeleted = false,
                             Name = "Bijeljina",
                             PttCode = "76300"
@@ -370,7 +370,7 @@ namespace Core.Migrations
                         {
                             Id = 7,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2226),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5332),
                             IsDeleted = false,
                             Name = "Prijedor",
                             PttCode = "79101"
@@ -379,7 +379,7 @@ namespace Core.Migrations
                         {
                             Id = 8,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2229),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5335),
                             IsDeleted = false,
                             Name = "Brčko",
                             PttCode = "76100"
@@ -388,7 +388,7 @@ namespace Core.Migrations
                         {
                             Id = 9,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2231),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5337),
                             IsDeleted = false,
                             Name = "Cazin",
                             PttCode = "77220"
@@ -397,7 +397,7 @@ namespace Core.Migrations
                         {
                             Id = 10,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2232),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5339),
                             IsDeleted = false,
                             Name = "Doboj",
                             PttCode = "74000"
@@ -406,7 +406,7 @@ namespace Core.Migrations
                         {
                             Id = 11,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2234),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5340),
                             IsDeleted = false,
                             Name = "Bihać",
                             PttCode = "77000"
@@ -415,7 +415,7 @@ namespace Core.Migrations
                         {
                             Id = 12,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2236),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5342),
                             IsDeleted = false,
                             Name = "Gradiška",
                             PttCode = "78400"
@@ -424,7 +424,7 @@ namespace Core.Migrations
                         {
                             Id = 13,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2237),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5348),
                             IsDeleted = false,
                             Name = "Trebinje",
                             PttCode = "89101"
@@ -433,7 +433,7 @@ namespace Core.Migrations
                         {
                             Id = 14,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2239),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5350),
                             IsDeleted = false,
                             Name = "Travnik",
                             PttCode = "72270"
@@ -442,7 +442,7 @@ namespace Core.Migrations
                         {
                             Id = 15,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2240),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5352),
                             IsDeleted = false,
                             Name = "Tešanj",
                             PttCode = "74260"
@@ -451,7 +451,7 @@ namespace Core.Migrations
                         {
                             Id = 16,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2242),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5355),
                             IsDeleted = false,
                             Name = "Visoko",
                             PttCode = "71300"
@@ -460,7 +460,7 @@ namespace Core.Migrations
                         {
                             Id = 17,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2244),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5356),
                             IsDeleted = false,
                             Name = "Sanski Most",
                             PttCode = "79260"
@@ -469,7 +469,7 @@ namespace Core.Migrations
                         {
                             Id = 18,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2245),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5358),
                             IsDeleted = false,
                             Name = "Bugojno",
                             PttCode = "70230"
@@ -478,7 +478,7 @@ namespace Core.Migrations
                         {
                             Id = 19,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2247),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5359),
                             IsDeleted = false,
                             Name = "Živinice",
                             PttCode = "75270"
@@ -487,7 +487,7 @@ namespace Core.Migrations
                         {
                             Id = 20,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2249),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5362),
                             IsDeleted = false,
                             Name = "Lukavac",
                             PttCode = "75300"
@@ -496,7 +496,7 @@ namespace Core.Migrations
                         {
                             Id = 21,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2251),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5363),
                             IsDeleted = false,
                             Name = "Foča",
                             PttCode = "73300"
@@ -505,7 +505,7 @@ namespace Core.Migrations
                         {
                             Id = 22,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2253),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5366),
                             IsDeleted = false,
                             Name = "Goražde",
                             PttCode = "73000"
@@ -514,7 +514,7 @@ namespace Core.Migrations
                         {
                             Id = 23,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2254),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5367),
                             IsDeleted = false,
                             Name = "Konjic",
                             PttCode = "88400"
@@ -523,7 +523,7 @@ namespace Core.Migrations
                         {
                             Id = 24,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2256),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5370),
                             IsDeleted = false,
                             Name = "Livno",
                             PttCode = "80101"
@@ -532,7 +532,7 @@ namespace Core.Migrations
                         {
                             Id = 25,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2258),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5371),
                             IsDeleted = false,
                             Name = "Neum",
                             PttCode = "88390"
@@ -541,7 +541,7 @@ namespace Core.Migrations
                         {
                             Id = 26,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2259),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5373),
                             IsDeleted = false,
                             Name = "Posušje",
                             PttCode = "88240"
@@ -550,7 +550,7 @@ namespace Core.Migrations
                         {
                             Id = 27,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2261),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5374),
                             IsDeleted = false,
                             Name = "Široki Brijeg",
                             PttCode = "88220"
@@ -559,7 +559,7 @@ namespace Core.Migrations
                         {
                             Id = 28,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2262),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5376),
                             IsDeleted = false,
                             Name = "Srebrenica",
                             PttCode = "75430"
@@ -568,7 +568,7 @@ namespace Core.Migrations
                         {
                             Id = 29,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2264),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5379),
                             IsDeleted = false,
                             Name = "Tomislavgrad",
                             PttCode = "80240"
@@ -577,7 +577,7 @@ namespace Core.Migrations
                         {
                             Id = 30,
                             CountryId = 22,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(2266),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(5381),
                             IsDeleted = false,
                             Name = "Vitez",
                             PttCode = "72250"
@@ -2409,7 +2409,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             CreatedById = 1,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(4841),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(865),
                             Date = new DateTime(2024, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "A weekend retreat for team building and relaxation.",
                             EventStatusId = 1,
@@ -2421,7 +2421,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             CreatedById = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(6250),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(2405),
                             Date = new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kickoff meeting for the new project launch.",
                             EventStatusId = 1,
@@ -2433,7 +2433,7 @@ namespace Core.Migrations
                         {
                             Id = 3,
                             CreatedById = 1,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(6299),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(2456),
                             Date = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "A conference featuring industry leaders and insightful sessions.",
                             EventStatusId = 3,
@@ -2445,7 +2445,7 @@ namespace Core.Migrations
                         {
                             Id = 4,
                             CreatedById = 1,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(6304),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(2461),
                             Date = new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Celebrate the end of the year with food, fun, and festivities.",
                             EventStatusId = 4,
@@ -2857,7 +2857,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(7703),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(3937),
                             IsDeleted = false,
                             Review = 5,
                             UserTaskId = 1
@@ -2865,7 +2865,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(8930),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5354),
                             IsDeleted = false,
                             Review = 4,
                             UserTaskId = 2
@@ -2873,7 +2873,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(8990),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5406),
                             IsDeleted = false,
                             Review = 3,
                             UserTaskId = 3
@@ -2881,7 +2881,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(8995),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5411),
                             IsDeleted = false,
                             Review = 5,
                             UserTaskId = 4
@@ -2889,7 +2889,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(8999),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5417),
                             IsDeleted = false,
                             Review = 2,
                             UserTaskId = 5
@@ -2897,7 +2897,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9003),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5421),
                             IsDeleted = false,
                             Review = 4,
                             UserTaskId = 6
@@ -2905,7 +2905,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9008),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5425),
                             IsDeleted = false,
                             Review = 3,
                             UserTaskId = 7
@@ -2913,7 +2913,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9013),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5433),
                             IsDeleted = false,
                             Review = 5,
                             UserTaskId = 8
@@ -2921,7 +2921,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9017),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5437),
                             IsDeleted = false,
                             Review = 4,
                             UserTaskId = 9
@@ -2929,7 +2929,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9022),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5442),
                             IsDeleted = false,
                             Review = 3,
                             UserTaskId = 10
@@ -2937,7 +2937,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9026),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5446),
                             IsDeleted = false,
                             Review = 5,
                             UserTaskId = 11
@@ -2945,7 +2945,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9030),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5452),
                             IsDeleted = false,
                             Review = 2,
                             UserTaskId = 12
@@ -2953,7 +2953,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9035),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5456),
                             IsDeleted = false,
                             Review = 4,
                             UserTaskId = 13
@@ -2961,7 +2961,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 14,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9038),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5461),
                             IsDeleted = false,
                             Review = 3,
                             UserTaskId = 14
@@ -2969,7 +2969,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 15,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9113),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5465),
                             IsDeleted = false,
                             Review = 5,
                             UserTaskId = 15
@@ -2977,7 +2977,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 16,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9119),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5469),
                             IsDeleted = false,
                             Review = 4,
                             UserTaskId = 16
@@ -2985,7 +2985,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 17,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9124),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5473),
                             IsDeleted = false,
                             Review = 2,
                             UserTaskId = 17
@@ -2993,7 +2993,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 18,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9128),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5477),
                             IsDeleted = false,
                             Review = 5,
                             UserTaskId = 18
@@ -3001,7 +3001,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 19,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9133),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5482),
                             IsDeleted = false,
                             Review = 4,
                             UserTaskId = 19
@@ -3009,7 +3009,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 20,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(9137),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(5486),
                             IsDeleted = false,
                             Review = 3,
                             UserTaskId = 20
@@ -3128,7 +3128,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(4830),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(7935),
                             Description = "Description for Task 1",
                             DueDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -3140,7 +3140,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             CityId = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6127),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(9226),
                             Description = "Description for Task 2",
                             DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -3152,7 +3152,7 @@ namespace Core.Migrations
                         {
                             Id = 3,
                             CityId = 3,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6165),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(9266),
                             Description = "Description for Task 3",
                             DueDate = new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -3164,7 +3164,7 @@ namespace Core.Migrations
                         {
                             Id = 4,
                             CityId = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6168),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(9270),
                             Description = "Description for Task 4",
                             DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -3176,7 +3176,7 @@ namespace Core.Migrations
                         {
                             Id = 5,
                             CityId = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6171),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(9274),
                             Description = "Description for Task 5",
                             DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -3188,7 +3188,7 @@ namespace Core.Migrations
                         {
                             Id = 6,
                             CityId = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6173),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(9276),
                             Description = "Description for Task 6",
                             DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -3200,7 +3200,7 @@ namespace Core.Migrations
                         {
                             Id = 7,
                             CityId = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6177),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(9281),
                             Description = "Description for Task 7",
                             DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -3212,7 +3212,7 @@ namespace Core.Migrations
                         {
                             Id = 8,
                             CityId = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6180),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(9284),
                             Description = "Description for Task 8",
                             DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -3224,7 +3224,7 @@ namespace Core.Migrations
                         {
                             Id = 9,
                             CityId = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6182),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(9289),
                             Description = "Description for Task 9",
                             DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -3236,7 +3236,7 @@ namespace Core.Migrations
                         {
                             Id = 10,
                             CityId = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(6186),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(9291),
                             Description = "Description for Task 10",
                             DueDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -3332,7 +3332,7 @@ namespace Core.Migrations
                             Id = 1,
                             ContractExpireDate = new DateTime(2025, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractTypeCode = "1",
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 635, DateTimeKind.Utc).AddTicks(3393),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(7857),
                             IsDeleted = false,
                             PositionId = 1,
                             UserId = 1
@@ -3342,7 +3342,7 @@ namespace Core.Migrations
                             Id = 3,
                             ContractExpireDate = new DateTime(2026, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractTypeCode = "6",
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 635, DateTimeKind.Utc).AddTicks(4598),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(9591),
                             IsDeleted = false,
                             PositionId = 1,
                             UserId = 2
@@ -3352,7 +3352,7 @@ namespace Core.Migrations
                             Id = 4,
                             ContractExpireDate = new DateTime(2026, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractTypeCode = "6",
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 635, DateTimeKind.Utc).AddTicks(4635),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(9637),
                             IsDeleted = false,
                             PositionId = 2,
                             UserId = 3
@@ -3397,7 +3397,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 635, DateTimeKind.Utc).AddTicks(141),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(3283),
                             IsDeleted = false,
                             UserId = 1
                         },
@@ -3405,7 +3405,7 @@ namespace Core.Migrations
                         {
                             Id = 3,
                             CityId = 3,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 635, DateTimeKind.Utc).AddTicks(1492),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(4925),
                             IsDeleted = false,
                             UserId = 2
                         },
@@ -3413,7 +3413,7 @@ namespace Core.Migrations
                         {
                             Id = 4,
                             CityId = 3,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 635, DateTimeKind.Utc).AddTicks(1531),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(4978),
                             IsDeleted = false,
                             UserId = 3
                         });
@@ -3456,7 +3456,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 633, DateTimeKind.Utc).AddTicks(6370),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 860, DateTimeKind.Utc).AddTicks(9478),
                             IsDeleted = false,
                             RoleId = 1,
                             UserId = 1
@@ -3464,7 +3464,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 633, DateTimeKind.Utc).AddTicks(7597),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(710),
                             IsDeleted = false,
                             RoleId = 2,
                             UserId = 2
@@ -3472,7 +3472,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 633, DateTimeKind.Utc).AddTicks(7636),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 861, DateTimeKind.Utc).AddTicks(749),
                             IsDeleted = false,
                             RoleId = 2,
                             UserId = 3
@@ -3516,7 +3516,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(7561),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(645),
                             IsDeleted = false,
                             TaskId = 1,
                             UserId = 1
@@ -3524,7 +3524,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8757),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1860),
                             IsDeleted = false,
                             TaskId = 1,
                             UserId = 2
@@ -3532,7 +3532,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8797),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1899),
                             IsDeleted = false,
                             TaskId = 2,
                             UserId = 1
@@ -3540,7 +3540,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8798),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1902),
                             IsDeleted = false,
                             TaskId = 2,
                             UserId = 2
@@ -3548,7 +3548,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8800),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1904),
                             IsDeleted = false,
                             TaskId = 3,
                             UserId = 1
@@ -3556,7 +3556,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8802),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1905),
                             IsDeleted = false,
                             TaskId = 3,
                             UserId = 2
@@ -3564,7 +3564,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8803),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1907),
                             IsDeleted = false,
                             TaskId = 4,
                             UserId = 1
@@ -3572,7 +3572,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8805),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1910),
                             IsDeleted = false,
                             TaskId = 4,
                             UserId = 3
@@ -3580,7 +3580,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8806),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1911),
                             IsDeleted = false,
                             TaskId = 5,
                             UserId = 1
@@ -3588,7 +3588,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8808),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1913),
                             IsDeleted = false,
                             TaskId = 5,
                             UserId = 3
@@ -3596,7 +3596,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8809),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1915),
                             IsDeleted = false,
                             TaskId = 6,
                             UserId = 1
@@ -3604,7 +3604,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8812),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1917),
                             IsDeleted = false,
                             TaskId = 6,
                             UserId = 3
@@ -3612,7 +3612,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8813),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1919),
                             IsDeleted = false,
                             TaskId = 7,
                             UserId = 1
@@ -3620,7 +3620,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 14,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8818),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1921),
                             IsDeleted = false,
                             TaskId = 7,
                             UserId = 3
@@ -3628,7 +3628,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 15,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8819),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1923),
                             IsDeleted = false,
                             TaskId = 8,
                             UserId = 2
@@ -3636,7 +3636,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 16,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8821),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1926),
                             IsDeleted = false,
                             TaskId = 8,
                             UserId = 3
@@ -3644,7 +3644,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 17,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8824),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1928),
                             IsDeleted = false,
                             TaskId = 9,
                             UserId = 2
@@ -3652,7 +3652,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 18,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8825),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1929),
                             IsDeleted = false,
                             TaskId = 9,
                             UserId = 3
@@ -3660,7 +3660,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 19,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8831),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1932),
                             IsDeleted = false,
                             TaskId = 10,
                             UserId = 2
@@ -3668,7 +3668,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 20,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 634, DateTimeKind.Utc).AddTicks(8832),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 862, DateTimeKind.Utc).AddTicks(1933),
                             IsDeleted = false,
                             TaskId = 10,
                             UserId = 3
@@ -3733,7 +3733,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             About = "A brief description about Admin Istrator.",
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 633, DateTimeKind.Utc).AddTicks(3346),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 860, DateTimeKind.Utc).AddTicks(6389),
                             DateOfBirth = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "administrator@example.com",
                             FirstName = "Admin",
@@ -3748,7 +3748,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             About = "A brief description about Emplo Yee.",
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 633, DateTimeKind.Utc).AddTicks(4968),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 860, DateTimeKind.Utc).AddTicks(8073),
                             DateOfBirth = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "employee@example.com",
                             FirstName = "Emplo",
@@ -3763,7 +3763,7 @@ namespace Core.Migrations
                         {
                             Id = 3,
                             About = "A brief description about John Doe.",
-                            CreatedDateTime = new DateTime(2025, 9, 8, 17, 1, 4, 633, DateTimeKind.Utc).AddTicks(5051),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 14, 35, 42, 860, DateTimeKind.Utc).AddTicks(8152),
                             DateOfBirth = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "johndoe@example.com",
                             FirstName = "John",
@@ -3829,7 +3829,7 @@ namespace Core.Migrations
                             Id = 1,
                             AbsenceStatusId = 1,
                             AbsenceTypeId = 1,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 635, DateTimeKind.Local).AddTicks(7115),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 863, DateTimeKind.Local).AddTicks(2455),
                             EndDate = new DateTime(2024, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Note = "Vacation leave",
@@ -3841,7 +3841,7 @@ namespace Core.Migrations
                             Id = 2,
                             AbsenceStatusId = 1,
                             AbsenceTypeId = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(1605),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 866, DateTimeKind.Local).AddTicks(6588),
                             EndDate = new DateTime(2024, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Note = "Sick leave",
@@ -3853,7 +3853,7 @@ namespace Core.Migrations
                             Id = 3,
                             AbsenceStatusId = 1,
                             AbsenceTypeId = 3,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(1748),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 866, DateTimeKind.Local).AddTicks(6733),
                             EndDate = new DateTime(2024, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Note = "Personal leave",
@@ -3865,7 +3865,7 @@ namespace Core.Migrations
                             Id = 4,
                             AbsenceStatusId = 1,
                             AbsenceTypeId = 4,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(1757),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 866, DateTimeKind.Local).AddTicks(6743),
                             IsDeleted = false,
                             Note = "Parental leave",
                             StartDate = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -3876,7 +3876,7 @@ namespace Core.Migrations
                             Id = 5,
                             AbsenceStatusId = 1,
                             AbsenceTypeId = 5,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 639, DateTimeKind.Local).AddTicks(1762),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 866, DateTimeKind.Local).AddTicks(6748),
                             EndDate = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Note = "Bereavement leave",
@@ -3937,7 +3937,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(1500),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(8016),
                             Day = 1,
                             IsDeleted = false,
                             IsWorking = true,
@@ -3948,7 +3948,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2744),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9281),
                             Day = 2,
                             IsDeleted = false,
                             IsWorking = true,
@@ -3959,7 +3959,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2793),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9330),
                             Day = 3,
                             IsDeleted = false,
                             IsWorking = true,
@@ -3970,7 +3970,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2799),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9335),
                             Day = 4,
                             IsDeleted = false,
                             IsWorking = true,
@@ -3981,7 +3981,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2804),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9339),
                             Day = 5,
                             IsDeleted = false,
                             IsWorking = true,
@@ -3992,7 +3992,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2809),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9344),
                             Day = 6,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4003,7 +4003,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2813),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9349),
                             Day = 7,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4014,7 +4014,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2818),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9353),
                             Day = 1,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4025,7 +4025,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2822),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9357),
                             Day = 2,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4036,7 +4036,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2826),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9362),
                             Day = 3,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4047,7 +4047,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2832),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9366),
                             Day = 4,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4058,7 +4058,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2836),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9371),
                             Day = 5,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4069,7 +4069,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2841),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9375),
                             Day = 6,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4080,7 +4080,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 14,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2845),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9380),
                             Day = 7,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4091,7 +4091,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 15,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2849),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9384),
                             Day = 1,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4102,7 +4102,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 16,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2853),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9388),
                             Day = 2,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4113,7 +4113,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 17,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2858),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9393),
                             Day = 3,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4124,7 +4124,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 18,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2862),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9397),
                             Day = 4,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4135,7 +4135,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 19,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2866),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9401),
                             Day = 5,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4146,7 +4146,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 20,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2872),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9406),
                             Day = 6,
                             IsDeleted = false,
                             IsWorking = true,
@@ -4157,7 +4157,7 @@ namespace Core.Migrations
                         new
                         {
                             Id = 21,
-                            CreatedDateTime = new DateTime(2025, 9, 8, 19, 1, 4, 640, DateTimeKind.Local).AddTicks(2876),
+                            CreatedDateTime = new DateTime(2026, 8, 26, 16, 35, 42, 867, DateTimeKind.Local).AddTicks(9410),
                             Day = 7,
                             IsDeleted = false,
                             IsWorking = true,
