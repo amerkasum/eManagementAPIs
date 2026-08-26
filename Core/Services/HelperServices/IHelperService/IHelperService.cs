@@ -1,4 +1,5 @@
 ﻿using Helpers.Constants;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Models.Entities.Templates;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,6 @@ namespace Core.Services.HelperServices.IHelperService
     {
         List<DateTime> GetCurrentWeek();
         Task<string> RenderRazorViewToString(string viewName, CreatedAccountTemplateModel model);
+        string ModelStateErrorMessageGenerator(ModelStateDictionary modelState);
     }
 }

@@ -12,6 +12,7 @@ using Models.Entities.Templates;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -78,6 +79,12 @@ namespace Core.Services.HelperServices.HelperService
                 return sw.ToString();
             }
         }
+
+        public string ModelStateErrorMessageGenerator(ModelStateDictionary modelState)
+        {
+            var errorMessages =  modelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToString();
+            return errorMessages;
+        } 
 
 
     }    

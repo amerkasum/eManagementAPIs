@@ -99,6 +99,7 @@ namespace Core.Repositories.Repository
                     foreach (var i in entities)
                     {
                         i.IsDeleted = true;
+                        i.DeletedDateTime = DateTime.Now;
                     }
                     table.UpdateRange(entities);
                 }
@@ -138,6 +139,7 @@ namespace Core.Repositories.Repository
                 if (softDelete)
                 {
                     itemToDelete.IsDeleted = true;
+                    itemToDelete.DeletedDateTime = DateTime.Now;
                     table.Update(itemToDelete);
                 }
                 else table.Remove(itemToDelete);
@@ -246,6 +248,7 @@ namespace Core.Repositories.Repository
                 if (softDelete)
                 {
                     itemToDelete.IsDeleted = true;
+                    itemToDelete.DeletedDateTime = DateTime.Now;
                     table.Update(itemToDelete);
                 }
                 else table.Remove(itemToDelete);
