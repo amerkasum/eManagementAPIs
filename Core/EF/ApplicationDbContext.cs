@@ -424,9 +424,9 @@ namespace Core.DatabaseContext
             );
 
             modelBuilder.Entity<UserPositions>().HasData(
-                new UserPositions { Id = 1, UserId = 1, PositionId = 1, ContractTypeCode = ((int)Enumerations.ContractType.FULL_TIME).ToString(), ContractExpireDate = new DateTime(2025, 12, 31), CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new UserPositions { Id = 3, UserId = 2, PositionId = 1, ContractTypeCode = ((int)Enumerations.ContractType.CONSULTANT).ToString(), ContractExpireDate = new DateTime(2026, 12, 31), CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new UserPositions { Id = 4, UserId = 3, PositionId = 2, ContractTypeCode = ((int)Enumerations.ContractType.CONSULTANT).ToString(), ContractExpireDate = new DateTime(2026, 12, 31), CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+                new UserPositions { Id = 1, UserId = 1, PositionId = 1, ContractTypeId = ((int)Enumerations.ContractType.FULL_TIME), ContractExpireDate = new DateTime(2025, 12, 31), CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserPositions { Id = 3, UserId = 2, PositionId = 1, ContractTypeId = ((int)Enumerations.ContractType.CONSULTANT), ContractExpireDate = new DateTime(2026, 12, 31), CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserPositions { Id = 4, UserId = 3, PositionId = 2, ContractTypeId = ((int)Enumerations.ContractType.CONSULTANT), ContractExpireDate = new DateTime(2026, 12, 31), CreatedDateTime = DateTime.UtcNow, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
 
             );
 

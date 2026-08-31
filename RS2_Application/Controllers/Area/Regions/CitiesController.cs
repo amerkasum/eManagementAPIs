@@ -53,6 +53,15 @@ namespace RS2_Application.Controllers.Area.Regions
                         };
                         DataUnitOfWork.CountriesRepository.Add(country);
                         DataUnitOfWork.SaveChanges();
+
+                        Cities city = new Cities
+                        {
+                            Name = model.Name,
+                            PttCode = model.PttCode,
+                            CountryId = country.Id
+                        };
+                        DataUnitOfWork.CitiesRepository.Add(city);
+                        DataUnitOfWork.SaveChanges();
                     }
                     else
                     {

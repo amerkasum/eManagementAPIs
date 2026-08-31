@@ -37,22 +37,37 @@ namespace Core.Repositories.Repository
 
         public bool DoesEmailAlreadyExist(string email)
         {
-            return _context.Users.Where(x => !x.IsDeleted && x.IsActive).Any(x => x.Email == email && email != "ib210322@outlook.com");
+            return _context.Users.Where(x => !x.IsDeleted && x.IsActive).Any(x => x.Email == email);
+        }
+
+        public bool DoesUsernameAlreadyExist(string username)
+        {
+            return _context.Users.Where(x => !x.IsDeleted && x.IsActive).Any(x => x.Username == username);
+        }
+
+        public string GenerateUniqueUsername(string firstName, string lastName)
+        {
+            var username = $"{firstName}.{lastName}";
+            var users = _context.Users.Where(x => x.Username == username).ToList();
+            var counter = users != null ? users.Count + 1 : 0;
+
+            var result = counter != null ? username : $"{username}.{counter}";
+
+            return result;
         }
 
         public Users GetByEmail(string email)
         {
-            return _context.Users.FirstOrDefault(x => x.Email == email);
+            return _context.Users.FirstOrDefault(x => x.Email == email && !x.IsDeleted);
         }
 
         public Users GetByUsername(string username)
         {
-            return _context.Users.FirstOrDefault(x => x.Username == username);
+            return _context.Users.FirstOrDefault(x => x.Username == username && !x.IsDeleted);
         }
 
         public IEnumerable<UsersDto> GetUsers(string fullName) {
 
-            //valjda radi
             var absenceStatus = _context.AbsenceStatuses.FirstOrDefault(x => x.Name.ToLower() == nameof(Enumerations.AbsenceStatus.APPROVED).ToLower());
             var workingAbsences = _context.WorkingAbsences.Include(x => x.AbsenceType)
                .Where(x => !x.IsDeleted && x.AbsenceStatusId == absenceStatus.Id &&
@@ -72,8 +87,8 @@ namespace Core.Repositories.Repository
             }).ToList();
 
             List<UsersDto> results = _context.Users
-              .Where(x => fullName == null || x.FullName.ToUpper() == fullName.ToUpper() && !x.IsDeleted)
-              .AsEnumerable()  // Switch to in-memory processing
+              .Where(x => !x.IsDeleted && (fullName == null || x.FullName.ToUpper() == fullName.ToUpper()))
+              .AsEnumerable() 
               .Select(x => {
                   var position = positions.FirstOrDefault(y => y.UserId == x.Id);
                   var absence = workingAbsences.OrderByDescending(x => x.CreatedDateTime).FirstOrDefault(y => y.UserId == x.Id);
@@ -151,7 +166,7 @@ namespace Core.Repositories.Repository
                 UserId = x.UserId,
                 Code = x.Position.Code,
                 Name = x.Position.Name,
-                ContractType = Enum.GetName(typeof(ContractType), int.Parse(x.ContractTypeCode)),
+                ContractType = Enum.GetName(typeof(ContractType), x.ContractTypeId),
                 ContractExpireDate = x.ContractExpireDate
             }).ToList();
 
@@ -180,7 +195,7 @@ namespace Core.Repositories.Repository
 
         public List<SelectListHelper> GetSelectLists()
         {
-            var result = _context.Users.Select(x => new SelectListHelper
+            var result = _context.Users.Where(x => !x.IsDeleted).Select(x => new SelectListHelper
             {
                 Id = x.Id,
                 Name = x.FullName,
@@ -194,13 +209,13 @@ namespace Core.Repositories.Repository
         {
             var user = _context.Users.FirstOrDefault(y => y.Id == userId);
 
-            var position = _context.UserPositions.Include(x => x.Position).FirstOrDefault(x => !x.IsDeleted && x.UserId == userId);
+            var positionId = _context.UserPositions.Include(x => x.Position).FirstOrDefault(x => !x.IsDeleted && x.UserId == userId)?.Position.Id;
             var cityId = _context.UserResidence.Include(x => x.City).FirstOrDefault(x => x.UserId == userId).City.Id;
             var shiftId = _context.WorkingDays.FirstOrDefault(x => x.UserId == userId).ShiftId;
             var roleId = _context.UserRoles.FirstOrDefault(x => x.UserId == userId).RoleId;
             var userPosition = _context.UserPositions.FirstOrDefault(x => x.UserId == userId);
 
-            var contractType = _context.ContractTypes.FirstOrDefault(x => x.Code == userPosition.ContractTypeCode);
+            var contractType = _context.ContractTypes.FirstOrDefault(x => int.Parse(x.Code) == userPosition.ContractTypeId);
             if (user == null) return null; // Or handle not found case
 
             var model = new EditUserViewModel
@@ -213,7 +228,7 @@ namespace Core.Repositories.Repository
                 RoleId = roleId,
                 CityId = cityId,
                 ShiftId = shiftId,
-                PositionId = position.Id,
+                PositionId = positionId != null ? positionId.Value : 0,
                 ContractTypeId = contractType.Id,
                 ContractExpireDate = userPosition.ContractExpireDate,
                 DateOfBirth = user.DateOfBirth,

@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Helpers.Constants;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
 using Models.Entities.Dtos;
@@ -17,12 +18,15 @@ namespace Core.Services.Services
         private readonly IUnitOfWork DataUnitOfWork;
         private readonly IHttpContextAccessor ContextAccessor;
         private readonly IEmailServiceClient  EmailServiceClient;
-        public UserLoggerService(IUnitOfWork unitOfWork, IHttpContextAccessor contextAccessor, IEmailServiceClient emailSergiveClient
+        private readonly PasswordHasher<Users> PasswordHasher;
+        public UserLoggerService(IUnitOfWork unitOfWork, IHttpContextAccessor contextAccessor, IEmailServiceClient emailSergiveClient,
+            PasswordHasher<Users> passwordHasher
             )
         {
             this.DataUnitOfWork = unitOfWork;
             this.ContextAccessor = contextAccessor;
             this.EmailServiceClient = emailSergiveClient;
+            this.PasswordHasher = passwordHasher;
         }
 
         public UserLogger CreateUserLog(int userId)
@@ -97,6 +101,24 @@ namespace Core.Services.Services
             utf8Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
             string result = new String(decoded_char);
             return result;
+        }
+
+        public string HashPassword(Users user, string password)
+        {
+            return PasswordHasher.HashPassword(user, password);
+        }
+
+        public bool VerifyPassword(Users user, string password)
+        {
+
+            var result = PasswordHasher.VerifyHashedPassword(
+                null,
+                user.Password,
+                password
+            );
+
+            return result == PasswordVerificationResult.Success ||
+                   result == PasswordVerificationResult.SuccessRehashNeeded;
         }
     }
 }

@@ -9,10 +9,12 @@ namespace EmailWorkerService
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
+        private readonly IConfiguration Configuration;
 
-        public Worker(ILogger<Worker> logger)
+        public Worker(ILogger<Worker> logger, IConfiguration configuration)
         {
             _logger = logger;
+            this.Configuration = configuration;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -46,8 +48,8 @@ namespace EmailWorkerService
 
         public Task SendEmailAsync(string emailTo, string subject, string message)
         {
-            var emailFrom = "kasumamer@gmail.com";
-            var password = "wlqt yqvo cwhn ujsv";
+            var emailFrom = Configuration["Credentials:Email"];
+            var password = Configuration["Credentials:Password"];
 
             var client = new SmtpClient("smtp.gmail.com")
             {

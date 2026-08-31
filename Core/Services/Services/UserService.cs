@@ -177,7 +177,7 @@ namespace Core.Services.Services
             {
                 UserId = userId,
                 PositionId = model.PositionId,
-                ContractTypeCode = UnitOfWork.ContractTypeRepository.GetById(model.ContractTypeId).Code,
+                ContractTypeId = UnitOfWork.ContractTypeRepository.GetById(model.ContractTypeId).Id,
                 ContractExpireDate = model.ContractExpireDate,
             };
 

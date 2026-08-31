@@ -22,5 +22,7 @@ namespace Core.Repositories.IRepository
         List<SelectListHelper> GetSelectLists();
         Users GetByUsername(string username);
         EditUserViewModel GetUserToEditData(int userId);
+        bool DoesUsernameAlreadyExist(string username);
+        string GenerateUniqueUsername(string firstName, string lastName);
     }
 }

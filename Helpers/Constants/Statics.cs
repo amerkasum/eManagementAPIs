@@ -22,7 +22,7 @@
 
             public static class TaskMessages
             {
-                public static string TaskStatusUpdated = "task status updated successfuly.";
+                public static string TaskStatusUpdated = "Task status updated successfuly.";
             }
 
             public static class AbsenceMessages

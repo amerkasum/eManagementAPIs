@@ -15,7 +15,7 @@ namespace Models.Entities
 
         [ForeignKey(nameof(PositionId))]
         public Positions Position { get; set; }
-        public string ContractTypeCode { get; set; }
+        public int ContractTypeId { get; set; }
         public DateTime? ContractExpireDate { get; set; }
         public int PositionId { get; set; }
         public DateTime CreatedDateTime { get; set; }

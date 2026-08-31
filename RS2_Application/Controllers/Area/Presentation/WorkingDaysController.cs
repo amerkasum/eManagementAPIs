@@ -44,7 +44,7 @@ namespace RS2_Application.Controllers.Area.Presentation
                 {
                     var model = models.FirstOrDefault(x => x.WorkingDayId ==  workingDay.Id);
 
-                    if(model != null && (model.IsWorking != workingDay.IsWorking || model.ShiftId != workingDay.ShiftId))
+                    if(model != null && (model.IsWorking != workingDay.IsWorking))
                     {
                         workingDay.IsWorking = model.IsWorking;
 

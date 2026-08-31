@@ -21,10 +21,12 @@ namespace RS2_Application
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
+
             using (var scope = host.Services.CreateScope())
             {
-                var service = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                service.Database.EnsureCreated();
+                var service = scope.ServiceProvider
+                    .GetRequiredService<ApplicationDbContext>();
+
                 int maxRetries = 5;
                 int retries = 0;
 
@@ -33,16 +35,32 @@ namespace RS2_Application
                     try
                     {
                         service.Database.Migrate();
-                        break; // Break out of the loop if migration succeeds
+
+                        Console.WriteLine("Database migration completed successfully.");
+                        break;
                     }
-                    catch (SqlException)
+                    catch (SqlException ex)
                     {
                         retries++;
-                        Console.WriteLine($"Retrying migration ({retries}/{maxRetries})...");
-                        Thread.Sleep(5000); // Wait 5 seconds before retrying
+
+                        Console.WriteLine(
+                            $"Database migration failed ({retries}/{maxRetries})."
+                        );
+
+                        if (retries >= maxRetries)
+                        {
+                            Console.WriteLine(
+                                "Maximum number of migration retries reached."
+                            );
+
+                            throw;
+                        }
+
+                        Thread.Sleep(5000);
                     }
                 }
             }
+
             host.Run();
         }
 

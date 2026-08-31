@@ -3,7 +3,9 @@ using Core.Services.HelperServices.IHelperService;
 using Core.Services.IServices;
 using Core.Services.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -22,6 +24,7 @@ namespace Core.Extensions
             services.AddTransient<IWorkingDaysService, WorkingDaysService>();
             services.AddTransient<IHelperService, HelperService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddScoped<PasswordHasher<Users>>();
 
         }
     }

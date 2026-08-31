@@ -7,6 +7,7 @@ using EasyNetQ;
 using Helpers.Constants;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -49,16 +50,17 @@ namespace RS2_Application.Controllers.Area.Mobile
         private readonly IUserService UserService;
         private readonly IEmailServiceClient EmailServiceClient;
         private readonly IHelperService HelperService;
+        private readonly IPasswordHasher<Users> PasswordHasher; 
 
         public UsersController(IUnitOfWork unitOfWork, IUserLoggerService userLoggerService, IUserService userService, IEmailServiceClient emailServiceClient,
-            IHelperService helperService)
+            IHelperService helperService, IPasswordHasher<Users> passwordHasher)
         {
             this.DataUnitOfWork = unitOfWork;
             this.UserLoggerService = userLoggerService;
             this.UserService = userService;
             this.EmailServiceClient = emailServiceClient;
             this.HelperService = helperService;
-            
+            this.PasswordHasher = passwordHasher;
         }
 
         [HttpGet(nameof(GetAll))]
@@ -83,25 +85,30 @@ namespace RS2_Application.Controllers.Area.Mobile
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] UsersViewModel model)
         {
-            //if (DataUnitOfWork.UsersRepository.DoesEmailAlreadyExist(model.Email))
-               // return BadRequest("User with this email already exists!");
+            if (DataUnitOfWork.UsersRepository.DoesEmailAlreadyExist(model.Email))
+               return BadRequest("User with this email already exists!");
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var generatedUsername = model.FirstName + "." + model.Password;
+                    var usernameAlreadyExist = DataUnitOfWork.UsersRepository.DoesUsernameAlreadyExist(generatedUsername);
+
                     Users user = new Users
                     {
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         Email = model.Email,
-                        Username = $"{model.FirstName.ToLower()}.{model.LastName.ToLower()}",
-                        Password = UserLoggerService.EncodePasswordToBase64(model.Password),
+                        Username = usernameAlreadyExist ? DataUnitOfWork.UsersRepository.GenerateUniqueUsername(model.FirstName, model.LastName) : $"{model.FirstName.ToLower()}.{model.LastName.ToLower()}",
+                        Password = "",
                         DateOfBirth = model.DateOfBirth,
                         PhoneNumber = model.PhoneNumber,
                         IsActive = true,
                         ImageUrl = model.ImageUrl
                     };
+
+                    user.Password = PasswordHasher.HashPassword(user, model.Password);
 
                     DataUnitOfWork.UsersRepository.Add(user);
                     DataUnitOfWork.SaveChanges();
@@ -136,23 +143,30 @@ namespace RS2_Application.Controllers.Area.Mobile
         }
 
         [HttpPost(nameof(SignIn))]
-        public IActionResult SignIn(string username, string password)
+        public IActionResult SignIn([FromBody] SignInViewModel model)
         {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(model.Username) || string.IsNullOrEmpty(model.Password))
             {
                 return BadRequest(new { success = false, message = Statics.Notifications.UserMessages.EmailAndPasswordRequired });
             }
 
-            var user = DataUnitOfWork.UsersRepository.GetByUsername(username);
+            var user = DataUnitOfWork.UsersRepository.GetByUsername(model.Username);
 
             if (user == null)
             {
-                return BadRequest(new { success = false, message = string.Format(Statics.Notifications.UserMessages.EmailDoesNotExist, username) });
+                return BadRequest(new { success = false, message = string.Format(Statics.Notifications.UserMessages.EmailDoesNotExist, model.Username) });
             }
 
-            var decodedPassword = password != "test" ? UserLoggerService.DecodeFrom64(user.Password) : password;
+            var passwordHasher = new PasswordHasher<Users>();
 
-            if (!password.Equals(decodedPassword))
+            var result = passwordHasher.VerifyHashedPassword(
+                user,
+                user.Password,
+                model.Password
+            );
+
+
+            if (result == PasswordVerificationResult.Failed)
             {
                 return BadRequest(new { success = false, Statics.Notifications.UserMessages.IncorrectPassword });
             }
@@ -216,7 +230,7 @@ namespace RS2_Application.Controllers.Area.Mobile
 
                 var userPosition = DataUnitOfWork.UserPositionsRepository.GetByUserId(model.Id);
                 userPosition.PositionId = model.PositionId;
-                userPosition.ContractTypeCode = model.ContractTypeId.ToString();
+                userPosition.ContractTypeId = model.ContractTypeId;
                 userPosition.ContractExpireDate = model.ContractExpireDate;
 
                 DataUnitOfWork.UserPositionsRepository.Update(userPosition);
